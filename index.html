@@ -72,6 +72,7 @@
     position:relative;
     width:100%;
     min-height:100vh;
+    min-height:100dvh;
     background:var(--color--green) url('bg-2.png') center / cover no-repeat;
     overflow:hidden;
     display:flex;
@@ -139,7 +140,7 @@
     .hero_grid{display:none;}
     .hero_logo{height:2.25rem;width:auto;}
     .hero_heading{font-size:clamp(3.5rem,19vw,7.5rem);}
-    .hero_bottombar{grid-template-columns:1fr;gap:1.25rem;padding-bottom:1.5rem;}
+    .hero_bottombar{grid-template-columns:1fr;gap:1.25rem;padding-bottom:2.75rem;}
     .hero_info,.hero_info.is-right{justify-content:center;text-align:center;}
     /* видимость кнопки «адрес»: в шапке на мобилке, снизу — только десктоп */
     .u-mobile-only{display:inline-flex;}
@@ -147,9 +148,9 @@
     .u-mobile-inline{display:inline;}
     .u-desktop-inline{display:none;}
     /* уменьшаем кнопки в шапке, чтобы три влезли */
-    .hero_actions{gap:0.375rem;}
-    .hero_actions .button{font-size:0.6875rem;padding:0.5rem 0.75rem;gap:0.3125rem;}
-    .hero_actions .button svg{width:0.875rem;height:0.875rem;}
+    .hero_actions{gap:0.4375rem;}
+    .hero_actions .button{font-size:0.75rem;padding:0.5625rem 0.9375rem;gap:0.375rem;}
+    .hero_actions .button svg{width:1rem;height:1rem;}
   }
 </style>
 </head>
