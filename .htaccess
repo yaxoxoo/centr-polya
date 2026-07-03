@@ -1,0 +1,7 @@
+# MIME-типы для шрифтов и svg (чтобы корректно отдавались на хостинге)
+AddType font/woff2 .woff2
+AddType font/ttf .ttf
+AddType image/svg+xml .svg
+
+# Главная страница
+DirectoryIndex index.html

@@ -121,6 +121,11 @@
     font-size:clamp(3rem,9.5vw,8rem);line-height:0.86;letter-spacing:-0.01em;
   }
   .hero_subtext{font-size:clamp(0.8125rem,1.3vw,1rem);font-weight:500;color:var(--color--white);}
+  .hero_address{
+    display:inline-flex;align-items:center;gap:0.4375rem;
+    font-size:clamp(0.875rem,1.5vw,1.125rem);font-weight:600;color:var(--color--white);
+  }
+  .hero_address svg{width:1.1em;height:1.1em;flex:none;}
 
   /* нижний бар */
   .hero_bottombar{
@@ -187,6 +192,10 @@
         <div class="hero_content">
           <div class="hero_eyebrow">Футбольный манеж</div>
           <h1 class="hero_heading">Центр<br>Поля</h1>
+          <p class="hero_address">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Новоселье, дер. Пески
+          </p>
           <p class="hero_subtext">Игры в формате&nbsp; 5×5 · 6×6 · 7×7 · 8×8</p>
           <a class="button is-accent is-large" href="tel:+79813799009">Бронирование</a>
         </div>
