@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Футбольный манеж «Центр Поля»</title>
-<meta name="description" content="Футбольный манеж «Центр Поля» — 3 футбольные площадки, игры 5х5, 6х6, 7х7, 8х8. Бронирование по телефону.">
+<title>Центр Поля — футбольная арена на Юго-Западе Петербурга</title>
+<meta name="description" content="Центр Поля — крытая футбольная арена в дер. Пески (Новоселье), Юго-Запад Петербурга. 4 поля под крышей 38×19, 42×22, 64×42, форматы 5×5–8×8. Аренда полей, турниры, детские секции, корпоративы. Бронирование по телефону.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -18,208 +18,491 @@
   @font-face{font-family:'Gros Ventre';src:url('fonts/Gros-Ventre-Semibold.ttf') format('truetype');font-weight:600;font-display:swap;}
   @font-face{font-family:'Gros Ventre';src:url('fonts/Gros-Ventre-Regular.ttf') format('truetype');font-weight:400;font-display:swap;}
 
-  /* ============ ПЕРЕМЕННЫЕ ============ */
+  /* ============ ТОКЕНЫ ============ */
   :root{
-    /* Палитра гайдлайна — только эти цвета */
-    --color--green:  #198300;
-    --color--yellow: #E06D06;
-    --color--black:  #000000;
-    --color--white:  #FFFFFF;
-    /* Линии сетки — фирменный белый с прозрачностью */
-    --line--soft: rgba(255,255,255,0.16);
+    /* палитра гайдлайна */
+    --green:#198300;
+    --yellow:#E06D06;
+    --black:#000000;
+    --white:#FFFFFF;
+    --grey:#EFF1ED;
+    /* производные от фирменных (чёрный/белый с прозрачностью) */
+    --muted:rgba(0,0,0,0.56);
+    --line:rgba(0,0,0,0.12);
+    --line-w:rgba(255,255,255,0.16);
 
-    /* Типографика */
-    --font--heading: 'Gros Ventre', sans-serif;
-    --font--body: 'Inter', sans-serif;
+    --font-head:'Gros Ventre',sans-serif;
+    --font-body:'Inter',sans-serif;
 
-    /* Структура hero */
-    --hero--edge-pad: clamp(1.125rem, 3vw, 2.5rem);
-    --hero--row-top: 4.5rem;
-    --hero--row-bottom: 5.25rem;
+    --header-h:4.25rem;
+    --edge:clamp(1.125rem,4vw,3rem);
+    --maxw:75rem;
+    --radius:0.875rem;
   }
 
   /* ============ БАЗА ============ */
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{font-size:100%;overflow-x:hidden;}
-  html,body{height:100%;}
+  html{font-size:100%;scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:var(--header-h);}
+  body{font-family:var(--font-body);color:var(--black);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
 
-  .page-wrapper{
-    font-family:var(--font--body);
-    color:var(--color--white);
-    background-color:var(--color--black);
-    min-height:100%;
-    text-transform:uppercase;
-    -webkit-font-smoothing:antialiased;
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-left:var(--edge);padding-right:var(--edge);}
+
+  h1,h2,h3,.eyebrow,.btn,.nav-link,.stat-num,.field-name{font-family:var(--font-head);text-transform:uppercase;}
+  h2{font-weight:700;font-size:clamp(1.75rem,4.5vw,3rem);line-height:0.95;letter-spacing:-0.01em;}
+  h3{font-weight:700;letter-spacing:-0.005em;text-transform:none;}
+  .eyebrow{display:inline-block;font-weight:600;font-size:0.8125rem;letter-spacing:0.22em;color:var(--green);margin-bottom:0.75rem;}
+
+  /* ============ КНОПКИ ============ */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+    font-weight:700;font-size:0.8125rem;letter-spacing:0.04em;
+    text-decoration:none;white-space:nowrap;cursor:pointer;border:none;
+    padding:0.85rem 1.5rem;border-radius:62.5rem;transition:filter .15s ease,background .15s ease,color .15s ease;
   }
-  .main-wrapper{height:100%;}
+  .btn-accent{background:var(--yellow);color:var(--black);}
+  .btn-accent:hover{filter:brightness(1.07);}
+  .btn-dark{background:var(--black);color:var(--white);}
+  .btn-dark:hover{filter:brightness(1.5);}
+  .btn-ghost{background:transparent;color:var(--black);border:1.5px solid var(--black);}
+  .btn-ghost:hover{background:var(--black);color:var(--white);}
+  .btn-ghost-w{background:rgba(255,255,255,0.1);color:var(--white);border:1.5px solid rgba(255,255,255,0.55);}
+  .btn-ghost-w:hover{background:var(--white);color:var(--green);}
+  .btn-sm{padding:0.6rem 1.05rem;font-size:0.75rem;}
 
-  /* ============ УТИЛИТЫ ============ */
-  .button{
-    display:inline-flex;align-items:center;gap:0.4375rem;
-    font-family:var(--font--heading);font-weight:700;
-    font-size:0.8125rem;letter-spacing:0.04em;text-transform:uppercase;
-    text-decoration:none;white-space:nowrap;
-    padding:0.625rem 1.125rem;border-radius:62.5rem;
-    background-color:var(--color--yellow);color:var(--color--black);
-  }
-  .button.is-white{background-color:var(--color--white);color:var(--color--green);}
-  .button.is-large{font-size:0.9375rem;padding:0.8125rem 1.75rem;margin-top:0.25rem;}
-
-  /* утилиты видимости по брейкпоинтам */
-  .u-mobile-only{display:none;}
-  .u-mobile-inline{display:none;}
+  /* ============ ШАПКА ============ */
+  .site-header{position:sticky;top:0;z-index:50;background:var(--green);color:var(--white);}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:var(--header-h);}
+  .header-logo{display:flex;align-items:center;flex:none;}
+  .header-logo img{height:2.35rem;width:auto;}
+  .nav-menu{display:flex;align-items:center;gap:1.65rem;}
+  .nav-link{font-weight:700;font-size:0.8125rem;letter-spacing:0.05em;text-decoration:none;color:var(--white);opacity:.9;}
+  .nav-link:hover{opacity:1;}
+  .header-actions{display:flex;align-items:center;gap:0.65rem;}
+  .burger{display:none;flex-direction:column;gap:5px;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;cursor:pointer;}
+  .burger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:.2s;}
+  #nav-toggle{display:none;}
 
   /* ============ HERO ============ */
-  .section_hero{height:100%;}
+  .hero{position:relative;color:var(--white);background:var(--green) url('bg-2.png') center/cover no-repeat;overflow:hidden;isolation:isolate;}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.05) 100%);}
+  .hero-grid{position:absolute;inset:0;z-index:1;pointer-events:none;}
+  .hero-grid span{position:absolute;top:0;bottom:0;width:1px;background:var(--line-w);}
+  .hero-grid span:nth-child(1){left:33.33%;}
+  .hero-grid span:nth-child(2){left:66.66%;}
+  .hero-inner{position:relative;z-index:2;padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);}
+  .hero-max{max-width:44rem;}
+  .hero h1{font-weight:700;font-size:clamp(3rem,10vw,7.5rem);line-height:0.86;letter-spacing:-0.01em;}
+  .hero-sub{font-family:var(--font-head);text-transform:uppercase;font-weight:700;font-size:clamp(1.05rem,2.4vw,1.6rem);line-height:1.1;margin-top:1rem;}
+  .hero-slogan{font-weight:600;font-size:clamp(0.95rem,1.7vw,1.15rem);color:#ffe9b0;margin-top:0.5rem;}
+  .hero-desc{font-size:clamp(0.95rem,1.4vw,1.05rem);color:rgba(255,255,255,.9);margin-top:1.25rem;max-width:34rem;}
+  .hero-btns{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.75rem;}
+  .hero-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-top:clamp(2rem,4vw,3.25rem);}
+  .stat{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px);border-radius:var(--radius);padding:1.1rem 1.2rem;}
+  .stat-num{font-weight:700;font-size:clamp(1.4rem,3vw,2rem);line-height:1;}
+  .stat-label{font-size:0.8rem;color:rgba(255,255,255,.82);margin-top:0.35rem;}
 
-  .hero_frame{
-    position:relative;
-    width:100%;
-    min-height:100vh;
-    background:var(--color--green) url('bg-2.png') center / cover no-repeat;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    isolation:isolate;
-  }
+  /* ============ СЕКЦИИ ============ */
+  section{scroll-margin-top:var(--header-h);}
+  .sec{padding:clamp(3.25rem,7vw,6rem) 0;}
+  .sec-grey{background:var(--grey);}
+  .sec-dark{background:var(--green);color:var(--white);}
+  .sec-head{max-width:48rem;margin-bottom:clamp(1.75rem,3vw,2.75rem);}
+  .sec-head p{color:var(--muted);margin-top:0.6rem;font-size:1.05rem;}
+  .sec-dark .sec-head p{color:rgba(255,255,255,.85);}
 
-  /* модульная сетка */
-  .hero_grid{position:absolute;inset:0;z-index:1;pointer-events:none;}
-  .hero_grid-border{position:absolute;inset:0;border:0.0625rem solid var(--line--soft);}
-  .hero_grid-line{position:absolute;background-color:var(--line--soft);}
-  .hero_grid-line.is-vertical{top:0;bottom:0;width:0.0625rem;}
-  .hero_grid-line.is-horizontal{left:0;right:0;height:0.0625rem;}
-  .hero_grid-line.is-v1{left:33.333%;}
-  .hero_grid-line.is-v2{left:66.666%;}
-  .hero_grid-line.is-h-top{top:var(--hero--row-top);}
-  .hero_grid-line.is-h-bottom{bottom:var(--hero--row-bottom);}
+  /* ---- Поля и форматы ---- */
+  .fields-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+  .field-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
+  .pitch{background:var(--green);padding:1.35rem;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;}
+  .pitch svg{width:100%;height:100%;}
+  .field-body{padding:1.15rem 1.25rem 1.35rem;display:flex;flex-direction:column;gap:0.15rem;flex:1;}
+  .field-name{font-weight:700;font-size:1.15rem;}
+  .field-size{font-weight:700;color:var(--green);font-size:1rem;margin-top:0.15rem;}
+  .field-formats{color:var(--muted);font-size:0.9rem;}
+  .field-card .btn{margin-top:0.9rem;align-self:flex-start;}
+  .note{margin-top:1.5rem;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:var(--radius);padding:1.25rem 1.4rem;}
+  .note b{display:block;text-transform:uppercase;font-family:var(--font-head);font-size:0.85rem;letter-spacing:0.04em;margin-bottom:0.35rem;}
+  .note span{color:var(--muted);}
+  .sec-grey .note{background:var(--white);}
 
-  .hero_topbar,.hero_content,.hero_bottombar{position:relative;z-index:2;}
+  /* ---- О комплексе ---- */
+  .about{display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(1.5rem,3vw,2.75rem);align-items:start;}
+  .about ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+  .about li{position:relative;padding-left:1.4rem;color:rgba(255,255,255,.9);}
+  .about li::before{content:"";position:absolute;left:0;top:0.6em;width:0.5rem;height:0.5rem;border-radius:50%;background:var(--yellow);}
+  .about-media{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+  .ph{border-radius:var(--radius);background:rgba(255,255,255,0.08);border:1px dashed rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;text-align:center;color:rgba(255,255,255,.8);font-size:0.85rem;padding:1rem;min-height:8.5rem;}
+  .ph.big{grid-column:1/-1;min-height:11rem;background-size:cover;background-position:center;}
 
-  /* верхний бар */
-  .hero_topbar{
-    flex:none;height:var(--hero--row-top);
-    display:flex;align-items:center;justify-content:space-between;
-    padding-left:var(--hero--edge-pad);padding-right:var(--hero--edge-pad);
-  }
-  .hero_brand{display:flex;align-items:center;gap:0.875rem;}
-  .hero_logo{height:2.75rem;width:auto;}
-  .hero_actions{display:flex;align-items:center;gap:0.75rem;}
+  /* ---- Карточки (для кого / услуги) ---- */
+  .cards{display:grid;gap:1.1rem;}
+  .cards.cols-2{grid-template-columns:1fr 1fr;}
+  .cards.cols-3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem 1.6rem;}
+  .sec-grey .card{background:var(--white);}
+  .card h3{font-size:1.2rem;margin-bottom:0.5rem;}
+  .card p{color:var(--muted);font-size:0.97rem;}
+  .card .tag{display:inline-block;font-family:var(--font-head);text-transform:uppercase;font-size:0.7rem;letter-spacing:.08em;color:var(--green);margin-bottom:0.6rem;}
 
-  /* центр */
-  .hero_content{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;gap:0.75rem;
-    padding:2rem var(--hero--edge-pad);
-  }
-  .hero_eyebrow{
-    font-weight:600;font-size:clamp(0.6875rem,1vw,0.8125rem);letter-spacing:0.28em;
-    color:var(--color--white);
-  }
-  .hero_heading{
-    font-family:var(--font--heading);font-weight:700;
-    font-size:clamp(3rem,9.5vw,8rem);line-height:0.86;letter-spacing:-0.01em;
-  }
-  .hero_subtext{font-size:clamp(0.8125rem,1.3vw,1rem);font-weight:500;color:var(--color--white);}
-  .hero_address{
-    display:inline-flex;align-items:center;gap:0.4375rem;
-    font-size:clamp(0.875rem,1.5vw,1.125rem);font-weight:600;color:var(--color--white);
-  }
-  .hero_address svg{width:1.1em;height:1.1em;flex:none;}
+  /* ---- Галерея ---- */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+  .gtile{aspect-ratio:1/1;border-radius:var(--radius);background:var(--grey);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:0.85rem;padding:1rem;background-size:cover;background-position:center;}
+  .gtile.photo{color:transparent;border:none;}
 
-  /* нижний бар */
-  .hero_bottombar{
-    flex:none;min-height:var(--hero--row-bottom);
-    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.25rem;
-    padding:1.125rem var(--hero--edge-pad);
+  /* ---- Бронирование ---- */
+  .booking{display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start;}
+  .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.5rem,3vw,2.25rem);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.1rem;}
+  .field{display:flex;flex-direction:column;gap:0.35rem;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-weight:700;font-size:0.8rem;}
+  .field input,.field select,.field textarea{
+    font-family:var(--font-body);font-size:0.95rem;color:var(--black);
+    background:var(--grey);border:1px solid transparent;border-radius:0.6rem;padding:0.7rem 0.85rem;width:100%;
+    transition:border-color .15s ease,background .15s ease;
   }
-  .hero_bottombar > .button{justify-self:center;}
-  .hero_info{display:flex;align-items:center;gap:0.875rem;}
-  .hero_info.is-right{justify-content:flex-end;text-align:right;}
-  .hero_info-text{display:flex;flex-direction:column;line-height:1.3;}
-  .hero_info-title{font-weight:700;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;}
-  .hero_info-value{font-size:0.75rem;color:var(--color--white);}
-  .hero_info-link{color:var(--color--white);text-decoration:none;}
-  .hero_info-link:hover{text-decoration:underline;text-underline-offset:0.1875rem;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green);background:var(--white);}
+  .field textarea{resize:vertical;min-height:5rem;}
+  .form-card .btn{margin-top:1.25rem;width:100%;}
+  .form-hint{font-size:0.8rem;color:var(--muted);margin-top:0.75rem;text-align:center;}
+  .form-ok{display:none;margin-top:1rem;padding:0.9rem 1rem;border-radius:0.6rem;background:rgba(25,131,0,.1);border:1px solid var(--green);color:var(--green);font-weight:600;font-size:0.9rem;}
+  .form-ok.show{display:block;}
+  .aside-card{background:var(--grey);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.5rem,3vw,2rem);}
+  .aside-card h3{font-size:1.35rem;margin-bottom:0.6rem;}
+  .aside-card p{color:var(--muted);font-size:0.95rem;margin-bottom:1.1rem;}
+  .pay-note{font-size:0.82rem;color:var(--muted);margin-top:1rem;}
+
+  /* ============ ПОДВАЛ ============ */
+  .site-footer{background:var(--black);color:var(--white);padding:clamp(2.5rem,5vw,3.5rem) 0 2rem;}
+  .footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2rem;align-items:start;}
+  .footer-logo img{height:2.6rem;width:auto;margin-bottom:1rem;}
+  .footer-logo p{color:rgba(255,255,255,.7);font-size:0.92rem;max-width:22rem;}
+  .footer-col h4{font-family:var(--font-head);text-transform:uppercase;font-size:0.8rem;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:0.9rem;}
+  .footer-col a,.footer-col p{display:block;color:var(--white);text-decoration:none;font-size:0.98rem;margin-bottom:0.55rem;opacity:.92;}
+  .footer-col a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px;}
+  .footer-phone{font-family:var(--font-head);font-weight:700;font-size:1.25rem;}
+  .footer-bottom{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:space-between;color:rgba(255,255,255,.55);font-size:0.82rem;}
 
   /* ============ АДАПТИВ ============ */
-  @media (max-width:61.9375rem){
-    :root{--hero--row-top:4.625rem;}
-    .hero_grid{display:none;}
-    .hero_logo{height:2.25rem;width:auto;}
-    .hero_heading{font-size:clamp(3.5rem,19vw,7.5rem);}
-    .hero_bottombar{grid-template-columns:1fr;gap:1.25rem;padding-bottom:2.75rem;}
-    .hero_info,.hero_info.is-right{justify-content:center;text-align:center;}
-    /* видимость кнопки «адрес»: в шапке на мобилке, снизу — только десктоп */
-    .u-mobile-only{display:inline-flex;}
-    .u-desktop-only{display:none;}
-    .u-mobile-inline{display:inline;}
-    .u-desktop-inline{display:none;}
-    /* уменьшаем кнопки в шапке, чтобы три влезли */
-    .hero_actions{gap:0.4375rem;}
-    .hero_actions .button{font-size:0.75rem;padding:0.5625rem 0.9375rem;gap:0.375rem;}
-    .hero_actions .button svg{width:1rem;height:1rem;}
+  @media (max-width:60rem){
+    .fields-grid{grid-template-columns:1fr 1fr;}
+    .gallery{grid-template-columns:1fr 1fr;}
+    .about{grid-template-columns:1fr;}
+    .booking{grid-template-columns:1fr;}
+    .cards.cols-3{grid-template-columns:1fr 1fr;}
+    .hero-stats{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:48rem){
+    .burger{display:flex;}
+    .nav-menu{
+      position:absolute;top:var(--header-h);left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--green);padding:0.5rem var(--edge) 1rem;
+      border-top:1px solid rgba(255,255,255,.15);display:none;
+    }
+    #nav-toggle:checked ~ .nav-menu{display:flex;}
+    .nav-link{padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:0.95rem;}
+    .header-actions .btn-vk-text{display:none;}
+    .form-grid{grid-template-columns:1fr;}
+    .cards.cols-2,.cards.cols-3{grid-template-columns:1fr;}
+    .fields-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;gap:1.75rem;}
+    .about-media{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:30rem){
+    .hero-stats{grid-template-columns:1fr 1fr;}
+    .gallery{grid-template-columns:1fr 1fr;}
   }
 </style>
 </head>
-<body class="page-wrapper">
-  <main class="main-wrapper">
-    <section class="section_hero">
-      <div class="hero_frame">
+<body id="top">
 
-        <div class="hero_grid" aria-hidden="true">
-          <div class="hero_grid-border"></div>
-          <div class="hero_grid-line is-vertical is-v1"></div>
-          <div class="hero_grid-line is-vertical is-v2"></div>
-          <div class="hero_grid-line is-horizontal is-h-top"></div>
-          <div class="hero_grid-line is-horizontal is-h-bottom"></div>
-        </div>
-
-        <header class="hero_topbar">
-          <div class="hero_brand">
-            <img class="hero_logo" src="logo-white.svg" alt="Центр Поля">
-          </div>
-          <nav class="hero_actions">
-            <a class="button is-white" href="https://vk.ru/club238920313" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.16 18.06c-6.84 0-10.74-4.69-10.9-12.5h3.43c.11 5.73 2.64 8.16 4.64 8.66V5.56h3.23v4.94c1.98-.21 4.06-2.46 4.76-4.94h3.23c-.54 3.06-2.79 5.31-4.39 6.24 1.6.75 4.16 2.71 5.13 6.26h-3.56c-.76-2.36-2.66-4.19-5.2-4.44v4.44h-.39Z"/></svg>
-              <span class="u-desktop-inline">ВКонтакте</span><span class="u-mobile-inline">ВК</span>
-            </a>
-            <a class="button is-accent" href="tel:+79813799009"><span class="u-desktop-inline">Бронирование</span><span class="u-mobile-inline">Бронь</span></a>
-            <a class="button is-white u-mobile-only" href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес</a>
-          </nav>
-        </header>
-
-        <div class="hero_content">
-          <div class="hero_eyebrow">Футбольный манеж</div>
-          <h1 class="hero_heading">Центр<br>Поля</h1>
-          <p class="hero_address">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            Новоселье, дер. Пески
-          </p>
-          <p class="hero_subtext">Игры в формате&nbsp; 5×5 · 6×6 · 7×7 · 8×8</p>
-          <a class="button is-accent is-large" href="tel:+79813799009">Бронирование</a>
-        </div>
-
-        <footer class="hero_bottombar">
-          <div class="hero_info">
-            <span class="hero_info-text">
-              <span class="hero_info-title">3 футбольные площадки</span>
-              <span class="hero_info-value">38×19 · 42×22 · 42×64</span>
-            </span>
-          </div>
-
-          <a class="button is-white u-desktop-only" href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес на карте</a>
-
-          <div class="hero_info is-right">
-            <span class="hero_info-text">
-              <span class="hero_info-title">Вопросы и бронь</span>
-              <a class="hero_info-link" href="tel:+79813799009">+7-981-379-90-09</a>
-            </span>
-          </div>
-        </footer>
-
+  <!-- ============ ШАПКА ============ -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="header-logo" href="#top" aria-label="Центр Поля"><img src="logo-white.svg" alt="Центр Поля"></a>
+      <input type="checkbox" id="nav-toggle">
+      <nav class="nav-menu">
+        <a class="nav-link" href="#fields">Поля</a>
+        <a class="nav-link" href="#about">О комплексе</a>
+        <a class="nav-link" href="#services">Услуги</a>
+        <a class="nav-link" href="#audience">Для кого</a>
+        <a class="nav-link" href="#gallery">Галерея</a>
+        <a class="nav-link" href="#booking">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost-w btn-sm" href="https://vk.ru/club238920313" target="_blank" rel="noopener">ВК</a>
+        <a class="btn btn-accent btn-sm" href="#booking">Бронировать</a>
+        <label class="burger" for="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></label>
       </div>
-    </section>
-  </main>
+    </div>
+  </header>
+
+  <!-- ============ 1. ПЕРВЫЙ ЭКРАН ============ -->
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"><span></span><span></span></div>
+    <div class="wrap hero-inner">
+      <div class="hero-max">
+        <h1>Центр<br>Поля</h1>
+        <p class="hero-sub">Футбольная арена на Юго-Западе Петербурга</p>
+        <p class="hero-slogan">«Футбол начинается с Центра Поля»</p>
+        <p class="hero-desc">Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
+        <div class="hero-btns">
+          <a class="btn btn-accent" href="#booking">Бронировать</a>
+          <a class="btn btn-ghost-w" href="#fields">Смотреть поля</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">поля под крышей</div></div>
+        <div class="stat"><div class="stat-num">5×5–8×8</div><div class="stat-label">форматы игры</div></div>
+        <div class="stat"><div class="stat-num">60 мм</div><div class="stat-label">покрытие</div></div>
+        <div class="stat"><div class="stat-num">6</div><div class="stat-label">раздевалок</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. ПОЛЯ И ФОРМАТЫ ============ -->
+  <section id="fields" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Поля и форматы</span>
+        <h2>4 поля под одной крышей</h2>
+        <p>Размеры полей: 38×19, 42×22 и 64×42. Форматы игры: 5×5, 6×6, 7×7 и 8×8 — под команду любого состава.</p>
+      </div>
+      <div class="fields-grid" id="fields-grid"></div>
+      <div class="note">
+        <b>Отдельный сценарий</b>
+        <span>Заявка на аренду всего манежа 64×42 оформляется без выбора даты и времени: только контакты, комментарий и обратная связь менеджера.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. О КОМПЛЕКСЕ ============ -->
+  <section id="about" class="sec sec-dark">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow" style="color:#ffe9b0">О комплексе</span>
+        <h2>Футбольный манеж на Юго-Западе Петербурга</h2>
+      </div>
+      <div class="about">
+        <ul>
+          <li>Поля размерами 38×19, 42×22 и 64×42.</li>
+          <li>Профессиональное искусственное покрытие 60 мм.</li>
+          <li>Все поля разделены сеткой.</li>
+          <li>Футбольные ворота 3×2, 4×2, 5×2.</li>
+          <li>Трибуны для зрителей и вышка оператора.</li>
+          <li>Баннерная сетка для рекламных и промо-баннеров.</li>
+          <li>Кафе с зоной ожидания и мониторами онлайн-трансляции из манежа.</li>
+          <li>6 раздевалок с душевыми, инвентарная, тренерская, помещение для тактического разбора.</li>
+          <li>Удобная транспортная доступность и бесплатная парковка.</li>
+        </ul>
+        <div class="about-media">
+          <div class="ph big" style="background-image:url('bg-2.png')"></div>
+          <div class="ph">Кафе · рендер / скоро фото</div>
+          <div class="ph">Раздевалки · рендер / скоро фото</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. ДЛЯ КОГО ============ -->
+  <section id="audience" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Для кого</span>
+        <h2>Кому подойдёт Центр Поля</h2>
+      </div>
+      <div class="cards cols-2">
+        <div class="card"><h3>Любительские и профессиональные команды</h3><p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p></div>
+        <div class="card"><h3>Детские футбольные школы</h3><p>Секции, групповые занятия, детские турниры и тренировочные игры.</p></div>
+        <div class="card"><h3>Организаторы турниров</h3><p>Футбольные турниры разных уровней, форматов и возрастов.</p></div>
+        <div class="card"><h3>Частные мероприятия</h3><p>Корпоративы, праздники, дни рождения и спортивные события.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. УСЛУГИ ============ -->
+  <section id="services" class="sec sec-grey">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Услуги</span>
+        <h2>Что мы предлагаем</h2>
+      </div>
+      <div class="cards cols-3">
+        <div class="card"><span class="tag">Аренда</span><h3>Аренда футбольного поля</h3><p>Поля трёх размеров под ваш формат игры. Для тренировок и регулярных игр.</p></div>
+        <div class="card"><span class="tag">События</span><h3>Турниры</h3><p>Турниры для любых уровней и возрастов: взрослые, детские, корпоративные, длинные и однодневные.</p></div>
+        <div class="card"><span class="tag">Праздники</span><h3>Дни рождения</h3><p>Праздник футбола для детей и взрослых. Поле — для активных игр, просторный зал — для праздничного стола и отдыха.</p></div>
+        <div class="card"><span class="tag">Дети</span><h3>Детские секции</h3><p>Регулярные занятия частных и государственных футбольных школ. Удобная зона ожидания для родителей.</p></div>
+        <div class="card"><span class="tag">Бизнес</span><h3>Корпоративные мероприятия</h3><p>Спортивные корпоративы для вашей компании. Отдельный зал для организации праздника.</p></div>
+        <div class="card"><span class="tag">Отдых</span><h3>Кафе и зона ожидания</h3><p>Просторная зона ожидания для футболистов и родителей. Кафе с выпечкой и горячими блюдами, мониторы с трансляцией.</p></div>
+        <div class="card"><span class="tag">Зал</span><h3>Зал для групповых занятий</h3><p>Отдельный зал для групповых занятий: йога, пилатес, суставная гимнастика.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. ГАЛЕРЕЯ ============ -->
+  <section id="gallery" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Фото и галерея</span>
+        <h2>Как это выглядит</h2>
+        <p>Комплекс строится — сейчас показываем честные рендеры, схемы полей и фото процесса. Реальные фото появятся по мере готовности арены.</p>
+      </div>
+      <div class="gallery">
+        <div class="gtile photo" style="background-image:url('bg-2.png')"></div>
+        <div class="gtile">Схема полей · скоро</div>
+        <div class="gtile">Стройка · прогресс</div>
+        <div class="gtile photo" style="background-image:url('bg.png')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. БРОНИРОВАНИЕ ============ -->
+  <section id="booking" class="sec sec-grey">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Бронирование и заявки</span>
+        <h2>Забронировать поле</h2>
+        <p>Оставьте заявку — менеджер свяжется, подтвердит дату, время и условия. Или позвоните нам напрямую.</p>
+      </div>
+      <div class="booking">
+        <div class="form-card">
+          <form id="booking-form" novalidate>
+            <div class="form-grid">
+              <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" required></div>
+              <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" required></div>
+              <div class="field"><label for="f-datetime">Дата и время</label><input id="f-datetime" name="datetime" type="text" placeholder="Напр. 20 июля, 19:00"></div>
+              <div class="field"><label for="f-field">Поле / формат</label>
+                <select id="f-field" name="field">
+                  <option value="">Выберите поле</option>
+                  <option value="Поле 1 — 38×19 (5×5 / 6×6)">Поле 1 — 38×19 (5×5 / 6×6)</option>
+                  <option value="Поле 2 — 38×19 (5×5 / 6×6)">Поле 2 — 38×19 (5×5 / 6×6)</option>
+                  <option value="Поле 3 — 42×22 (6×6 / 7×7)">Поле 3 — 42×22 (6×6 / 7×7)</option>
+                  <option value="Весь манеж — 64×42 (7×7 / 8×8)">Весь манеж — 64×42 (7×7 / 8×8)</option>
+                </select>
+              </div>
+              <div class="field"><label for="f-goals">Размер ворот</label>
+                <select id="f-goals" name="goals">
+                  <option value="">Не важно</option>
+                  <option value="3×2">3×2</option>
+                  <option value="4×2">4×2</option>
+                  <option value="5×2">5×2</option>
+                </select>
+              </div>
+              <div class="field"><label for="f-ball">Аренда мяча</label>
+                <select id="f-ball" name="ball"><option value="Нет">Не нужна</option><option value="Да">Нужна</option></select>
+              </div>
+              <div class="field full"><label for="f-bibs">Аренда манишек</label>
+                <select id="f-bibs" name="bibs"><option value="Нет">Не нужна</option><option value="Да, комплект">Нужна — комплект</option></select>
+              </div>
+              <div class="field full"><label for="f-comment">Комментарий</label><textarea id="f-comment" name="comment" placeholder="Цель аренды, количество игроков, пожелания"></textarea></div>
+            </div>
+            <button class="btn btn-dark" type="submit">Отправить заявку</button>
+            <p class="form-hint">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
+            <div class="form-ok" id="form-ok">Спасибо! Заявка принята — менеджер свяжется с вами в ближайшее время.</div>
+          </form>
+        </div>
+
+        <aside>
+          <div class="aside-card">
+            <h3>Заявка на аренду всего манежа</h3>
+            <p>Для аренды всего манежа 64×42 — без выбора даты в форме: оставьте имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
+            <a class="btn btn-dark" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
+            <p class="pay-note">Оплата: наличные, безнал, карта, QR-код. Онлайн-бронирование можно подключить после финальной тарифной сетки.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПОДВАЛ ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo-white.svg" alt="Центр Поля">
+          <p>Крытая футбольная арена на Юго-Западе Петербурга. Аренда полей, турниры, детские секции, корпоративы и частные мероприятия.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a class="footer-phone" href="tel:+79813799009">+7-981-379-90-09</a>
+          <p>Новоселье, дер. Пески</p>
+          <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес на карте →</a>
+          <a href="https://vk.ru/club238920313" target="_blank" rel="noopener">Группа ВКонтакте →</a>
+        </div>
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <a href="#fields">Поля и форматы</a>
+          <a href="#about">О комплексе</a>
+          <a href="#services">Услуги</a>
+          <a href="#booking">Бронирование</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Центр Поля. Футбольная арена.</span>
+        <span>Футбол начинается с Центра Поля</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // год в подвале
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // мини-схема поля (SVG) для карточек
+    var pitch = '<svg viewBox="0 0 120 80" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round">'
+      + '<rect x="4" y="4" width="112" height="72" rx="2"/>'
+      + '<line x1="60" y1="4" x2="60" y2="76"/>'
+      + '<circle cx="60" cy="40" r="12"/>'
+      + '<rect x="4" y="26" width="14" height="28"/>'
+      + '<rect x="102" y="26" width="14" height="28"/></svg>';
+
+    var fields = [
+      {name:'Поле 1', size:'38×19', formats:'5×5 / 6×6', val:'Поле 1 — 38×19 (5×5 / 6×6)'},
+      {name:'Поле 2', size:'38×19', formats:'5×5 / 6×6', val:'Поле 2 — 38×19 (5×5 / 6×6)'},
+      {name:'Поле 3', size:'42×22', formats:'6×6 / 7×7', val:'Поле 3 — 42×22 (6×6 / 7×7)'},
+      {name:'Весь манеж', size:'64×42', formats:'7×7 / 8×8', val:'Весь манеж — 64×42 (7×7 / 8×8)'}
+    ];
+    document.getElementById('fields-grid').innerHTML = fields.map(function(f){
+      return '<div class="field-card">'
+        + '<div class="pitch">' + pitch + '</div>'
+        + '<div class="field-body">'
+        + '<div class="field-name">' + f.name + '</div>'
+        + '<div class="field-size">' + f.size + '</div>'
+        + '<div class="field-formats">' + f.formats + '</div>'
+        + '<a class="btn btn-ghost btn-sm" href="#booking" data-book="' + f.val + '">Выбрать поле</a>'
+        + '</div></div>';
+    }).join('');
+
+    // «Выбрать поле» / «Оставить заявку» — подставляем поле в форму
+    document.addEventListener('click', function(e){
+      var t = e.target.closest('[data-book]');
+      if(!t) return;
+      var sel = document.getElementById('f-field');
+      if(sel) sel.value = t.getAttribute('data-book');
+      // закрыть мобильное меню, если открыто
+      var nt = document.getElementById('nav-toggle'); if(nt) nt.checked = false;
+    });
+
+    // закрывать мобильное меню при клике по пункту
+    document.querySelectorAll('.nav-link').forEach(function(a){
+      a.addEventListener('click', function(){ document.getElementById('nav-toggle').checked = false; });
+    });
+
+    // отправка формы (клиентское подтверждение; подключение реального обработчика — по готовности)
+    document.getElementById('booking-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('f-name').value.trim();
+      var phone = document.getElementById('f-phone').value.trim();
+      if(!name || !phone){
+        alert('Пожалуйста, укажите имя и телефон.');
+        return;
+      }
+      document.getElementById('form-ok').classList.add('show');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
