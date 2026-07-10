@@ -236,15 +236,11 @@
   .wbody h3{font-size:var(--fs-body);}
   .wbody p{color:var(--ink-60);font-size:var(--fs-small);margin-top:.45rem;}
 
-  /* ---- Услуги: editorial-список ---- */
-  .srv{border-top:.0938rem solid var(--black);}
-  .srow{
-    display:grid;grid-template-columns:4.5rem 1fr 1.2fr auto;gap:var(--gap);align-items:center;
-    padding:1.4rem 0;border-bottom:.0938rem solid var(--black);
-  }
-  .srow-num{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);color:var(--green);}
-  .srow p{color:var(--ink-60);font-size:var(--fs-small);}
-  .srow:hover{background:var(--green-tint);}
+  /* ---- Услуги: заголовок + текст ---- */
+  .srv{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem var(--gap);}
+  .srow{grid-column:span 4;}
+  .srow h3{color:var(--green);}
+  .srow p{color:var(--ink-60);font-size:var(--fs-small);margin-top:.5rem;max-width:22rem;}
 
   /* ---- Галерея ---- */
   .gt{grid-column:span 3;aspect-ratio:1/1;border-radius:var(--r);background:var(--grey);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-60);font-size:var(--fs-small);padding:1rem;overflow:hidden;position:relative;}
@@ -308,8 +304,7 @@
     .gt{grid-column:span 6;}
     .fcard,.acard{grid-column:span 12;}
     .foot-col-tag,.foot-col{grid-column:span 12;}
-    .srow{grid-template-columns:3rem 1fr auto;}
-    .srow p{display:none;}
+    .srow{grid-column:span 6;}
   }
   @media (max-width:48rem){
     .bar-nav{
@@ -326,6 +321,7 @@
     .b1,.b2,.b3,.b4{grid-column:span 12;}
     .fgrid{grid-template-columns:1fr;}
     .wcard{grid-column:span 12;}
+    .srow{grid-column:span 12;}
   }
 </style>
 </head>
@@ -556,46 +552,32 @@
         </div>
         <div class="srv">
           <div class="srow">
-            <span class="srow-num">01</span>
             <h3>Аренда футбольного поля</h3>
             <p>Поля трёх размеров под ваш формат игры. Для тренировок и регулярных игр.</p>
-            <span class="chip chip-green">Аренда</span>
           </div>
           <div class="srow">
-            <span class="srow-num">02</span>
             <h3>Турниры</h3>
             <p>Для любых уровней и возрастов: взрослые, детские, корпоративные, длинные и однодневные.</p>
-            <span class="chip chip-green">События</span>
           </div>
           <div class="srow">
-            <span class="srow-num">03</span>
             <h3>Дни рождения</h3>
             <p>Праздник футбола: поле — для игр, просторный зал — для праздничного стола и отдыха.</p>
-            <span class="chip chip-green">Праздники</span>
           </div>
           <div class="srow">
-            <span class="srow-num">04</span>
             <h3>Детские секции</h3>
             <p>Занятия частных и государственных футбольных школ. Зона ожидания для родителей.</p>
-            <span class="chip chip-green">Дети</span>
           </div>
           <div class="srow">
-            <span class="srow-num">05</span>
             <h3>Корпоративные мероприятия</h3>
             <p>Спортивные корпоративы для вашей компании. Отдельный зал для организации праздника.</p>
-            <span class="chip chip-green">Бизнес</span>
           </div>
           <div class="srow">
-            <span class="srow-num">06</span>
             <h3>Кафе и зона ожидания</h3>
             <p>Кафе с выпечкой и горячими блюдами. Мониторы с трансляцией из манежа.</p>
-            <span class="chip chip-green">Отдых</span>
           </div>
           <div class="srow">
-            <span class="srow-num">07</span>
             <h3>Зал для групповых занятий</h3>
             <p>Йога, пилатес, суставная гимнастика — в отдельном зале.</p>
-            <span class="chip chip-green">Зал</span>
           </div>
         </div>
       </div>
