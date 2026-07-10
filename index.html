@@ -131,7 +131,10 @@
   .chip-fill{background:var(--white);color:var(--black);border:none;}
 
   /* ============ ШАПКА-ПИЛЮЛЯ ============ */
-  .hero{position:relative;background:var(--green-deep);color:var(--white);padding:1rem 1rem 1rem;}
+  .hero{
+    position:relative;color:var(--white);padding:1rem;
+    background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
+  }
   .bar{
     position:sticky;top:.75rem;z-index:60;
     display:flex;align-items:center;justify-content:space-between;gap:1rem;
@@ -151,17 +154,16 @@
   #nt{display:none;}
 
   /* ============ HERO ============ */
-  .hero-body{max-width:var(--container);margin-inline:auto;text-align:center;padding:clamp(2.5rem,6vw,4.5rem) var(--pad) 0;}
+  .hero-body{
+    max-width:var(--container);margin-inline:auto;text-align:center;
+    padding:clamp(2.5rem,6vw,4.5rem) var(--pad) clamp(8rem,18vw,16rem);
+  }
   .hero-title{color:var(--yellow);}
   .hero-tag{margin-top:1.5rem;color:rgba(255,255,255,.92);}
   .hero-cols{display:flex;justify-content:center;gap:clamp(2rem,6vw,5rem);margin-top:2rem;flex-wrap:wrap;}
   .hcol b{display:block;font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--yellow);margin-bottom:.4rem;}
   .hcol span{display:block;font-size:var(--fs-small);color:rgba(255,255,255,.88);line-height:1.5;}
   .hero-btns{display:flex;justify-content:center;gap:.7rem;margin-top:2rem;flex-wrap:wrap;}
-  /* фото на главной — чистое, без линий */
-  .hero-photo{max-width:var(--container);margin:clamp(2.5rem,5vw,4rem) auto 0;}
-  .hero-photo img{width:100%;aspect-ratio:21/9;object-fit:cover;border-radius:var(--r);}
-
   /* ============ БЕГУЩАЯ СТРОКА ============ */
   .mrq{background:var(--yellow);overflow:hidden;}
   .mrq-in{display:flex;width:max-content;animation:mrq 28s linear infinite;}
@@ -324,7 +326,6 @@
     .b1,.b2,.b3,.b4{grid-column:span 12;}
     .fgrid{grid-template-columns:1fr;}
     .wcard{grid-column:span 12;}
-    .hero-photo img{aspect-ratio:4/3;}
   }
 </style>
 </head>
@@ -376,9 +377,6 @@
       </div>
     </div>
 
-    <div class="hero-photo">
-      <img src="bg-2.png" alt="Игроки на крытом футбольном поле арены Центр Поля" width="1600" height="686">
-    </div>
   </header>
 
   <!-- ============ БЕГУЩАЯ СТРОКА ============ -->
