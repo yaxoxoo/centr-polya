@@ -208,11 +208,32 @@
   .note p{max-width:44rem;color:var(--ink-60);font-size:var(--fs-small);}
   .note h3{margin-bottom:.3rem;}
 
-  /* ---- Шаги ---- */
-  .step{grid-column:span 4;border:.0625rem solid var(--line);border-radius:var(--r);padding:1.5rem;background:var(--white);}
-  .step-num{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);color:var(--green);}
-  .step h3{margin:.8rem 0 .5rem;}
-  .step p{color:var(--ink-60);font-size:var(--fs-small);}
+  /* ---- Тёмные секции (стиль референса) ---- */
+  .sec-dark{background:var(--green-deep);color:var(--white);}
+  .sec-dark .eyebrow{color:var(--yellow);}
+  .sec-dark .lead{color:rgba(255,255,255,.72);}
+  .tag-pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--fh);font-weight:600;text-transform:uppercase;
+    font-size:var(--fs-small);letter-spacing:.14em;color:var(--white);
+    border:.0625rem solid rgba(255,255,255,.25);border-radius:62.5rem;padding:.45rem 1rem;
+  }
+  .tag-pill::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--yellow);}
+  .split{display:grid;grid-template-columns:repeat(12,1fr);gap:2rem var(--gap);align-items:start;}
+  .split-l{grid-column:span 5;display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem;}
+  .split-r{grid-column:span 7;}
+
+  /* шаги-карточки на тёмном */
+  .scards{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+  .scard{
+    background:rgba(255,255,255,.06);border:.0625rem solid rgba(255,255,255,.09);
+    border-radius:var(--r);padding:1.5rem;
+  }
+  .scard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.25rem;}
+  .snum{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--yellow);}
+  .sdot{width:.625rem;height:.625rem;border-radius:50%;border:.0938rem solid var(--yellow);}
+  .scard h3{color:var(--white);}
+  .scard p{color:rgba(255,255,255,.62);font-size:var(--fs-small);margin-top:.45rem;}
 
   /* ---- Большое высказывание ---- */
   .shout{background:var(--green-deep);color:var(--yellow);text-align:center;padding-block:var(--sec);}
@@ -220,13 +241,13 @@
   .shout p{color:rgba(255,255,255,.85);max-width:36rem;margin:1.25rem auto 0;}
   .shout .btn{margin-top:1.75rem;}
 
-  /* ---- Характеристики ---- */
-  .featgrid{display:flex;flex-wrap:wrap;gap:.6rem;}
-  .feat{
-    font-size:var(--fs-small);font-weight:500;
-    border:.0625rem solid var(--black);border-radius:62.5rem;padding:.6rem 1.1rem;background:var(--white);
-  }
-  .feat b{font-family:var(--fh);font-weight:700;text-transform:uppercase;color:var(--green);margin-right:.35rem;}
+  /* ---- Характеристики на тёмном: список + фото ---- */
+  .flist{display:flex;flex-direction:column;gap:1.05rem;}
+  .fitem{display:flex;gap:.8rem;align-items:flex-start;font-size:var(--fs-small);color:rgba(255,255,255,.62);}
+  .fitem::before{content:"";flex:none;width:.5rem;height:.5rem;border-radius:50%;background:var(--yellow);margin-top:.35rem;}
+  .fitem b{font-family:var(--fh);font-weight:700;text-transform:uppercase;color:var(--white);margin-right:.4rem;}
+  .about-photos{display:grid;gap:var(--gap);}
+  .about-photos img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);}
 
   /* ---- Для кого ---- */
   .wcard{grid-column:span 3;border-radius:var(--r);overflow:hidden;background:var(--white);border:.0625rem solid var(--line);display:flex;flex-direction:column;}
@@ -299,7 +320,7 @@
     .shead-l,.shead-r{grid-column:span 12;}
     .b-photo{grid-column:span 12;grid-row:auto;}
     .b1,.b2,.b3,.b4{grid-column:span 6;}
-    .step{grid-column:span 12;}
+    .split-l,.split-r{grid-column:span 12;}
     .wcard{grid-column:span 6;}
     .gt{grid-column:span 6;}
     .fcard,.acard{grid-column:span 12;}
@@ -322,6 +343,7 @@
     .fgrid{grid-template-columns:1fr;}
     .wcard{grid-column:span 12;}
     .srow{grid-column:span 12;}
+    .scards{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -438,32 +460,38 @@
     </section>
 
     <!-- ============ КАК ЗАБРОНИРОВАТЬ ============ -->
-    <section id="how" class="sec sec-grey">
+    <section id="how" class="sec sec-dark">
       <div class="container">
-        <div class="shead">
-          <div class="shead-l">
-            <span class="eyebrow">Как это работает</span>
-            <h2>Забронировать —<br>это просто</h2>
-          </div>
-          <div class="shead-r">
+        <div class="split">
+          <div class="split-l">
+            <span class="tag-pill">Как это работает</span>
+            <h2>Забронировать —<br>шаг за шагом</h2>
             <p class="lead">Никаких сложных систем: выбираете поле, оставляете заявку или звоните — и выходите на газон.</p>
+            <a class="btn btn-y" href="#booking">Бронировать</a>
           </div>
-        </div>
-        <div class="grid">
-          <div class="step">
-            <span class="step-num">01</span>
-            <h3>Выбираете поле</h3>
-            <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">02</span>
-            <h3>Заявка или звонок</h3>
-            <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">03</span>
-            <h3>Выходите на газон</h3>
-            <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
+          <div class="split-r">
+            <div class="scards">
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 1</span><span class="sdot"></span></div>
+                <h3>Выбираете поле</h3>
+                <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 2</span><span class="sdot"></span></div>
+                <h3>Заявка или звонок</h3>
+                <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 3</span><span class="sdot"></span></div>
+                <h3>Выходите на газон</h3>
+                <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Оплата</span><span class="sdot"></span></div>
+                <h3>Как удобно вам</h3>
+                <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -479,28 +507,28 @@
     </section>
 
     <!-- ============ О КОМПЛЕКСЕ ============ -->
-    <section id="about" class="sec">
+    <section id="about" class="sec sec-dark">
       <div class="container">
-        <div class="shead">
-          <div class="shead-l">
-            <span class="eyebrow">О комплексе</span>
+        <div class="split">
+          <div class="split-l">
+            <span class="tag-pill">О комплексе</span>
             <h2>Что внутри<br>комплекса</h2>
-          </div>
-          <div class="shead-r">
             <p class="lead">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
+            <div class="flist">
+              <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, профессиональное покрытие 60 мм</span></p>
+              <p class="fitem"><span><b>Разделение</b> все поля разделены сеткой, ворота 3×2 · 4×2 · 5×2</span></p>
+              <p class="fitem"><span><b>Трибуны</b> для зрителей + вышка оператора и баннерная сетка</span></p>
+              <p class="fitem"><span><b>Кафе</b> зона ожидания и мониторы онлайн-трансляции из манежа</span></p>
+              <p class="fitem"><span><b>6 раздевалок</b> с душевыми, инвентарная, тренерская, тактический разбор</span></p>
+              <p class="fitem"><span><b>Парковка</b> бесплатная, удобная транспортная доступность</span></p>
+            </div>
           </div>
-        </div>
-        <div class="featgrid">
-          <span class="feat"><b>Поля</b> 38×19 · 42×22 · 64×42</span>
-          <span class="feat"><b>Покрытие</b> профессиональное, 60 мм</span>
-          <span class="feat"><b>Сетка</b> все поля разделены</span>
-          <span class="feat"><b>Ворота</b> 3×2 · 4×2 · 5×2</span>
-          <span class="feat"><b>Трибуны</b> для зрителей + вышка оператора</span>
-          <span class="feat"><b>Баннерная сетка</b> для рекламы и промо</span>
-          <span class="feat"><b>Кафе</b> зона ожидания + мониторы трансляций</span>
-          <span class="feat"><b>6 раздевалок</b> с душевыми</span>
-          <span class="feat"><b>Тренерская</b> + инвентарная + тактический разбор</span>
-          <span class="feat"><b>Парковка</b> бесплатная, удобный подъезд</span>
+          <div class="split-r">
+            <div class="about-photos">
+              <img src="bg-2.png" alt="Игроки на крытом футбольном поле арены Центр Поля" loading="lazy">
+              <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
+            </div>
+          </div>
         </div>
       </div>
     </section>
