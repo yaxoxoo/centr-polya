@@ -160,10 +160,15 @@
   }
   .hero-title{color:var(--yellow);}
   .hero-tag{margin-top:1.5rem;color:rgba(255,255,255,.92);}
-  .hero-cols{display:flex;justify-content:center;gap:clamp(2rem,6vw,5rem);margin-top:2rem;flex-wrap:wrap;}
-  .hcol b{display:block;font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--yellow);margin-bottom:.4rem;}
-  .hcol span{display:block;font-size:var(--fs-small);color:rgba(255,255,255,.88);line-height:1.5;}
   .hero-btns{display:flex;justify-content:center;gap:.7rem;margin-top:2rem;flex-wrap:wrap;}
+  /* белые плашки-карточки на фото */
+  .hero-cards{display:flex;justify-content:center;gap:var(--gap);margin-top:clamp(3rem,8vw,7rem);flex-wrap:wrap;}
+  .hcard{
+    flex:1;min-width:15rem;max-width:22rem;text-align:left;
+    background:var(--white);color:var(--black);border-radius:var(--r);padding:1.35rem 1.5rem;
+  }
+  .hcard b{display:block;font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--green);margin-bottom:.4rem;}
+  .hcard span{display:block;font-size:var(--fs-small);color:var(--ink-60);line-height:1.5;}
   /* ============ БЕГУЩАЯ СТРОКА ============ */
   .mrq{background:var(--yellow);overflow:hidden;}
   .mrq-in{display:flex;width:max-content;animation:mrq 28s linear infinite;}
@@ -235,19 +240,35 @@
   .scard h3{color:var(--white);}
   .scard p{color:rgba(255,255,255,.62);font-size:var(--fs-small);margin-top:.45rem;}
 
-  /* ---- Большое высказывание ---- */
-  .shout{background:var(--green-deep);color:var(--yellow);text-align:center;padding-block:var(--sec);}
-  .shout h2{font-size:var(--fs-h2);}
-  .shout p{color:rgba(255,255,255,.85);max-width:36rem;margin:1.25rem auto 0;}
-  .shout .btn{margin-top:1.75rem;}
+  /* ---- Большое высказывание: белая плашка на тёмном ---- */
+  .shout{background:var(--green-deep);padding-block:0 var(--sec);}
+  .shout-card{
+    background:var(--white);color:var(--black);border-radius:var(--r);
+    text-align:center;padding:clamp(2.5rem,6vw,5rem) var(--pad);
+  }
+  .shout-card h2{color:var(--green);}
+  .shout-card p{color:var(--ink-60);max-width:36rem;margin:1.25rem auto 0;}
+  .shout-card .btn{margin-top:1.75rem;}
 
   /* ---- Характеристики на тёмном: список + фото ---- */
   .flist{display:flex;flex-direction:column;gap:1.05rem;}
   .fitem{display:flex;gap:.8rem;align-items:flex-start;font-size:var(--fs-small);color:rgba(255,255,255,.62);}
   .fitem::before{content:"";flex:none;width:.5rem;height:.5rem;border-radius:50%;background:var(--yellow);margin-top:.35rem;}
   .fitem b{font-family:var(--fh);font-weight:700;text-transform:uppercase;color:var(--white);margin-right:.4rem;}
-  .about-photos{display:grid;gap:var(--gap);}
-  .about-photos img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);}
+  /* слайдер: одно фото, переключение стрелками */
+  .slider{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;}
+  .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;}
+  .slider img.on{opacity:1;}
+  .slider-nav{position:absolute;right:1rem;bottom:1rem;display:flex;align-items:center;gap:.6rem;z-index:1;}
+  .snav{
+    width:2.5rem;height:2.5rem;border-radius:50%;border:none;cursor:pointer;
+    background:var(--white);color:var(--black);
+    font-size:var(--fs-body);line-height:1;display:flex;align-items:center;justify-content:center;
+  }
+  .snav:hover{background:var(--yellow);}
+  .sdots{display:flex;gap:.35rem;}
+  .sdots i{width:.5rem;height:.5rem;border-radius:50%;background:rgba(255,255,255,.45);}
+  .sdots i.on{background:var(--white);}
 
   /* ---- Для кого ---- */
   .wcard{grid-column:span 3;border-radius:var(--r);overflow:hidden;background:var(--white);border:.0625rem solid var(--line);display:flex;flex-direction:column;}
@@ -374,24 +395,24 @@
       <h1 class="hero-title">Центр<br>Поля</h1>
       <p class="hero-tag">Футбольная арена на Юго-Западе Петербурга. «Футбол начинается с Центра Поля»</p>
 
-      <div class="hero-cols">
-        <div class="hcol">
-          <b>Где мы</b>
-          <span>Новоселье, дер. Пески<br>бесплатная парковка</span>
-        </div>
-        <div class="hcol">
-          <b>Что внутри</b>
-          <span>4 поля под крышей · покрытие 60 мм<br>форматы 5×5 · 6×6 · 7×7 · 8×8</span>
-        </div>
-        <div class="hcol">
-          <b>Для чего</b>
-          <span>тренировки · турниры · детские школы<br>корпоративы · праздники</span>
-        </div>
-      </div>
-
       <div class="hero-btns">
         <a class="btn btn-y" href="#booking">Бронировать</a>
         <a class="btn btn-ow" href="#fields">Смотреть поля</a>
+      </div>
+
+      <div class="hero-cards">
+        <div class="hcard">
+          <b>Где мы</b>
+          <span>Новоселье, дер. Пески — бесплатная парковка и удобный подъезд</span>
+        </div>
+        <div class="hcard">
+          <b>Что внутри</b>
+          <span>4 поля под крышей · покрытие 60 мм · форматы 5×5 · 6×6 · 7×7 · 8×8</span>
+        </div>
+        <div class="hcard">
+          <b>Для чего</b>
+          <span>тренировки · турниры · детские школы · корпоративы · праздники</span>
+        </div>
       </div>
     </div>
 
@@ -500,9 +521,11 @@
     <!-- ============ БОЛЬШОЕ ВЫСКАЗЫВАНИЕ ============ -->
     <section class="shout">
       <div class="container">
-        <h2>Футбол начинается<br>с Центра Поля</h2>
-        <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
-        <a class="btn btn-y" href="#booking">Забронировать поле</a>
+        <div class="shout-card">
+          <h2>Футбол начинается<br>с Центра Поля</h2>
+          <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
+          <a class="btn btn-y" href="#booking">Забронировать поле</a>
+        </div>
       </div>
     </section>
 
@@ -524,9 +547,14 @@
             </div>
           </div>
           <div class="split-r">
-            <div class="about-photos">
-              <img src="bg-2.png" alt="Игроки на крытом футбольном поле арены Центр Поля" loading="lazy">
+            <div class="slider" id="slider">
+              <img src="bg-2.png" class="on" alt="Игроки на крытом футбольном поле арены Центр Поля">
               <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
+              <div class="slider-nav">
+                <span class="sdots" id="sdots"><i class="on"></i><i></i></span>
+                <button class="snav" type="button" data-dir="-1" aria-label="Предыдущее фото">←</button>
+                <button class="snav" type="button" data-dir="1" aria-label="Следующее фото">→</button>
+              </div>
             </div>
           </div>
         </div>
@@ -746,6 +774,22 @@
   document.querySelectorAll('.bar-nav a').forEach(function(a){
     a.addEventListener('click', function(){ document.getElementById('nt').checked = false; });
   });
+
+  // слайдер «О комплексе»
+  (function(){
+    var box = document.getElementById('slider');
+    if(!box) return;
+    var slides = box.querySelectorAll('img');
+    var dots = document.getElementById('sdots').children;
+    var cur = 0;
+    box.querySelectorAll('.snav').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
+        cur = (cur + Number(btn.dataset.dir) + slides.length) % slides.length;
+        slides[cur].classList.add('on'); dots[cur].classList.add('on');
+      });
+    });
+  })();
 
   // форма (клиентское подтверждение; реальный обработчик подключается отдельно)
   document.getElementById('bf').addEventListener('submit', function(e){
