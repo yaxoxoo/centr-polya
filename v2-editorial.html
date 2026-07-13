@@ -45,7 +45,7 @@
   @font-face{font-family:'Gros Ventre';src:url('fonts/Gros-Ventre-Bold.ttf') format('truetype');font-weight:700;font-display:swap;}
   @font-face{font-family:'Gros Ventre';src:url('fonts/Gros-Ventre-Semibold.ttf') format('truetype');font-weight:600;font-display:swap;}
 
-  /* ============ ТОКЕНЫ ============ */
+  /* ============ ДИЗАЙН-ТОКЕНЫ ============ */
   :root{
     /* палитра гайдлайна */
     --green:#198300;
@@ -53,29 +53,30 @@
     --black:#000000;
     --white:#FFFFFF;
     --grey:#EFF1ED;
-    /* производные фирменных */
+    /* производные (зелёный+чёрный, прозрачности фирменных) */
     --green-deep:#0E4A00;
-    --ink-60:rgba(0,0,0,.6);
-    --w-70:rgba(255,255,255,.7);
-    --line-w:rgba(255,255,255,.16);
+    --green-tint:rgba(25,131,0,.10);
+    --ink-60:rgba(0,0,0,.58);
+    --line:rgba(0,0,0,.12);
+    --line-w:rgba(255,255,255,.18);
 
-    /* типографика: 5 размеров */
-    --fs-h1:clamp(3.5rem,12vw,10.5rem);
-    --fs-h2:clamp(2.25rem,5vw,4rem);
-    --fs-h3:1.25rem;
-    --fs-body:1rem;
-    --fs-small:.8125rem;
+    /* типографика: ровно 5 размеров */
+    --fs-h1:clamp(3.25rem,10vw,8.5rem);   /* display: hero, подвал */
+    --fs-h2:clamp(2rem,4.2vw,3.25rem);    /* заголовок секции */
+    --fs-h3:1.25rem;                       /* заголовок карточки */
+    --fs-body:1rem;                        /* наборный текст */
+    --fs-small:.8125rem;                   /* подписи, кнопки, метки */
 
     --fh:'Gros Ventre',sans-serif;
     --fb:'Inter',sans-serif;
 
+    /* сетка и отступы */
     --container:80rem;
     --gap:1rem;
-    --pad:clamp(1.25rem,3.5vw,3rem);
-    --sec:clamp(3.5rem,7vw,6rem);
-    --frame:.5rem;
-    --r:2rem;
-    --r-sm:1.25rem;
+    --pad:clamp(1.25rem,3vw,2rem);         /* поля контейнера */
+    --sec:clamp(4rem,7vw,6.5rem);          /* вертикальный ритм секций */
+    --frame:clamp(.5rem,1.2vw,1rem);       /* фирменная рамка страницы */
+    --r:1.5rem;
   }
 
   /* ============ БАЗА ============ */
@@ -83,31 +84,25 @@
   html{font-size:100%;scroll-behavior:smooth;}
   body{
     font-family:var(--fb);font-size:var(--fs-body);color:var(--black);
-    background:var(--green-deep);padding:var(--frame);
+    background:var(--green);padding:var(--frame);
     line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-  img,svg{display:block;max-width:100%;height:auto;}
+  img,svg{display:block;max-width:100%;}
   a{color:inherit;}
 
-  /* страница — стопка цветных блоков */
-  .blk{border-radius:var(--r);margin-bottom:var(--frame);position:relative;}
-  .blk-green{background:var(--green);color:var(--white);}
-  .blk-dark{background:var(--green-deep);color:var(--white);border:.0625rem solid var(--line-w);}
-  .blk-white{background:var(--white);color:var(--black);}
-  .blk-grey{background:var(--grey);color:var(--black);}
-  .blk-orange{background:var(--yellow);color:var(--black);}
-
-  .container{max-width:var(--container);margin-inline:auto;padding:var(--sec) var(--pad);}
+  .canvas{background:var(--white);border-radius:var(--r);overflow:hidden;}
+  .container{max-width:var(--container);margin-inline:auto;padding-inline:var(--pad);}
   .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
 
-  /* типографика */
-  h1,.display{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h1);line-height:.82;letter-spacing:-.02em;}
-  h2{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.9;letter-spacing:-.01em;}
+  /* типографическая шкала */
+  h1{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h1);line-height:.84;letter-spacing:-.015em;}
+  h2{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.92;letter-spacing:-.01em;}
   h3{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);line-height:1.1;}
-  .lead{color:var(--ink-60);max-width:30rem;}
-  .meta{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.16em;}
+  .lead{font-size:var(--fs-body);color:var(--ink-60);max-width:28rem;}
+  .small{font-size:var(--fs-small);}
+  .eyebrow{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.18em;color:var(--green);}
 
-  /* ============ КНОПКИ ============ */
+  /* ============ КНОПКИ (один размер + маленький) ============ */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
@@ -119,28 +114,34 @@
   .btn-y:hover{filter:brightness(1.08);}
   .btn-k{background:var(--black);color:var(--white);}
   .btn-k:hover{background:var(--green);}
-  .btn-w{background:var(--white);color:var(--black);}
-  .btn-w:hover{background:var(--yellow);}
-  .btn-ow{background:transparent;color:var(--white);border:.0938rem solid rgba(255,255,255,.55);}
+  .btn-o{background:transparent;color:var(--black);border:.0938rem solid var(--black);}
+  .btn-o:hover{background:var(--black);color:var(--white);}
+  .btn-ow{background:transparent;color:var(--white);border:.0938rem solid rgba(255,255,255,.6);}
   .btn-ow:hover{background:var(--white);color:var(--green-deep);}
   .btn-sm{padding:.55rem 1.1rem;}
 
-  /* стикер */
-  .stk{
-    display:inline-flex;background:var(--yellow);color:var(--black);
+  .chip{
+    display:inline-flex;align-items:center;
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
-    font-size:var(--fs-small);letter-spacing:.05em;
-    border-radius:62.5rem;padding:.5rem 1.1rem;transform:rotate(-4deg);
+    font-size:var(--fs-small);letter-spacing:.06em;
+    border:.0938rem solid currentColor;border-radius:62.5rem;padding:.3rem .85rem;
   }
-  .stk.is-white{background:var(--white);}
+  .chip-green{color:var(--green);}
+  .chip-yellow{color:var(--yellow);}
+  .chip-fill{background:var(--white);color:var(--black);border:none;}
 
-  /* ============ ШАПКА ============ */
+  /* ============ ШАПКА-ПИЛЮЛЯ ============ */
+  .hero{
+    position:relative;color:var(--white);padding:1rem;
+    background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
+  }
   .bar{
     position:sticky;top:.75rem;z-index:60;
     display:flex;align-items:center;justify-content:space-between;gap:1rem;
     background:var(--white);color:var(--black);
     border-radius:62.5rem;padding:.5rem .6rem .5rem 1.1rem;
-    max-width:calc(var(--container) - 2rem);margin:1rem auto 0;
+    max-width:calc(var(--container) - 2rem);margin-inline:auto;
+    box-shadow:0 .625rem 1.875rem rgba(0,0,0,.18);
   }
   .bar-logo{display:flex;align-items:center;flex:none;}
   .bar-logo img{height:1.9rem;width:auto;filter:invert(1);}
@@ -153,99 +154,109 @@
   #nt{display:none;}
 
   /* ============ HERO ============ */
-  .hero-wrap{max-width:var(--container);margin-inline:auto;padding:clamp(2rem,5vw,4rem) var(--pad) clamp(2.5rem,5vw,4rem);}
-  .hero-meta{display:flex;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;}
-  .hero-meta .meta{color:var(--w-70);}
-  .hero-title{display:block;}
-  .hero-title .l2{color:var(--yellow);display:block;}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:clamp(1.5rem,4vw,3rem);}
-  .hero-left p{color:var(--w-70);max-width:26rem;}
-  .hero-btns{display:flex;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
-  .hero-facts{display:flex;gap:2rem;margin-top:2.25rem;flex-wrap:wrap;}
-  .hf b{display:block;font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);text-transform:uppercase;}
-  .hf span{font-size:var(--fs-small);color:var(--w-70);}
-  .hero-photo{position:relative;justify-self:end;width:min(100%,30rem);}
-  .hero-photo img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:50%;}
-  .hero-photo .stk{position:absolute;top:1.25rem;right:0;transform:rotate(6deg);}
-
+  .hero-body{
+    max-width:var(--container);margin-inline:auto;text-align:center;
+    padding:clamp(2.5rem,6vw,4.5rem) var(--pad) clamp(8rem,18vw,16rem);
+  }
+  .hero-title{color:var(--yellow);}
+  .hero-tag{margin-top:1.5rem;color:rgba(255,255,255,.92);}
+  .hero-btns{display:flex;justify-content:center;gap:.7rem;margin-top:2rem;flex-wrap:wrap;}
+  /* белые плашки-карточки на фото */
+  .hero-cards{display:flex;justify-content:center;gap:var(--gap);margin-top:clamp(3rem,8vw,7rem);flex-wrap:wrap;}
+  .hcard{
+    flex:1;min-width:15rem;max-width:22rem;text-align:left;
+    background:var(--white);color:var(--black);border-radius:var(--r);padding:1.35rem 1.5rem;
+  }
+  .hcard b{display:block;font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--green);margin-bottom:.4rem;}
+  .hcard span{display:block;font-size:var(--fs-small);color:var(--ink-60);line-height:1.5;}
   /* ============ БЕГУЩАЯ СТРОКА ============ */
-  .blk-mrq{overflow:hidden;padding:0;}
+  .mrq{background:var(--yellow);overflow:hidden;}
   .mrq-in{display:flex;width:max-content;animation:mrq 28s linear infinite;}
-  .mrq-in span{
+  .mrq span{
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
     font-size:var(--fs-body);letter-spacing:.06em;
-    padding:.85rem 1.1rem;white-space:nowrap;color:var(--black);
+    padding:.8rem 1.1rem;white-space:nowrap;color:var(--black);
   }
   @keyframes mrq{to{transform:translateX(-50%);}}
 
-  /* ============ ЦИФРЫ ============ */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
-  .stat{border-radius:var(--r-sm);padding:1.5rem;min-height:11rem;display:flex;flex-direction:column;justify-content:space-between;}
-  .stat b{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.9;}
-  .stat span{font-size:var(--fs-small);}
-  .stat.s1{background:var(--yellow);color:var(--black);}
-  .stat.s2{background:var(--green);color:var(--white);}
-  .stat.s3{background:var(--grey);color:var(--black);}
-  .stat.s4{background:var(--green-deep);color:var(--white);}
-  .stat.s4 b{color:var(--yellow);}
+  /* ============ СЕКЦИИ ============ */
+  section{scroll-margin-top:5rem;}
+  .sec{padding-block:var(--sec);}
+  .sec-grey{background:var(--grey);}
 
-  /* ============ ЗАГОЛОВОК СЕКЦИИ ============ */
+  /* заголовок секции: слева титул, справа текст+кнопка */
   .shead{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:end;margin-bottom:clamp(2rem,4vw,3rem);}
   .shead-l{grid-column:span 7;}
-  .shead-l .meta{display:block;margin-bottom:.9rem;color:var(--green);}
-  .blk-dark .shead-l .meta,.blk-green .shead-l .meta{color:var(--yellow);}
+  .shead-l .eyebrow{display:block;margin-bottom:.75rem;}
   .shead-r{grid-column:span 5;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
-  .blk-dark .lead,.blk-green .lead{color:var(--w-70);}
 
-  /* ============ ПОЛЯ ============ */
-  .fields{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
-  .fcardx{border-radius:var(--r-sm);padding:1.5rem;display:flex;flex-direction:column;min-height:17rem;}
-  .fcardx .size{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.9;}
-  .fcardx .name{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);margin-top:auto;padding-top:2rem;}
-  .fcardx .fmt{font-size:var(--fs-small);margin-top:.2rem;}
-  .fcardx .btn{margin-top:1.1rem;align-self:flex-start;}
-  .f-photo{grid-column:span 6;grid-row:span 2;padding:0;overflow:hidden;position:relative;min-height:22rem;}
-  .f-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .f-photo .stk{position:absolute;left:1.25rem;bottom:1.25rem;transform:rotate(-3deg);}
-  .f1{grid-column:span 3;background:var(--white);color:var(--black);}
-  .f1 .fmt{color:var(--ink-60);}
-  .f2{grid-column:span 3;background:var(--yellow);color:var(--black);}
-  .f3{grid-column:span 3;background:var(--white);color:var(--black);}
-  .f3 .fmt{color:var(--ink-60);}
-  .f4{grid-column:span 3;background:var(--green-deep);color:var(--white);}
-  .f4 .size{color:var(--yellow);}
-  .f4 .fmt{color:var(--w-70);}
+  /* ---- Поля: бенто на 12-кол сетке ---- */
+  .bcard{border-radius:var(--r);padding:1.5rem;display:flex;flex-direction:column;min-height:15rem;}
+  .b-photo{grid-column:span 6;grid-row:span 2;padding:0;overflow:hidden;position:relative;min-height:20rem;}
+  .b-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .b-photo .chip{position:absolute;left:1.1rem;bottom:1.1rem;}
+  .b1{grid-column:span 3;background:var(--green-tint);}
+  .b2{grid-column:span 3;background:var(--grey);}
+  .b3{grid-column:span 3;background:rgba(224,109,6,.14);}
+  .b4{grid-column:span 3;background:var(--green-deep);color:var(--white);}
+  .bcard .chip{align-self:flex-start;}
+  .bcard h3{margin-top:auto;padding-top:1.5rem;}
+  .b4 h3{color:var(--yellow);}
+  .bfmt{font-size:var(--fs-small);color:var(--ink-60);margin-top:.15rem;}
+  .b4 .bfmt{color:rgba(255,255,255,.75);}
+  .bcard .btn{margin-top:1rem;align-self:flex-start;}
+
   .note{
-    margin-top:var(--gap);border-radius:var(--r-sm);background:var(--white);
+    margin-top:var(--gap);border-radius:var(--r);background:var(--green-tint);
     padding:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;
   }
   .note p{max-width:44rem;color:var(--ink-60);font-size:var(--fs-small);}
+  .note h3{margin-bottom:.3rem;}
 
-  /* ============ ШАГИ ============ */
-  .scards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
-  .scard{background:rgba(255,255,255,.06);border:.0625rem solid var(--line-w);border-radius:var(--r-sm);padding:1.5rem;min-height:13rem;}
+  /* ---- Тёмные секции (стиль референса) ---- */
+  .sec-dark{background:var(--green-deep);color:var(--white);}
+  .sec-dark .eyebrow{color:var(--yellow);}
+  .sec-dark .lead{color:rgba(255,255,255,.72);}
+  .tag-pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--fh);font-weight:600;text-transform:uppercase;
+    font-size:var(--fs-small);letter-spacing:.14em;color:var(--white);
+    border:.0625rem solid rgba(255,255,255,.25);border-radius:62.5rem;padding:.45rem 1rem;
+  }
+  .tag-pill::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--yellow);}
+  .split{display:grid;grid-template-columns:repeat(12,1fr);gap:2rem var(--gap);align-items:start;}
+  .split-l{grid-column:span 5;display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem;}
+  .split-r{grid-column:span 7;}
+
+  /* шаги-карточки на тёмном */
+  .scards{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+  .scard{
+    background:rgba(255,255,255,.06);border:.0625rem solid rgba(255,255,255,.09);
+    border-radius:var(--r);padding:1.5rem;
+  }
+  .scard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.25rem;}
   .snum{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--yellow);}
-  .scard h3{color:var(--white);margin-top:2.5rem;}
-  .scard p{color:var(--w-70);font-size:var(--fs-small);margin-top:.45rem;}
+  .sdot{width:.625rem;height:.625rem;border-radius:50%;border:.0938rem solid var(--yellow);}
+  .scard h3{color:var(--white);}
+  .scard p{color:rgba(255,255,255,.62);font-size:var(--fs-small);margin-top:.45rem;}
 
-  /* ============ ВЫСКАЗЫВАНИЕ (оранжевый блок) ============ */
-  .shout .container{text-align:center;}
-  .shout h2{font-size:clamp(2.5rem,6.5vw,5.5rem);color:var(--white);}
-  .shout p{color:rgba(0,0,0,.65);max-width:36rem;margin:1.25rem auto 0;}
-  .shout .btn{margin-top:1.75rem;}
+  /* ---- Большое высказывание: белая плашка на тёмном ---- */
+  .shout{background:var(--green-deep);padding-block:0 var(--sec);}
+  .shout-card{
+    background:var(--white);color:var(--black);border-radius:var(--r);
+    text-align:center;padding:clamp(2.5rem,6vw,5rem) var(--pad);
+  }
+  .shout-card h2{color:var(--green);}
+  .shout-card p{color:var(--ink-60);max-width:36rem;margin:1.25rem auto 0;}
+  .shout-card .btn{margin-top:1.75rem;}
 
-  /* ============ О КОМПЛЕКСЕ ============ */
-  .split{display:grid;grid-template-columns:repeat(12,1fr);gap:2rem var(--gap);align-items:center;}
-  .split-l{grid-column:span 6;}
-  .split-r{grid-column:span 6;}
-  .split-l .meta{display:block;margin-bottom:.9rem;color:var(--green);}
-  .flist{display:flex;flex-direction:column;gap:1rem;margin-top:1.75rem;}
-  .fitem{display:flex;gap:.8rem;align-items:flex-start;font-size:var(--fs-small);color:var(--ink-60);}
+  /* ---- Характеристики на тёмном: список + фото ---- */
+  .flist{display:flex;flex-direction:column;gap:1.05rem;}
+  .fitem{display:flex;gap:.8rem;align-items:flex-start;font-size:var(--fs-small);color:rgba(255,255,255,.62);}
   .fitem::before{content:"";flex:none;width:.5rem;height:.5rem;border-radius:50%;background:var(--yellow);margin-top:.35rem;}
-  .fitem b{font-family:var(--fh);font-weight:700;text-transform:uppercase;color:var(--black);margin-right:.4rem;}
-
-  /* слайдер */
-  .slider{position:relative;border-radius:var(--r-sm);overflow:hidden;aspect-ratio:4/3.4;}
+  .fitem b{font-family:var(--fh);font-weight:700;text-transform:uppercase;color:var(--white);margin-right:.4rem;}
+  /* слайдер: одно фото, переключение стрелками */
+  .slider{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;}
   .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;}
   .slider img.on{opacity:1;}
   .slider-nav{position:absolute;right:1rem;bottom:1rem;display:flex;align-items:center;gap:.6rem;z-index:1;}
@@ -258,124 +269,110 @@
   .sdots{display:flex;gap:.35rem;}
   .sdots i{width:.5rem;height:.5rem;border-radius:50%;background:rgba(255,255,255,.45);}
   .sdots i.on{background:var(--white);}
-  .split-r .stk{position:absolute;top:1.1rem;left:1.1rem;z-index:1;}
-  .split-r{position:relative;}
 
-  /* ============ ДЛЯ КОГО ============ */
-  .who{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
-  .wcard{border-radius:var(--r-sm);padding:1.5rem;min-height:15rem;display:flex;flex-direction:column;}
-  .wcard h3{max-width:11rem;}
-  .wcard p{font-size:var(--fs-small);margin-top:auto;padding-top:2rem;}
-  .w1{background:var(--white);color:var(--black);}
-  .w1 p{color:var(--ink-60);}
-  .w2{background:var(--yellow);color:var(--black);}
-  .w2 p{color:rgba(0,0,0,.65);}
-  .w3{background:var(--grey);color:var(--black);}
-  .w3 p{color:var(--ink-60);}
-  .w4{background:var(--green-deep);color:var(--white);}
-  .w4 h3{color:var(--yellow);}
-  .w4 p{color:var(--w-70);}
+  /* ---- Для кого ---- */
+  .wcard{grid-column:span 3;border-radius:var(--r);overflow:hidden;background:var(--white);border:.0625rem solid var(--line);display:flex;flex-direction:column;}
+  .wimg{aspect-ratio:4/3;background-size:cover;background-position:center;background-color:var(--green);}
+  .wimg.is-yellow{background-color:var(--yellow);}
+  .wbody{padding:1.15rem 1.25rem 1.35rem;}
+  .wbody h3{font-size:var(--fs-body);}
+  .wbody p{color:var(--ink-60);font-size:var(--fs-small);margin-top:.45rem;}
 
-  /* ============ УСЛУГИ ============ */
-  .srv{display:grid;grid-template-columns:repeat(12,1fr);gap:2.25rem var(--gap);}
+  /* ---- Услуги: заголовок + текст ---- */
+  .srv{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem var(--gap);}
   .srow{grid-column:span 4;}
-  .srow h3{color:var(--yellow);}
-  .srow p{color:var(--w-70);font-size:var(--fs-small);margin-top:.5rem;max-width:22rem;}
+  .srow h3{color:var(--green);}
+  .srow p{color:var(--ink-60);font-size:var(--fs-small);margin-top:.5rem;max-width:22rem;}
 
-  /* ============ ГАЛЕРЕЯ ============ */
-  .gal{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
-  .g-big{grid-column:span 7;grid-row:span 2;position:relative;border-radius:var(--r-sm);overflow:hidden;min-height:24rem;}
-  .g-big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .gt{grid-column:span 5;border-radius:var(--r-sm);min-height:11.5rem;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;}
+  /* ---- Галерея ---- */
+  .gt{grid-column:span 3;aspect-ratio:1/1;border-radius:var(--r);background:var(--grey);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-60);font-size:var(--fs-small);padding:1rem;overflow:hidden;position:relative;}
   .gt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .gt.is-white{background:var(--white);color:var(--ink-60);font-size:var(--fs-small);}
-  .gt.is-green{background:var(--green);color:var(--white);font-family:var(--fh);font-weight:700;text-transform:uppercase;}
-  .gal .stk{position:absolute;top:1rem;right:1rem;transform:rotate(5deg);}
+  .stick{
+    position:absolute;top:.9rem;right:.9rem;transform:rotate(4deg);z-index:1;
+    background:var(--yellow);color:var(--black);font-family:var(--fh);font-weight:700;text-transform:uppercase;
+    font-size:var(--fs-small);letter-spacing:.05em;border-radius:62.5rem;padding:.35rem .85rem;
+  }
 
-  /* ============ БРОНИРОВАНИЕ ============ */
-  .booking{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
-  .bform{grid-column:span 7;background:var(--grey);border-radius:var(--r-sm);padding:clamp(1.5rem,3vw,2.25rem);}
+  /* ---- Бронирование ---- */
+  .fcard{grid-column:span 7;background:var(--white);border-radius:var(--r);padding:clamp(1.5rem,3vw,2.25rem);border:.0625rem solid var(--line);}
   .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.1rem;}
   .fld{display:flex;flex-direction:column;gap:.35rem;}
   .fld.full{grid-column:1/-1;}
   .fld label{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.06em;}
   .fld input,.fld select,.fld textarea{
     font-family:var(--fb);font-size:var(--fs-body);color:var(--black);
-    background:var(--white);border:.0938rem solid transparent;border-radius:.75rem;padding:.75rem .9rem;width:100%;
-    transition:border-color .15s;
+    background:var(--grey);border:.0938rem solid transparent;border-radius:.75rem;padding:.75rem .9rem;width:100%;
+    transition:border-color .15s,background .15s;
   }
-  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--green);}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--green);background:var(--white);}
   .fld textarea{resize:vertical;min-height:5rem;}
-  .bform .btn{margin-top:1.25rem;width:100%;}
+  .fcard .btn{margin-top:1.25rem;width:100%;}
   .fhint{font-size:var(--fs-small);color:var(--ink-60);margin-top:.7rem;text-align:center;}
-  .fok{display:none;margin-top:1rem;padding:.9rem 1rem;border-radius:.75rem;background:var(--white);border:.0938rem solid var(--green);color:var(--green);font-weight:600;font-size:var(--fs-small);}
+  .fok{display:none;margin-top:1rem;padding:.9rem 1rem;border-radius:.75rem;background:var(--green-tint);border:.0938rem solid var(--green);color:var(--green);font-weight:600;font-size:var(--fs-small);}
   .fok.show{display:block;}
-  .acard{grid-column:span 5;background:var(--yellow);color:var(--black);border-radius:var(--r-sm);padding:clamp(1.5rem,3vw,2rem);align-self:start;}
-  .acard .meta{color:var(--black);}
+  .acard{grid-column:span 5;background:var(--green-deep);color:var(--white);border-radius:var(--r);padding:clamp(1.5rem,3vw,2rem);align-self:start;}
+  .acard .eyebrow{color:var(--yellow);}
   .acard h3{margin-top:.8rem;}
-  .acard p{color:rgba(0,0,0,.65);font-size:var(--fs-small);margin:.8rem 0 1.2rem;}
-  .apay{font-size:var(--fs-small);color:rgba(0,0,0,.55);margin-top:1rem;}
-  .acontact{margin-top:1.4rem;padding-top:1.2rem;border-top:.0625rem solid rgba(0,0,0,.2);}
-  .acontact a{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);color:var(--black);text-decoration:none;}
-  .acontact span{display:block;font-size:var(--fs-small);color:rgba(0,0,0,.6);margin-top:.25rem;}
-  .acontact span a{font-family:var(--fb);font-weight:400;font-size:inherit;display:inline;}
+  .acard p{color:rgba(255,255,255,.85);font-size:var(--fs-small);margin:.8rem 0 1.2rem;}
+  .apay{font-size:var(--fs-small);color:rgba(255,255,255,.65);margin-top:1rem;}
+  .acontact{margin-top:1.4rem;padding-top:1.2rem;border-top:.0625rem solid var(--line-w);}
+  .acontact a{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);color:var(--yellow);text-decoration:none;}
+  .acontact span{display:block;font-size:var(--fs-small);color:rgba(255,255,255,.7);margin-top:.25rem;}
+  .acontact span a{font-family:var(--fb);font-weight:400;font-size:inherit;color:rgba(255,255,255,.85);display:inline;}
 
   /* ============ ПОДВАЛ ============ */
-  .foot{color:var(--white);margin-bottom:0;}
-  .foot-word{color:var(--yellow);}
+  .foot{background:var(--green-deep);color:var(--white);padding:var(--sec) 0 1.5rem;}
+  .foot-word{
+    font-family:var(--fh);font-weight:700;text-transform:uppercase;
+    font-size:var(--fs-h1);line-height:.84;letter-spacing:-.015em;color:var(--yellow);
+  }
   .foot-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:2.5rem;}
   .foot-col-tag{grid-column:span 6;}
   .foot-col{grid-column:span 3;}
-  .foot h4{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.14em;color:rgba(255,255,255,.5);margin-bottom:.9rem;}
+  .foot h4{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.14em;color:rgba(255,255,255,.55);margin-bottom:.9rem;}
   .foot a,.foot p{display:block;color:var(--white);text-decoration:none;font-size:var(--fs-small);margin-bottom:.5rem;}
   .foot a:hover{color:var(--yellow);}
-  .foot-tag{color:var(--w-70);max-width:22rem;}
+  .foot-tag{color:rgba(255,255,255,.7);max-width:22rem;}
   .foot-phone{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);}
-  .foot-bottom{margin-top:2.5rem;padding-top:1.2rem;border-top:.0625rem solid var(--line-w);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:rgba(255,255,255,.45);font-size:var(--fs-small);}
+  .foot-bottom{margin-top:2.5rem;padding-top:1.2rem;border-top:.0625rem solid var(--line-w);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:rgba(255,255,255,.5);font-size:var(--fs-small);}
 
   /* ============ АДАПТИВ ============ */
   @media (max-width:64rem){
     .shead-l,.shead-r{grid-column:span 12;}
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-photo{justify-self:center;}
-    .stats{grid-template-columns:1fr 1fr;}
-    .f-photo{grid-column:span 12;grid-row:auto;}
-    .f1,.f2,.f3,.f4{grid-column:span 6;}
-    .scards{grid-template-columns:1fr 1fr;}
+    .b-photo{grid-column:span 12;grid-row:auto;}
+    .b1,.b2,.b3,.b4{grid-column:span 6;}
     .split-l,.split-r{grid-column:span 12;}
-    .who{grid-template-columns:1fr 1fr;}
-    .srow{grid-column:span 6;}
-    .g-big{grid-column:span 12;grid-row:auto;}
+    .wcard{grid-column:span 6;}
     .gt{grid-column:span 6;}
-    .bform,.acard{grid-column:span 12;}
+    .fcard,.acard{grid-column:span 12;}
     .foot-col-tag,.foot-col{grid-column:span 12;}
+    .srow{grid-column:span 6;}
   }
   @media (max-width:48rem){
     .bar-nav{
       position:absolute;top:calc(100% + .5rem);left:0;right:0;
       flex-direction:column;align-items:stretch;gap:0;
       background:var(--white);border-radius:1.25rem;padding:.4rem 1.2rem;display:none;
+      box-shadow:0 1rem 2.5rem rgba(0,0,0,.22);
     }
     #nt:checked ~ .bar-nav{display:flex;}
-    .bar-nav a{padding:.85rem 0;border-bottom:.0625rem solid rgba(0,0,0,.1);}
+    .bar-nav a{padding:.85rem 0;border-bottom:.0625rem solid var(--line);}
     .bar-nav a:last-child{border-bottom:none;}
     .burger{display:flex;}
     .bar-cta .btn-vk{display:none;}
-    .hero-meta{flex-direction:column;gap:.3rem;}
-    .stats{grid-template-columns:1fr;}
-    .f1,.f2,.f3,.f4{grid-column:span 12;}
-    .scards{grid-template-columns:1fr;}
-    .who{grid-template-columns:1fr;}
-    .srow{grid-column:span 12;}
-    .gt{grid-column:span 12;}
+    .b1,.b2,.b3,.b4{grid-column:span 12;}
     .fgrid{grid-template-columns:1fr;}
+    .wcard{grid-column:span 12;}
+    .srow{grid-column:span 12;}
+    .scards{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body id="top">
+<div class="canvas">
 
   <!-- ============ HERO ============ -->
-  <header class="blk blk-green">
+  <header class="hero">
     <div class="bar">
       <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><img src="logo-white.svg" alt="Логотип Центр Поля"></a>
       <input type="checkbox" id="nt" aria-label="Открыть меню">
@@ -388,67 +385,52 @@
         <a href="#booking">Контакты</a>
       </nav>
       <div class="bar-cta">
-        <a class="btn btn-k btn-sm btn-vk" href="https://vk.ru/club238920313" target="_blank" rel="noopener">ВК</a>
+        <a class="btn btn-o btn-sm btn-vk" href="https://vk.ru/club238920313" target="_blank" rel="noopener">ВК</a>
         <a class="btn btn-y btn-sm" href="#booking">Бронировать</a>
         <label class="burger" for="nt" aria-hidden="true"><span></span><span></span><span></span></label>
       </div>
     </div>
 
-    <div class="hero-wrap">
-      <div class="hero-meta">
-        <span class="meta">Футбольная арена</span>
-        <span class="meta">Юго-Запад Петербурга</span>
-        <span class="meta">Новоселье · дер. Пески</span>
+    <div class="hero-body">
+      <h1 class="hero-title">Центр<br>Поля</h1>
+      <p class="hero-tag">Футбольная арена на Юго-Западе Петербурга. «Футбол начинается с Центра Поля»</p>
+
+      <div class="hero-btns">
+        <a class="btn btn-y" href="#booking">Бронировать</a>
+        <a class="btn btn-ow" href="#fields">Смотреть поля</a>
       </div>
 
-      <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
-
-      <div class="hero-grid">
-        <div class="hero-left">
-          <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий. Футбол начинается с Центра Поля.</p>
-          <div class="hero-btns">
-            <a class="btn btn-y" href="#booking">Бронировать</a>
-            <a class="btn btn-ow" href="#fields">Смотреть поля</a>
-          </div>
-          <div class="hero-facts">
-            <div class="hf"><b>4 поля</b><span>под одной крышей</span></div>
-            <div class="hf"><b>5×5–8×8</b><span>форматы игры</span></div>
-            <div class="hf"><b>60 мм</b><span>покрытие</span></div>
-          </div>
+      <div class="hero-cards">
+        <div class="hcard">
+          <b>Где мы</b>
+          <span>Новоселье, дер. Пески — бесплатная парковка и удобный подъезд</span>
         </div>
-        <div class="hero-photo">
-          <img src="bg-2.png" alt="Игроки на крытом футбольном поле арены Центр Поля" width="960" height="960">
-          <span class="stk">Скоро открытие</span>
+        <div class="hcard">
+          <b>Что внутри</b>
+          <span>4 поля под крышей · покрытие 60 мм · форматы 5×5 · 6×6 · 7×7 · 8×8</span>
+        </div>
+        <div class="hcard">
+          <b>Для чего</b>
+          <span>тренировки · турниры · детские школы · корпоративы · праздники</span>
         </div>
       </div>
     </div>
+
   </header>
 
   <!-- ============ БЕГУЩАЯ СТРОКА ============ -->
-  <div class="blk blk-orange blk-mrq" aria-hidden="true">
+  <div class="mrq" aria-hidden="true">
     <div class="mrq-in" id="mrq"></div>
   </div>
 
   <main>
 
-    <!-- ============ ЦИФРЫ ============ -->
-    <section class="blk blk-white" aria-label="Ключевые цифры">
-      <div class="container">
-        <div class="stats">
-          <div class="stat s1"><b>4</b><span>поля под крышей</span></div>
-          <div class="stat s2"><b>5×5–8×8</b><span>форматы игры</span></div>
-          <div class="stat s3"><b>60 мм</b><span>профессиональное покрытие</span></div>
-          <div class="stat s4"><b>6</b><span>раздевалок с душевыми</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ПОЛЯ ============ -->
-    <section id="fields" class="blk blk-grey">
+    <!-- ============ ПОЛЯ И ФОРМАТЫ ============ -->
+    <section id="fields" class="sec">
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Поля и форматы</span>
+            <span class="eyebrow">Поля и форматы</span>
             <h2>4 поля<br>под одной крышей</h2>
           </div>
           <div class="shead-r">
@@ -457,33 +439,33 @@
           </div>
         </div>
 
-        <div class="fields">
-          <div class="fcardx f-photo">
+        <div class="grid">
+          <div class="bcard b-photo">
             <img src="bg-2.png" alt="Крытое футбольное поле с профессиональным покрытием" loading="lazy">
-            <span class="stk is-white">Арена · скоро фото</span>
+            <span class="chip chip-fill">Арена · скоро фото</span>
           </div>
-          <div class="fcardx f1">
-            <span class="size">38×19</span>
-            <span class="name">Поле 1</span>
-            <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
+          <div class="bcard b1">
+            <span class="chip chip-green">38×19</span>
+            <h3>Поле 1</h3>
+            <p class="bfmt">форматы 5×5 / 6×6</p>
+            <a class="btn btn-o btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
           </div>
-          <div class="fcardx f2">
-            <span class="size">38×19</span>
-            <span class="name">Поле 2</span>
-            <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
+          <div class="bcard b2">
+            <span class="chip chip-green">38×19</span>
+            <h3>Поле 2</h3>
+            <p class="bfmt">форматы 5×5 / 6×6</p>
+            <a class="btn btn-o btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
           </div>
-          <div class="fcardx f3">
-            <span class="size">42×22</span>
-            <span class="name">Поле 3</span>
-            <span class="fmt">форматы 6×6 / 7×7</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Выбрать поле</a>
+          <div class="bcard b3">
+            <span class="chip chip-yellow">42×22</span>
+            <h3>Поле 3</h3>
+            <p class="bfmt">форматы 6×6 / 7×7</p>
+            <a class="btn btn-o btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Выбрать поле</a>
           </div>
-          <div class="fcardx f4">
-            <span class="size">64×42</span>
-            <span class="name">Весь манеж</span>
-            <span class="fmt">форматы 7×7 / 8×8 · турниры · события</span>
+          <div class="bcard b4">
+            <span class="chip chip-yellow">64×42</span>
+            <h3>Весь манеж</h3>
+            <p class="bfmt">форматы 7×7 / 8×8 · турниры · события</p>
             <a class="btn btn-y btn-sm" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
           </div>
         </div>
@@ -499,60 +481,62 @@
     </section>
 
     <!-- ============ КАК ЗАБРОНИРОВАТЬ ============ -->
-    <section id="how" class="blk blk-dark">
+    <section id="how" class="sec sec-dark">
       <div class="container">
-        <div class="shead">
-          <div class="shead-l">
-            <span class="meta">Как это работает</span>
-            <h2>Забронировать —<br>это просто</h2>
-          </div>
-          <div class="shead-r">
+        <div class="split">
+          <div class="split-l">
+            <span class="tag-pill">Как это работает</span>
+            <h2>Забронировать —<br>шаг за шагом</h2>
             <p class="lead">Никаких сложных систем: выбираете поле, оставляете заявку или звоните — и выходите на газон.</p>
             <a class="btn btn-y" href="#booking">Бронировать</a>
           </div>
-        </div>
-        <div class="scards">
-          <div class="scard">
-            <span class="snum">Шаг 1</span>
-            <h3>Выбираете поле</h3>
-            <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
-          </div>
-          <div class="scard">
-            <span class="snum">Шаг 2</span>
-            <h3>Заявка или звонок</h3>
-            <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
-          </div>
-          <div class="scard">
-            <span class="snum">Шаг 3</span>
-            <h3>Выходите на газон</h3>
-            <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
-          </div>
-          <div class="scard">
-            <span class="snum">Оплата</span>
-            <h3>Как удобно вам</h3>
-            <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
+          <div class="split-r">
+            <div class="scards">
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 1</span><span class="sdot"></span></div>
+                <h3>Выбираете поле</h3>
+                <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 2</span><span class="sdot"></span></div>
+                <h3>Заявка или звонок</h3>
+                <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Шаг 3</span><span class="sdot"></span></div>
+                <h3>Выходите на газон</h3>
+                <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
+              </div>
+              <div class="scard">
+                <div class="scard-top"><span class="snum">Оплата</span><span class="sdot"></span></div>
+                <h3>Как удобно вам</h3>
+                <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ ВЫСКАЗЫВАНИЕ ============ -->
-    <section class="blk blk-orange shout">
+    <!-- ============ БОЛЬШОЕ ВЫСКАЗЫВАНИЕ ============ -->
+    <section class="shout">
       <div class="container">
-        <h2>Футбол начинается<br>с Центра Поля</h2>
-        <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка — всё под одной крышей.</p>
-        <a class="btn btn-k" href="#booking">Забронировать поле</a>
+        <div class="shout-card">
+          <h2>Футбол начинается<br>с Центра Поля</h2>
+          <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
+          <a class="btn btn-y" href="#booking">Забронировать поле</a>
+        </div>
       </div>
     </section>
 
     <!-- ============ О КОМПЛЕКСЕ ============ -->
-    <section id="about" class="blk blk-white">
+    <section id="about" class="sec sec-dark">
       <div class="container">
         <div class="split">
           <div class="split-l">
-            <span class="meta">О комплексе</span>
+            <span class="tag-pill">О комплексе</span>
             <h2>Что внутри<br>комплекса</h2>
-            <p class="lead" style="margin-top:1rem">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
+            <p class="lead">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
             <div class="flist">
               <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, профессиональное покрытие 60 мм</span></p>
               <p class="fitem"><span><b>Разделение</b> все поля разделены сеткой, ворота 3×2 · 4×2 · 5×2</span></p>
@@ -563,7 +547,6 @@
             </div>
           </div>
           <div class="split-r">
-            <span class="stk">Манеж изнутри</span>
             <div class="slider" id="slider">
               <img src="bg-2.png" class="on" alt="Игроки на крытом футбольном поле арены Центр Поля">
               <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
@@ -579,44 +562,44 @@
     </section>
 
     <!-- ============ ДЛЯ КОГО ============ -->
-    <section id="audience" class="blk blk-green">
+    <section id="audience" class="sec sec-grey">
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Для кого</span>
+            <span class="eyebrow">Для кого</span>
             <h2>Кому подойдёт<br>Центр Поля</h2>
           </div>
           <div class="shead-r">
             <p class="lead">От регулярных тренировок команд до дней рождения — арена работает под ваш сценарий.</p>
           </div>
         </div>
-        <div class="who">
-          <div class="wcard w1">
-            <h3>Любительские и профи команды</h3>
-            <p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p>
+        <div class="grid">
+          <div class="wcard">
+            <div class="wimg" style="background-image:url('bg-2.png')" role="img" aria-label="Футбольная команда на тренировке"></div>
+            <div class="wbody"><h3>Любительские и профи команды</h3><p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p></div>
           </div>
-          <div class="wcard w2">
-            <h3>Детские футбольные школы</h3>
-            <p>Секции, групповые занятия, детские турниры и тренировочные игры.</p>
+          <div class="wcard">
+            <div class="wimg"></div>
+            <div class="wbody"><h3>Детские футбольные школы</h3><p>Секции, групповые занятия, детские турниры и тренировочные игры.</p></div>
           </div>
-          <div class="wcard w3">
-            <h3>Организаторы турниров</h3>
-            <p>Футбольные турниры разных уровней, форматов и возрастов.</p>
+          <div class="wcard">
+            <div class="wimg" style="background-image:url('bg.png')" role="img" aria-label="Игровой момент на футбольном поле"></div>
+            <div class="wbody"><h3>Организаторы турниров</h3><p>Футбольные турниры разных уровней, форматов и возрастов.</p></div>
           </div>
-          <div class="wcard w4">
-            <h3>Частные мероприятия</h3>
-            <p>Корпоративы, праздники, дни рождения и спортивные события.</p>
+          <div class="wcard">
+            <div class="wimg is-yellow"></div>
+            <div class="wbody"><h3>Частные мероприятия</h3><p>Корпоративы, праздники, дни рождения и спортивные события.</p></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ УСЛУГИ ============ -->
-    <section id="services" class="blk blk-dark">
+    <section id="services" class="sec">
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Услуги</span>
+            <span class="eyebrow">Услуги</span>
             <h2>Что мы<br>предлагаем</h2>
           </div>
           <div class="shead-r">
@@ -657,37 +640,32 @@
     </section>
 
     <!-- ============ ГАЛЕРЕЯ ============ -->
-    <section id="gallery" class="blk blk-grey">
+    <section id="gallery" class="sec sec-grey">
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Фото и галерея</span>
+            <span class="eyebrow">Фото и галерея</span>
             <h2>Как это<br>выглядит</h2>
           </div>
           <div class="shead-r">
             <p class="lead">Комплекс строится — показываем честные рендеры, схемы и прогресс стройки. Настоящие фото уже скоро.</p>
           </div>
         </div>
-        <div class="gal">
-          <div class="g-big">
-            <img src="bg-2.png" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
-            <span class="stk">Скоро фото</span>
-          </div>
-          <div class="gt">
-            <img src="bg.png" alt="Рендер футбольного поля с игроками" loading="lazy">
-            <span class="stk is-white">Рендер</span>
-          </div>
-          <div class="gt is-green">Схема полей · скоро</div>
+        <div class="grid">
+          <div class="gt"><img src="bg-2.png" alt="Рендер крытой футбольной арены" loading="lazy"><span class="stick">скоро фото</span></div>
+          <div class="gt">Схема полей · скоро</div>
+          <div class="gt">Стройка · прогресс</div>
+          <div class="gt"><img src="bg.png" alt="Рендер футбольного поля с игроками" loading="lazy"><span class="stick">рендер</span></div>
         </div>
       </div>
     </section>
 
     <!-- ============ БРОНИРОВАНИЕ ============ -->
-    <section id="booking" class="blk blk-white">
+    <section id="booking" class="sec">
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Бронирование и заявки</span>
+            <span class="eyebrow">Бронирование и заявки</span>
             <h2>Забронировать<br>поле</h2>
           </div>
           <div class="shead-r">
@@ -695,8 +673,8 @@
           </div>
         </div>
 
-        <div class="booking">
-          <div class="bform">
+        <div class="grid">
+          <div class="fcard">
             <form id="bf" novalidate>
               <div class="fgrid">
                 <div class="fld"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
@@ -729,10 +707,10 @@
           </div>
 
           <aside class="acard">
-            <span class="meta">Весь манеж · 64×42</span>
+            <span class="eyebrow">Весь манеж · 64×42</span>
             <h3>Заявка на аренду всего манежа</h3>
             <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
-            <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
+            <a class="btn btn-y" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
             <p class="apay">Оплата: наличные, безнал, карта, QR-код. Онлайн-бронирование подключим после финальной тарифной сетки.</p>
             <div class="acontact">
               <a href="tel:+79813799009">+7-981-379-90-09</a>
@@ -746,9 +724,9 @@
   </main>
 
   <!-- ============ ПОДВАЛ ============ -->
-  <footer class="blk blk-dark foot">
+  <footer class="foot">
     <div class="container">
-      <p class="foot-word display" aria-hidden="true">Центр<br>Поля</p>
+      <p class="foot-word" aria-hidden="true">Центр<br>Поля</p>
       <div class="foot-grid">
         <div class="foot-col-tag">
           <p class="foot-tag">Крытая футбольная арена на Юго-Западе Петербурга. Аренда полей, турниры, детские секции, корпоративы и частные мероприятия.</p>
@@ -774,6 +752,8 @@
       </div>
     </div>
   </footer>
+
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
