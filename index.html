@@ -153,20 +153,28 @@
   #nt{display:none;}
 
   /* ============ HERO ============ */
-  .hero-wrap{max-width:var(--container);margin-inline:auto;padding:clamp(2rem,5vw,4rem) var(--pad) clamp(2.5rem,5vw,4rem);}
+  .hero{
+    background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
+    color:var(--white);
+    min-height:calc(100vh - 2 * var(--frame));
+    display:flex;flex-direction:column;
+  }
+  .hero-wrap{
+    width:100%;max-width:var(--container);margin-inline:auto;
+    padding:clamp(2rem,5vw,4rem) var(--pad) clamp(2.5rem,5vw,4rem);
+    flex:1;display:flex;flex-direction:column;position:relative;
+  }
   .hero-meta{display:flex;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;}
-  .hero-meta .meta{color:var(--w-70);}
+  .hero-meta .meta{color:var(--white);}
   .hero-title{display:block;}
   .hero-title .l2{color:var(--yellow);display:block;}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:clamp(1.5rem,4vw,3rem);}
-  .hero-left p{color:var(--w-70);max-width:26rem;}
+  .hero-bottom{margin-top:auto;padding-top:clamp(2rem,5vw,3.5rem);}
+  .hero-bottom p{color:var(--white);max-width:26rem;}
   .hero-btns{display:flex;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
   .hero-facts{display:flex;gap:2rem;margin-top:2.25rem;flex-wrap:wrap;}
   .hf b{display:block;font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);text-transform:uppercase;}
-  .hf span{font-size:var(--fs-small);color:var(--w-70);}
-  .hero-photo{position:relative;justify-self:end;width:min(100%,30rem);}
-  .hero-photo img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:50%;}
-  .hero-photo .stk{position:absolute;top:1.25rem;right:0;transform:rotate(6deg);}
+  .hf span{font-size:var(--fs-small);color:var(--white);}
+  .hero-wrap > .stk{position:absolute;right:var(--pad);top:clamp(6rem,12vw,9rem);transform:rotate(6deg);}
 
   /* ============ БЕГУЩАЯ СТРОКА ============ */
   .blk-mrq{overflow:hidden;padding:0;}
@@ -336,8 +344,6 @@
   /* ============ АДАПТИВ ============ */
   @media (max-width:64rem){
     .shead-l,.shead-r{grid-column:span 12;}
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-photo{justify-self:center;}
     .stats{grid-template-columns:1fr 1fr;}
     .f-photo{grid-column:span 12;grid-row:auto;}
     .f1,.f2,.f3,.f4{grid-column:span 6;}
@@ -362,6 +368,7 @@
     .burger{display:flex;}
     .bar-cta .btn-vk{display:none;}
     .hero-meta{flex-direction:column;gap:.3rem;}
+    .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1.25rem;transform:rotate(-3deg);}
     .stats{grid-template-columns:1fr;}
     .f1,.f2,.f3,.f4{grid-column:span 12;}
     .scards{grid-template-columns:1fr;}
@@ -375,7 +382,7 @@
 <body id="top">
 
   <!-- ============ HERO ============ -->
-  <header class="blk blk-green">
+  <header class="blk hero">
     <div class="bar">
       <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><img src="logo-white.svg" alt="Логотип Центр Поля"></a>
       <input type="checkbox" id="nt" aria-label="Открыть меню">
@@ -402,23 +409,18 @@
       </div>
 
       <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
+      <span class="stk">Скоро открытие</span>
 
-      <div class="hero-grid">
-        <div class="hero-left">
-          <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий. Футбол начинается с Центра Поля.</p>
-          <div class="hero-btns">
-            <a class="btn btn-y" href="#booking">Бронировать</a>
-            <a class="btn btn-ow" href="#fields">Смотреть поля</a>
-          </div>
-          <div class="hero-facts">
-            <div class="hf"><b>4 поля</b><span>под одной крышей</span></div>
-            <div class="hf"><b>5×5–8×8</b><span>форматы игры</span></div>
-            <div class="hf"><b>60 мм</b><span>покрытие</span></div>
-          </div>
+      <div class="hero-bottom">
+        <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий. Футбол начинается с Центра Поля.</p>
+        <div class="hero-btns">
+          <a class="btn btn-y" href="#booking">Бронировать</a>
+          <a class="btn btn-ow" href="#fields">Смотреть поля</a>
         </div>
-        <div class="hero-photo">
-          <img src="bg-2.png" alt="Игроки на крытом футбольном поле арены Центр Поля" width="960" height="960">
-          <span class="stk">Скоро открытие</span>
+        <div class="hero-facts">
+          <div class="hf"><b>4 поля</b><span>под одной крышей</span></div>
+          <div class="hf"><b>5×5–8×8</b><span>форматы игры</span></div>
+          <div class="hf"><b>60 мм</b><span>покрытие</span></div>
         </div>
       </div>
     </div>
