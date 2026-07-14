@@ -263,9 +263,6 @@
     font-size:var(--fs-body);line-height:1;display:flex;align-items:center;justify-content:center;
   }
   .snav:hover{background:var(--yellow);}
-  .sdots{display:flex;gap:.35rem;}
-  .sdots i{width:.5rem;height:.5rem;border-radius:50%;background:rgba(255,255,255,.45);}
-  .sdots i.on{background:var(--white);}
   .split-r .stk{position:absolute;top:1.1rem;left:1.1rem;z-index:1;}
   .split-r{position:relative;}
 
@@ -570,7 +567,6 @@
               <img src="bg-2.png" class="on" alt="Игроки на крытом футбольном поле арены Центр Поля">
               <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
               <div class="slider-nav">
-                <span class="sdots" id="sdots"><i class="on"></i><i></i></span>
                 <button class="snav" type="button" data-dir="-1" aria-label="Предыдущее фото">←</button>
                 <button class="snav" type="button" data-dir="1" aria-label="Следующее фото">→</button>
               </div>
@@ -802,13 +798,12 @@
     var box = document.getElementById('slider');
     if(!box) return;
     var slides = box.querySelectorAll('img');
-    var dots = document.getElementById('sdots').children;
     var cur = 0;
     box.querySelectorAll('.snav').forEach(function(btn){
       btn.addEventListener('click', function(){
-        slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
+        slides[cur].classList.remove('on');
         cur = (cur + Number(btn.dataset.dir) + slides.length) % slides.length;
-        slides[cur].classList.add('on'); dots[cur].classList.add('on');
+        slides[cur].classList.add('on');
       });
     });
   })();
