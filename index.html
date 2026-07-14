@@ -195,13 +195,13 @@
   .stat.s2{background:var(--green);color:var(--white);}
   .stat.s3{background:var(--grey);color:var(--black);}
   .stat.s4{background:var(--green-deep);color:var(--white);}
-  .stat.s4 b{color:var(--yellow);}
+  .stat.s4 b{color:var(--white);}
 
   /* ============ ЗАГОЛОВОК СЕКЦИИ ============ */
   .shead{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:end;margin-bottom:clamp(2rem,4vw,3rem);}
   .shead-l{grid-column:span 7;}
   .shead-l .meta{display:block;margin-bottom:.9rem;color:var(--green);}
-  .blk-dark .shead-l .meta,.blk-green .shead-l .meta{color:var(--yellow);}
+  .blk-dark .shead-l .meta,.blk-green .shead-l .meta{color:var(--white);}
   .shead-r{grid-column:span 5;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
   .blk-dark .lead,.blk-green .lead{color:var(--w-70);}
 
@@ -221,18 +221,13 @@
   .f3{grid-column:span 3;background:var(--white);color:var(--black);}
   .f3 .fmt{color:var(--ink-60);}
   .f4{grid-column:span 3;background:var(--green-deep);color:var(--white);}
-  .f4 .size{color:var(--yellow);}
+  .f4 .size{color:var(--white);}
   .f4 .fmt{color:var(--w-70);}
-  .note{
-    margin-top:var(--gap);border-radius:var(--r-sm);background:var(--white);
-    padding:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  }
-  .note p{max-width:44rem;color:var(--ink-60);font-size:var(--fs-small);}
 
   /* ============ ШАГИ ============ */
   .scards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
   .scard{background:rgba(255,255,255,.06);border:.0625rem solid var(--line-w);border-radius:var(--r-sm);padding:1.5rem;min-height:13rem;}
-  .snum{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--yellow);}
+  .snum{font-family:var(--fh);font-weight:600;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.12em;color:var(--white);}
   .scard h3{color:var(--white);margin-top:2.5rem;}
   .scard p{color:var(--w-70);font-size:var(--fs-small);margin-top:.45rem;}
 
@@ -278,13 +273,13 @@
   .w3{background:var(--grey);color:var(--black);}
   .w3 p{color:var(--ink-60);}
   .w4{background:var(--green-deep);color:var(--white);}
-  .w4 h3{color:var(--yellow);}
+  .w4 h3{color:var(--white);}
   .w4 p{color:var(--w-70);}
 
   /* ============ УСЛУГИ ============ */
   .srv{display:grid;grid-template-columns:repeat(12,1fr);gap:2.25rem var(--gap);}
   .srow{grid-column:span 4;}
-  .srow h3{color:var(--yellow);}
+  .srow h3{color:var(--white);}
   .srow p{color:var(--w-70);font-size:var(--fs-small);margin-top:.5rem;max-width:22rem;}
 
   /* ============ ГАЛЕРЕЯ ============ */
@@ -327,13 +322,13 @@
 
   /* ============ ПОДВАЛ ============ */
   .foot{color:var(--white);margin-bottom:0;}
-  .foot-word{color:var(--yellow);}
+  .foot-word{color:var(--white);}
   .foot-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:2.5rem;}
   .foot-col-tag{grid-column:span 6;}
   .foot-col{grid-column:span 3;}
   .foot h4{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.14em;color:rgba(255,255,255,.5);margin-bottom:.9rem;}
   .foot a,.foot p{display:block;color:var(--white);text-decoration:none;font-size:var(--fs-small);margin-bottom:.5rem;}
-  .foot a:hover{color:var(--yellow);}
+  .foot a:hover{text-decoration:underline;}
   .foot-tag{color:var(--w-70);max-width:22rem;}
   .foot-phone{font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);}
   .foot-bottom{margin-top:2.5rem;padding-top:1.2rem;border-top:.0625rem solid var(--line-w);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:rgba(255,255,255,.45);font-size:var(--fs-small);}
@@ -485,14 +480,6 @@
             <span class="fmt">форматы 7×7 / 8×8 · турниры · события</span>
             <a class="btn btn-y btn-sm" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
           </div>
-        </div>
-
-        <div class="note">
-          <div>
-            <h3>Отдельный сценарий — весь манеж 64×42</h3>
-            <p>Заявка оформляется без выбора даты и времени: только контакты и комментарий. Менеджер свяжется и согласует условия.</p>
-          </div>
-          <a class="btn btn-k" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
         </div>
       </div>
     </section>
