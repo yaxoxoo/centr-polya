@@ -168,6 +168,10 @@
   .hero-meta .meta{color:var(--white);}
   .hero-title{display:block;}
   .hero-title .l2{color:var(--yellow);display:block;}
+  .hero-slogan{
+    font-family:var(--fh);font-weight:700;text-transform:uppercase;
+    font-size:var(--fs-h3);letter-spacing:.02em;margin-top:1.5rem;
+  }
   .hero-bottom{margin-top:auto;padding-top:clamp(2rem,5vw,3.5rem);}
   .hero-bottom p{color:var(--white);max-width:26rem;}
   .hero-btns{display:flex;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
@@ -282,15 +286,22 @@
   .srow h3{color:var(--white);}
   .srow p{color:var(--w-70);font-size:var(--fs-small);margin-top:.5rem;max-width:22rem;}
 
-  /* ============ ГАЛЕРЕЯ ============ */
-  .gal{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
-  .g-big{grid-column:span 7;grid-row:span 2;position:relative;border-radius:var(--r-sm);overflow:hidden;min-height:24rem;}
-  .g-big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .gt{grid-column:span 5;border-radius:var(--r-sm);min-height:11.5rem;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;}
-  .gt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .gt.is-white{background:var(--white);color:var(--ink-60);font-size:var(--fs-small);}
-  .gt.is-green{background:var(--green);color:var(--white);font-family:var(--fh);font-weight:700;text-transform:uppercase;}
-  .gal .stk{position:absolute;top:1rem;right:1rem;transform:rotate(5deg);}
+  /* ============ ГАЛЕРЕЯ: бегущая строка фото ============ */
+  .gmrq{overflow:hidden;padding-bottom:var(--sec);}
+  .gmrq-in{display:flex;gap:var(--gap);width:max-content;animation:mrq 35s linear infinite;}
+  .gmrq:hover .gmrq-in{animation-play-state:paused;}
+  .gitem{
+    position:relative;flex:none;height:clamp(14rem,28vw,21rem);
+    border-radius:var(--r-sm);overflow:hidden;
+  }
+  .gitem img{height:100%;width:auto;max-width:none;object-fit:cover;}
+  .gitem.is-tile{
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    background:var(--green);color:var(--white);min-width:18rem;padding:0 2.5rem;
+    font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);
+  }
+  .gitem .stk{position:absolute;top:1rem;right:1rem;transform:rotate(5deg);}
+  .container.is-gal{padding-bottom:0;}
 
   /* ============ БРОНИРОВАНИЕ ============ */
   .booking{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
@@ -343,8 +354,6 @@
     .split-l,.split-r{grid-column:span 12;}
     .who{grid-template-columns:1fr 1fr;}
     .srow{grid-column:span 6;}
-    .g-big{grid-column:span 12;grid-row:auto;}
-    .gt{grid-column:span 6;}
     .bform,.acard{grid-column:span 12;}
     .foot-col-tag,.foot-col{grid-column:span 12;}
   }
@@ -366,7 +375,6 @@
     .scards{grid-template-columns:1fr;}
     .who{grid-template-columns:1fr;}
     .srow{grid-column:span 12;}
-    .gt{grid-column:span 12;}
     .fgrid{grid-template-columns:1fr;}
   }
 </style>
@@ -401,10 +409,11 @@
       </div>
 
       <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
+      <p class="hero-slogan">«Футбол начинается с&nbsp;Центра Поля»</p>
       <span class="stk">Скоро открытие</span>
 
       <div class="hero-bottom">
-        <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий. Футбол начинается с Центра Поля.</p>
+        <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
           <a class="btn btn-ow" href="#fields">Смотреть поля</a>
@@ -643,7 +652,7 @@
 
     <!-- ============ ГАЛЕРЕЯ ============ -->
     <section id="gallery" class="blk blk-grey">
-      <div class="container">
+      <div class="container is-gal">
         <div class="shead">
           <div class="shead-l">
             <span class="meta">Фото и галерея</span>
@@ -653,16 +662,29 @@
             <p class="lead">Комплекс строится — показываем честные рендеры, схемы и прогресс стройки. Настоящие фото уже скоро.</p>
           </div>
         </div>
-        <div class="gal">
-          <div class="g-big">
+      </div>
+      <div class="gmrq">
+        <div class="gmrq-in">
+          <div class="gitem">
             <img src="bg-2.png" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
             <span class="stk">Скоро фото</span>
           </div>
-          <div class="gt">
+          <div class="gitem is-tile">Схема полей · скоро</div>
+          <div class="gitem">
             <img src="bg.png" alt="Рендер футбольного поля с игроками" loading="lazy">
             <span class="stk is-white">Рендер</span>
           </div>
-          <div class="gt is-green">Схема полей · скоро</div>
+          <div class="gitem is-tile">Стройка · прогресс</div>
+          <div class="gitem" aria-hidden="true">
+            <img src="bg-2.png" alt="" loading="lazy">
+            <span class="stk">Скоро фото</span>
+          </div>
+          <div class="gitem is-tile" aria-hidden="true">Схема полей · скоро</div>
+          <div class="gitem" aria-hidden="true">
+            <img src="bg.png" alt="" loading="lazy">
+            <span class="stk is-white">Рендер</span>
+          </div>
+          <div class="gitem is-tile" aria-hidden="true">Стройка · прогресс</div>
         </div>
       </div>
     </section>
