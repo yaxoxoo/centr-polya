@@ -136,13 +136,14 @@
 
   /* ============ ШАПКА ============ */
   .bar{
-    position:sticky;top:.75rem;z-index:60;
+    position:sticky;top:var(--frame);z-index:60;
     display:flex;align-items:center;justify-content:space-between;gap:1rem;
     background:var(--white);color:var(--black);
     border-radius:62.5rem;padding:.5rem .6rem .5rem 1.1rem;
-    margin:1rem 1rem 0;
+    margin:0 0 var(--frame);
   }
-  .bar-logo{display:flex;align-items:center;flex:none;}
+  .bar-logo{display:flex;align-items:center;gap:.6rem;flex:none;text-decoration:none;}
+  .bar-word{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-body);letter-spacing:.03em;}
   .logo-mask{
     display:block;height:1.9rem;width:2.65rem;background:var(--green);
     -webkit-mask:url('logo-white.svg') center/contain no-repeat;
@@ -160,7 +161,7 @@
   .hero{
     background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
     color:var(--white);
-    min-height:calc(100vh - 5.5rem);
+    min-height:calc(100vh - 8.75rem);
     display:flex;flex-direction:column;
   }
   .hero-wrap{
@@ -170,12 +171,11 @@
   }
   .hero-meta{display:flex;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;}
   .hero-meta .meta{color:var(--white);}
-  .hero-title{display:block;}
-  .hero-title .l2{color:var(--yellow);display:block;}
   .hero-slogan{
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
-    font-size:var(--fs-h3);letter-spacing:.02em;margin-top:1.25rem;
+    font-size:var(--fs-h2);line-height:.95;letter-spacing:-.01em;max-width:56rem;
   }
+  .hero-slogan em{font-style:normal;color:var(--yellow);}
   .hero-center{
     flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
     text-align:center;padding-block:1.5rem;
@@ -372,6 +372,7 @@
     .bar-nav a:last-child{border-bottom:none;}
     .burger{display:flex;}
     .bar-cta .btn-vk{display:none;}
+    .bar-word{display:none;}
     .hero-meta{flex-direction:column;gap:.3rem;}
     .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1.25rem;transform:rotate(-3deg);}
     .stats{grid-template-columns:1fr;}
@@ -385,10 +386,8 @@
 </head>
 <body id="top">
 
-  <!-- ============ HERO ============ -->
-  <header class="blk hero">
-    <div class="bar">
-      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><span class="logo-mask" role="img" aria-label="Логотип Центр Поля"></span></a>
+  <div class="bar">
+      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><span class="logo-mask" role="img" aria-label="Логотип Центр Поля"></span><span class="bar-word">Центр Поля</span></a>
       <input type="checkbox" id="nt" aria-label="Открыть меню">
       <nav class="bar-nav" aria-label="Основное меню">
         <a href="#fields">Поля</a>
@@ -405,7 +404,9 @@
       </div>
     </div>
 
-    <div class="hero-wrap">
+  <!-- ============ HERO ============ -->
+  <header class="blk hero">
+        <div class="hero-wrap">
       <div class="hero-meta">
         <span class="meta">Футбольная арена</span>
         <span class="meta">Юго-Запад Петербурга</span>
@@ -415,8 +416,7 @@
       <span class="stk">Скоро открытие</span>
 
       <div class="hero-center">
-        <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
-        <p class="hero-slogan">«Футбол начинается с&nbsp;Центра Поля»</p>
+        <h1 class="hero-slogan">«Футбол начинается<br>с&nbsp;<em>Центра Поля</em>»</h1>
         <p class="hero-desc">Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
@@ -627,7 +627,7 @@
           </div>
           <div class="srow">
             <h3>Дни рождения</h3>
-            <p>Праздник футбола: поле — для игр, просторный зал — для праздничного стола и отдыха.</p>
+            <p>Праздник футбола для детей и взрослых. Поле — для активных игр и развлечений, просторный зал — для праздничного стола и отдыха.</p>
           </div>
           <div class="srow">
             <h3>Детские секции</h3>
@@ -717,7 +717,7 @@
                     <option>Весь манеж — 64×42 (7×7 / 8×8)</option>
                   </select>
                 </div>
-                <div class="fld"><label for="f-goal">Размер ворот</label>
+                <div class="fld"><label for="f-goal">Размер ворот (для 42×22)</label>
                   <select id="f-goal" name="goals"><option value="">Не важно</option><option>3×2</option><option>4×2</option><option>5×2</option></select>
                 </div>
                 <div class="fld"><label for="f-ball">Аренда мяча</label>
