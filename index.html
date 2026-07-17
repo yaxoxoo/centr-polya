@@ -140,10 +140,14 @@
     display:flex;align-items:center;justify-content:space-between;gap:1rem;
     background:var(--white);color:var(--black);
     border-radius:62.5rem;padding:.5rem .6rem .5rem 1.1rem;
-    max-width:calc(var(--container) - 2rem);margin:1rem auto 0;
+    margin:1rem 1rem 0;
   }
   .bar-logo{display:flex;align-items:center;flex:none;}
-  .bar-logo img{height:1.9rem;width:auto;filter:invert(1);}
+  .logo-mask{
+    display:block;height:1.9rem;width:2.65rem;background:var(--green);
+    -webkit-mask:url('logo-white.svg') center/contain no-repeat;
+    mask:url('logo-white.svg') center/contain no-repeat;
+  }
   .bar-nav{display:flex;align-items:center;gap:1.4rem;}
   .bar-nav a{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.06em;text-decoration:none;}
   .bar-nav a:hover{color:var(--green);}
@@ -156,7 +160,7 @@
   .hero{
     background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
     color:var(--white);
-    min-height:calc(100vh - 2 * var(--frame));
+    min-height:calc(100vh - 5.5rem);
     display:flex;flex-direction:column;
   }
   .hero-wrap{
@@ -170,14 +174,14 @@
   .hero-title .l2{color:var(--yellow);display:block;}
   .hero-slogan{
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
-    font-size:var(--fs-h3);letter-spacing:.02em;margin-top:1.5rem;
+    font-size:var(--fs-h3);letter-spacing:.02em;margin-top:1.25rem;
   }
-  .hero-bottom{margin-top:auto;padding-top:clamp(2rem,5vw,3.5rem);}
-  .hero-bottom p{color:var(--white);max-width:26rem;}
-  .hero-btns{display:flex;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
-  .hero-facts{display:flex;gap:2rem;margin-top:2.25rem;flex-wrap:wrap;}
-  .hf b{display:block;font-family:var(--fh);font-weight:700;font-size:var(--fs-h3);text-transform:uppercase;}
-  .hf span{font-size:var(--fs-small);color:var(--white);}
+  .hero-center{
+    flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding-block:1.5rem;
+  }
+  .hero-center p.hero-desc{color:var(--white);max-width:34rem;margin-top:1.5rem;}
+  .hero-btns{display:flex;justify-content:center;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
   .hero-wrap > .stk{position:absolute;right:var(--pad);top:clamp(6rem,12vw,9rem);transform:rotate(6deg);}
 
   /* ============ БЕГУЩАЯ СТРОКА ============ */
@@ -384,7 +388,7 @@
   <!-- ============ HERO ============ -->
   <header class="blk hero">
     <div class="bar">
-      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><img src="logo-white.svg" alt="Логотип Центр Поля"></a>
+      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><span class="logo-mask" role="img" aria-label="Логотип Центр Поля"></span></a>
       <input type="checkbox" id="nt" aria-label="Открыть меню">
       <nav class="bar-nav" aria-label="Основное меню">
         <a href="#fields">Поля</a>
@@ -408,20 +412,15 @@
         <span class="meta">Новоселье · дер. Пески</span>
       </div>
 
-      <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
-      <p class="hero-slogan">«Футбол начинается с&nbsp;Центра Поля»</p>
       <span class="stk">Скоро открытие</span>
 
-      <div class="hero-bottom">
-        <p>Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
+      <div class="hero-center">
+        <h1 class="hero-title">Центр<span class="l2">Поля</span></h1>
+        <p class="hero-slogan">«Футбол начинается с&nbsp;Центра Поля»</p>
+        <p class="hero-desc">Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
           <a class="btn btn-ow" href="#fields">Смотреть поля</a>
-        </div>
-        <div class="hero-facts">
-          <div class="hf"><b>4 поля</b><span>под одной крышей</span></div>
-          <div class="hf"><b>5×5–8×8</b><span>форматы игры</span></div>
-          <div class="hf"><b>60 мм</b><span>покрытие</span></div>
         </div>
       </div>
     </div>
