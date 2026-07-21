@@ -176,6 +176,8 @@
     font-size:var(--fs-h2);line-height:.95;letter-spacing:-.01em;max-width:56rem;
   }
   .hero-slogan em{font-style:normal;color:var(--yellow);}
+  .hero-slogan,.hero-desc{text-shadow:0 .125rem 1.5rem rgba(0,0,0,.5);}
+  .hero-meta .meta{text-shadow:0 .125rem 1rem rgba(0,0,0,.5);}
   .hero-center{
     flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
     text-align:center;padding-block:1.5rem;
@@ -295,13 +297,13 @@
   .gmrq-in{display:flex;gap:var(--gap);width:max-content;animation:mrq 35s linear infinite;}
   .gmrq:hover .gmrq-in{animation-play-state:paused;}
   .gitem{
-    position:relative;flex:none;height:clamp(14rem,28vw,21rem);
+    position:relative;flex:none;height:clamp(19rem,38vw,29rem);
     border-radius:var(--r-sm);overflow:hidden;
   }
   .gitem img{height:100%;width:auto;max-width:none;object-fit:cover;}
   .gitem.is-tile{
     display:flex;align-items:center;justify-content:center;text-align:center;
-    background:var(--green);color:var(--white);min-width:18rem;padding:0 2.5rem;
+    background:var(--green);color:var(--white);min-width:34rem;padding:0 2.5rem;
     font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);
   }
   .gitem .stk{position:absolute;top:1rem;right:1rem;transform:rotate(5deg);}
@@ -419,7 +421,7 @@
 
       <div class="hero-center">
         <h1 class="hero-slogan">Футбол начинается<br>с&nbsp;<em>Центра Поля</em></h1>
-        <p class="hero-desc">Крытое пространство для аренды полей, тренировок, турниров, детских футбольных школ, корпоративных игр и частных мероприятий.</p>
+        <p class="hero-desc">Футбольный манеж для тренировок, турниров, детских футбольных школ, товарищеских матчей и корпоративов.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
           <a class="btn btn-ow" href="#fields">Смотреть поля</a>
@@ -441,7 +443,7 @@
         <div class="stats">
           <div class="stat s1"><b>4</b><span>поля под крышей</span></div>
           <div class="stat s2"><b>5×5–8×8</b><span>форматы игры</span></div>
-          <div class="stat s3"><b>60 мм</b><span>профессиональное покрытие</span></div>
+          <div class="stat s3"><b>60 мм</b><span>премиальный искусственный газон</span></div>
           <div class="stat s4"><b>6</b><span>раздевалок с душевыми</span></div>
         </div>
       </div>
@@ -456,7 +458,7 @@
             <h2>4 поля<br>под одной крышей</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Размеры 38×19, 42×22 и 64×42, профессиональное покрытие 60 мм. Форматы 5×5, 6×6, 7×7 и 8×8 — под команду любого состава.</p>
+            <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Форматы 5×5, 6×6, 7×7 и 8×8 — под команду любого состава.</p>
             <a class="btn btn-k" href="#booking">Выбрать время</a>
           </div>
         </div>
@@ -470,19 +472,19 @@
             <span class="size">38×19</span>
             <span class="name">Поле 1</span>
             <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
+            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Хочу это</a>
           </div>
           <div class="fcardx f2">
             <span class="size">38×19</span>
             <span class="name">Поле 2</span>
             <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Выбрать поле</a>
+            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Хочу это</a>
           </div>
           <div class="fcardx f3">
             <span class="size">42×22</span>
             <span class="name">Поле 3</span>
             <span class="fmt">форматы 6×6 / 7×7</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Выбрать поле</a>
+            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Хочу это</a>
           </div>
           <div class="fcardx f4">
             <span class="size">64×42</span>
@@ -503,7 +505,6 @@
             <h2>Забронировать —<br>это просто</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Никаких сложных систем: выбираете поле, оставляете заявку или звоните — и выходите на газон.</p>
             <a class="btn btn-y" href="#booking">Бронировать</a>
           </div>
         </div>
@@ -536,7 +537,7 @@
     <section class="blk blk-orange shout">
       <div class="container">
         <h2>Футбол начинается<br>с Центра Поля</h2>
-        <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка — всё под одной крышей.</p>
+        <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка.</p>
         <a class="btn btn-k" href="#booking">Забронировать поле</a>
       </div>
     </section>
@@ -550,11 +551,12 @@
             <h2>Что внутри<br>комплекса</h2>
             <p class="lead" style="margin-top:1rem">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
             <div class="flist">
-              <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, профессиональное покрытие 60 мм</span></p>
+              <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, премиальный искусственный газон 60 мм</span></p>
               <p class="fitem"><span><b>Разделение</b> все поля разделены сеткой, ворота 3×2 · 4×2 · 5×2</span></p>
               <p class="fitem"><span><b>Трибуны</b> для зрителей + вышка оператора и баннерная сетка</span></p>
               <p class="fitem"><span><b>Кафе</b> зона ожидания и мониторы онлайн-трансляции из манежа</span></p>
-              <p class="fitem"><span><b>6 раздевалок</b> с душевыми, инвентарная, тренерская, тактический разбор</span></p>
+              <p class="fitem"><span><b>6 раздевалок</b> с душевыми, инвентарная комната, тренерская</span></p>
+              <p class="fitem"><span><b>Залы</b> зал для мероприятий, зал для групповых занятий, комната тактического разбора</span></p>
               <p class="fitem"><span><b>Парковка</b> бесплатная, удобная транспортная доступность</span></p>
             </div>
           </div>
@@ -787,7 +789,7 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // бегущая строка
-  var items = ['Центр Поля','5×5','6×6','7×7','8×8','покрытие 60 мм','4 поля под крышей','турниры','детские секции','корпоративы'];
+  var items = ['Центр Поля','5×5','6×6','7×7','8×8','премиальный газон 60 мм','4 поля под крышей','турниры','детские секции','корпоративы'];
   var seq = items.map(function(t){return '<span>'+t+'</span><span>·</span>';}).join('');
   document.getElementById('mrq').innerHTML = seq + seq;
 
