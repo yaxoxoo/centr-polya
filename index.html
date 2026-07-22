@@ -216,23 +216,40 @@
   .blk-dark .lead,.blk-green .lead{color:var(--w-70);}
 
   /* ============ ПОЛЯ ============ */
-  .fields{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);}
-  .fcardx{border-radius:var(--r-sm);padding:1.5rem;display:flex;flex-direction:column;min-height:17rem;}
-  .fcardx .size{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.9;}
-  .fcardx .name{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);margin-top:auto;padding-top:2rem;}
-  .fcardx .fmt{font-size:var(--fs-small);margin-top:.2rem;}
-  .fcardx .btn{margin-top:1.1rem;align-self:flex-start;}
-  .f-photo{grid-column:span 6;grid-row:span 2;padding:0;overflow:hidden;position:relative;min-height:22rem;}
-  .f-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .f-photo .stk{position:absolute;left:1.25rem;bottom:1.25rem;transform:rotate(-3deg);}
-  .f1{grid-column:span 3;background:var(--white);color:var(--black);}
-  .f1 .fmt{color:var(--ink-60);}
-  .f2{grid-column:span 3;background:var(--yellow);color:var(--black);}
-  .f3{grid-column:span 3;background:var(--white);color:var(--black);}
-  .f3 .fmt{color:var(--ink-60);}
-  .f4{grid-column:span 3;background:var(--green-deep);color:var(--white);}
-  .f4 .size{color:var(--white);}
-  .f4 .fmt{color:var(--w-70);}
+  /* ---- Интерактивная схема полей ---- */
+  .fields2{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:stretch;}
+  .pitch{
+    grid-column:span 8;position:relative;border-radius:var(--r-sm);overflow:hidden;
+    background:var(--green);aspect-ratio:16/10;min-height:22rem;
+  }
+  .pitch-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .zones{position:absolute;inset:.6rem;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.6rem;}
+  .zone{
+    position:relative;border:.125rem solid rgba(255,255,255,.55);border-radius:1rem;
+    background:rgba(14,74,0,.12);color:var(--white);cursor:pointer;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem 1.25rem;
+    transition:background .18s,border-color .18s;text-align:left;
+  }
+  .zone:hover,.zone:focus-within{background:rgba(14,74,0,.55);border-color:var(--white);}
+  .z1{grid-column:1;grid-row:1;}
+  .z2{grid-column:1;grid-row:2;}
+  .z3{grid-column:2;grid-row:1 / span 2;}
+  .zone-head{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;}
+  .zone-name{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h3);}
+  .zone-size{font-family:var(--fh);font-weight:700;text-transform:uppercase;font-size:var(--fs-h2);line-height:.9;color:var(--yellow);}
+  .zone-cta{opacity:0;transform:translateY(.5rem);transition:opacity .18s,transform .18s;}
+  .zone:hover .zone-cta,.zone:focus-within .zone-cta{opacity:1;transform:none;}
+  .zone-fmt{display:block;font-size:var(--fs-small);color:var(--w-70);margin-bottom:.7rem;}
+  /* карточка «весь манеж» */
+  .whole{
+    grid-column:span 4;border-radius:var(--r-sm);background:var(--green-deep);color:var(--white);
+    padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;min-height:22rem;
+    text-decoration:none;transition:background .18s;
+  }
+  .whole:hover{background:#0a3800;}
+  .whole .zone-size{display:block;font-size:var(--fs-h2);line-height:.9;margin-top:auto;}
+  .whole .zone-fmt{opacity:1;color:var(--w-70);margin:.7rem 0 1.5rem;}
+  .whole .btn{align-self:flex-start;}
 
   /* ============ ШАГИ ============ */
   .scards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
@@ -354,8 +371,8 @@
   @media (max-width:64rem){
     .shead-l,.shead-r{grid-column:span 12;}
     .stats{grid-template-columns:1fr 1fr;}
-    .f-photo{grid-column:span 12;grid-row:auto;}
-    .f1,.f2,.f3,.f4{grid-column:span 6;}
+    .pitch,.whole{grid-column:span 12;}
+    .whole{min-height:auto;flex-direction:row;align-items:center;gap:1.5rem;flex-wrap:wrap;}
     .scards{grid-template-columns:1fr 1fr;}
     .split-l,.split-r{grid-column:span 12;}
     .who{grid-template-columns:1fr 1fr;}
@@ -380,7 +397,12 @@
     .hero-meta{flex-direction:column;gap:.3rem;}
     .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1.25rem;transform:rotate(-3deg);}
     .stats{grid-template-columns:1fr;}
-    .f1,.f2,.f3,.f4{grid-column:span 12;}
+    .pitch{aspect-ratio:auto;min-height:0;}
+    .zones{position:static;inset:auto;grid-template-columns:1fr;grid-template-rows:none;padding:.6rem;}
+    .z3{grid-column:1;grid-row:auto;}
+    .zone{min-height:8rem;}
+    .zone-cta{opacity:1;transform:none;}
+    .pitch-lines{display:none;}
     .scards{grid-template-columns:1fr;}
     .who{grid-template-columns:1fr;}
     .srow{grid-column:span 12;}
@@ -458,40 +480,55 @@
             <h2>4 поля<br>под одной крышей</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Форматы 5×5, 6×6, 7×7 и 8×8 — под команду любого состава.</p>
-            <a class="btn btn-k" href="#booking">Выбрать время</a>
+            <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Наведите на поле на схеме, чтобы увидеть формат и забронировать.</p>
+            <a class="btn btn-y" href="https://n2320737.yclients.com/company/2012190/personal/menu?o=" target="_blank" rel="noopener">Забронировать онлайн</a>
           </div>
         </div>
 
-        <div class="fields">
-          <div class="fcardx f-photo">
-            <img src="bg-2.png" alt="Крытое футбольное поле с профессиональным покрытием" loading="lazy">
-            <span class="stk is-white">Арена · скоро фото</span>
+        <div class="fields2">
+          <!-- схема манежа: наведи на поле -->
+          <div class="pitch">
+            <svg class="pitch-lines" viewBox="0 0 320 200" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="1.5" aria-hidden="true">
+              <rect x="6" y="6" width="308" height="188" rx="4"/>
+              <line x1="160" y1="6" x2="160" y2="194"/>
+              <circle cx="160" cy="100" r="26"/>
+              <circle cx="160" cy="100" r="2.5" fill="#FFFFFF" stroke="none"/>
+              <rect x="6" y="66" width="34" height="68"/>
+              <rect x="280" y="66" width="34" height="68"/>
+            </svg>
+            <div class="zones">
+              <div class="zone z1" tabindex="0">
+                <div class="zone-head"><span class="zone-name">Поле 1</span><span class="zone-size">38×19</span></div>
+                <div class="zone-cta">
+                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Хочу это</a>
+                </div>
+              </div>
+              <div class="zone z2" tabindex="0">
+                <div class="zone-head"><span class="zone-name">Поле 2</span><span class="zone-size">38×19</span></div>
+                <div class="zone-cta">
+                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Хочу это</a>
+                </div>
+              </div>
+              <div class="zone z3" tabindex="0">
+                <div class="zone-head"><span class="zone-name">Поле 3</span><span class="zone-size">42×22</span></div>
+                <div class="zone-cta">
+                  <span class="zone-fmt">форматы 6×6 / 7×7</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Хочу это</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="fcardx f1">
-            <span class="size">38×19</span>
-            <span class="name">Поле 1</span>
-            <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Хочу это</a>
-          </div>
-          <div class="fcardx f2">
-            <span class="size">38×19</span>
-            <span class="name">Поле 2</span>
-            <span class="fmt">форматы 5×5 / 6×6</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Хочу это</a>
-          </div>
-          <div class="fcardx f3">
-            <span class="size">42×22</span>
-            <span class="name">Поле 3</span>
-            <span class="fmt">форматы 6×6 / 7×7</span>
-            <a class="btn btn-k btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Хочу это</a>
-          </div>
-          <div class="fcardx f4">
-            <span class="size">64×42</span>
-            <span class="name">Весь манеж</span>
-            <span class="fmt">форматы 7×7 / 8×8 · турниры · события</span>
-            <a class="btn btn-y btn-sm" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
-          </div>
+          <!-- весь манеж -->
+          <a class="whole" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">
+            <div class="zone-head"><span class="zone-name">Весь манеж</span></div>
+            <div>
+              <span class="zone-size">64×42</span>
+              <span class="zone-fmt">форматы 7×7 / 8×8 · турниры и события</span>
+              <span class="btn btn-y btn-sm">Оставить заявку</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -743,7 +780,7 @@
             <h3>Заявка на аренду всего манежа</h3>
             <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
             <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
-            <p class="apay">Оплата: наличные, безнал, карта, QR-код. Онлайн-бронирование подключим после финальной тарифной сетки.</p>
+            <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
             <div class="acontact">
               <a href="tel:+79813799009">+7-981-379-90-09</a>
               <span>Новоселье, дер. Пески · <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">адрес на карте</a></span>
