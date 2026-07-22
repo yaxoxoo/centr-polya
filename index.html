@@ -392,33 +392,57 @@
     .burger{display:flex;}
   }
   @media (max-width:48rem){
+    /* компактнее: узкие поля, мельче размеры */
+    :root{
+      --pad:.9rem; --frame:.375rem; --sec:2.75rem; --gap:.6rem;
+      --fs-h2:1.75rem; --r:1.25rem; --r-sm:1rem;
+    }
+    .bar{padding:.4rem .5rem .4rem .9rem;}
     .bar-cta .btn-vk{display:none;}
     .bar-word{display:none;}
-    .hero-meta{flex-direction:column;gap:.3rem;}
-    .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1.25rem;transform:rotate(-3deg);}
-    .stats{grid-template-columns:1fr;}
+    .logo-mask{height:1.6rem;width:2.25rem;}
+    .btn{padding:.7rem 1.25rem;}
+    .btn-sm{padding:.5rem 1rem;}
+    .hero-meta{flex-direction:column;gap:.25rem;margin-bottom:1rem;}
+    .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1rem;transform:rotate(-3deg);}
+    .hero-desc{margin-top:1rem;}
+    /* плашки в 2 колонки */
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat{padding:1.05rem;min-height:7.5rem;}
+    .who{grid-template-columns:1fr 1fr;}
+    .wcard{padding:1.05rem;min-height:12rem;}
+    .wcard h3{font-size:.95rem;}
+    .wcard p{padding-top:1.25rem;}
+    /* схема полей */
     .pitch{aspect-ratio:auto;min-height:0;}
-    .zones{position:static;inset:auto;grid-template-columns:1fr;grid-template-rows:none;padding:.6rem;}
+    .zones{position:static;inset:auto;grid-template-columns:1fr;grid-template-rows:none;padding:.5rem;gap:.5rem;}
     .z3{grid-column:1;grid-row:auto;}
-    .zone{min-height:8rem;}
+    .zone{min-height:0;padding:.9rem 1rem;}
     .zone-cta{opacity:1;transform:none;}
     .pitch-lines{display:none;}
+    /* остальное в один столбец, но компактнее */
     .scards{grid-template-columns:1fr;}
-    .who{grid-template-columns:1fr;}
+    .scard{min-height:0;padding:1.15rem;}
+    .scard h3{margin-top:1.25rem;}
     .srow{grid-column:span 12;}
+    .srv{gap:1.5rem var(--gap);}
     .fgrid{grid-template-columns:1fr;}
+    .flist{margin-top:1.25rem;gap:.85rem;}
+  }
+  @media (max-width:20rem){
+    .stats,.who{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body id="top">
 
   <div class="bar">
-      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><span class="logo-mask" role="img" aria-label="Логотип Центр Поля"></span><span class="bar-word">Центр Поля</span></a>
+      <a class="bar-logo" href="#top" aria-label="Центр Поля — на главную"><span class="logo-mask" role="img" aria-label="Логотип Центр Поля"></span><span class="bar-word">Центр Поля</span></a>
       <input type="checkbox" id="nt" aria-label="Открыть меню">
       <nav class="bar-nav" aria-label="Основное меню">
         <a href="#fields">Поля</a>
-        <a href="#how">Как забронировать</a>
-        <a href="#about">О комплексе</a>
+        <a href="#how">Как забронировать</a>
+        <a href="#about">О комплексе</a>
         <a href="#services">Услуги</a>
         <a href="#gallery">Галерея</a>
         <a href="#booking">Контакты</a>
@@ -434,19 +458,19 @@
   <header class="blk hero">
         <div class="hero-wrap">
       <div class="hero-meta">
-        <span class="meta">Футбольная арена</span>
-        <span class="meta">Юго-Запад Петербурга</span>
-        <span class="meta">Новоселье · дер. Пески</span>
+        <span class="meta">Футбольная арена</span>
+        <span class="meta">Юго-Запад Петербурга</span>
+        <span class="meta">Новоселье · дер. Пески</span>
       </div>
 
-      <span class="stk">Скоро открытие</span>
+      <span class="stk">Скоро открытие</span>
 
       <div class="hero-center">
-        <h1 class="hero-slogan">Футбол начинается<br>с&nbsp;<em>Центра Поля</em></h1>
-        <p class="hero-desc">Футбольный манеж для тренировок, турниров, детских футбольных школ, товарищеских матчей и корпоративов.</p>
+        <h1 class="hero-slogan">Футбол начинается<br>с&nbsp;<em>Центра Поля</em></h1>
+        <p class="hero-desc">Футбольный манеж для тренировок, турниров, детских футбольных школ, товарищеских матчей и корпоративов.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
-          <a class="btn btn-ow" href="#fields">Смотреть поля</a>
+          <a class="btn btn-ow" href="#fields">Смотреть поля</a>
         </div>
       </div>
     </div>
@@ -463,10 +487,10 @@
     <section class="blk blk-white" aria-label="Ключевые цифры">
       <div class="container">
         <div class="stats">
-          <div class="stat s1"><b>4</b><span>поля под крышей</span></div>
-          <div class="stat s2"><b>5×5–8×8</b><span>форматы игры</span></div>
-          <div class="stat s3"><b>60 мм</b><span>премиальный искусственный газон</span></div>
-          <div class="stat s4"><b>6</b><span>раздевалок с душевыми</span></div>
+          <div class="stat s1"><b>4</b><span>поля под крышей</span></div>
+          <div class="stat s2"><b>5×5–8×8</b><span>форматы игры</span></div>
+          <div class="stat s3"><b>60 мм</b><span>премиальный искусственный газон</span></div>
+          <div class="stat s4"><b>6</b><span>раздевалок с душевыми</span></div>
         </div>
       </div>
     </section>
@@ -476,12 +500,12 @@
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Поля и форматы</span>
-            <h2>4 поля<br>под одной крышей</h2>
+            <span class="meta">Поля и форматы</span>
+            <h2>4 поля<br>под одной крышей</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Наведите на поле на схеме, чтобы увидеть формат и забронировать.</p>
-            <a class="btn btn-y" href="https://n2320737.yclients.com/company/2012190/personal/menu?o=" target="_blank" rel="noopener">Забронировать онлайн</a>
+            <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Наведите на поле на схеме, чтобы увидеть формат и забронировать.</p>
+            <a class="btn btn-y" href="https://n2320737.yclients.com/company/2012190/personal/menu?o=" target="_blank" rel="noopener">Забронировать онлайн</a>
           </div>
         </div>
 
@@ -498,35 +522,35 @@
             </svg>
             <div class="zones">
               <div class="zone z1" tabindex="0">
-                <div class="zone-head"><span class="zone-name">Поле 1</span><span class="zone-size">38×19</span></div>
+                <div class="zone-head"><span class="zone-name">Поле 1</span><span class="zone-size">38×19</span></div>
                 <div class="zone-cta">
-                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
-                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Хочу это</a>
+                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 1 — 38×19 (5×5 / 6×6)">Выбрать</a>
                 </div>
               </div>
               <div class="zone z2" tabindex="0">
-                <div class="zone-head"><span class="zone-name">Поле 2</span><span class="zone-size">38×19</span></div>
+                <div class="zone-head"><span class="zone-name">Поле 2</span><span class="zone-size">38×19</span></div>
                 <div class="zone-cta">
-                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
-                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Хочу это</a>
+                  <span class="zone-fmt">форматы 5×5 / 6×6</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 2 — 38×19 (5×5 / 6×6)">Выбрать</a>
                 </div>
               </div>
               <div class="zone z3" tabindex="0">
-                <div class="zone-head"><span class="zone-name">Поле 3</span><span class="zone-size">42×22</span></div>
+                <div class="zone-head"><span class="zone-name">Поле 3</span><span class="zone-size">42×22</span></div>
                 <div class="zone-cta">
-                  <span class="zone-fmt">форматы 6×6 / 7×7</span>
-                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Хочу это</a>
+                  <span class="zone-fmt">форматы 6×6 / 7×7</span>
+                  <a class="btn btn-y btn-sm" href="#booking" data-book="Поле 3 — 42×22 (6×6 / 7×7)">Выбрать</a>
                 </div>
               </div>
             </div>
           </div>
           <!-- весь манеж -->
           <a class="whole" href="#booking" data-book="Весь манеж — 64×42 (7×7 / 8×8)">
-            <div class="zone-head"><span class="zone-name">Весь манеж</span></div>
+            <div class="zone-head"><span class="zone-name">Весь манеж</span></div>
             <div>
               <span class="zone-size">64×42</span>
-              <span class="zone-fmt">форматы 7×7 / 8×8 · турниры и события</span>
-              <span class="btn btn-y btn-sm">Оставить заявку</span>
+              <span class="zone-fmt">форматы 7×7 / 8×8 · турниры и события</span>
+              <span class="btn btn-y btn-sm">Оставить заявку</span>
             </div>
           </a>
         </div>
@@ -538,8 +562,8 @@
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Как это работает</span>
-            <h2>Забронировать —<br>это просто</h2>
+            <span class="meta">Как это работает</span>
+            <h2>Забронировать —<br>это просто</h2>
           </div>
           <div class="shead-r">
             <a class="btn btn-y" href="#booking">Бронировать</a>
@@ -547,24 +571,24 @@
         </div>
         <div class="scards">
           <div class="scard">
-            <span class="snum">Шаг 1</span>
-            <h3>Выбираете поле</h3>
-            <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
+            <span class="snum">Шаг 1</span>
+            <h3>Выбираете поле</h3>
+            <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
           </div>
           <div class="scard">
-            <span class="snum">Шаг 2</span>
-            <h3>Заявка или звонок</h3>
-            <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
+            <span class="snum">Шаг 2</span>
+            <h3>Заявка или звонок</h3>
+            <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
           </div>
           <div class="scard">
-            <span class="snum">Шаг 3</span>
-            <h3>Выходите на газон</h3>
-            <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
+            <span class="snum">Шаг 3</span>
+            <h3>Выходите на газон</h3>
+            <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
           </div>
           <div class="scard">
             <span class="snum">Оплата</span>
-            <h3>Как удобно вам</h3>
-            <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
+            <h3>Как удобно вам</h3>
+            <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
           </div>
         </div>
       </div>
@@ -573,9 +597,9 @@
     <!-- ============ ВЫСКАЗЫВАНИЕ ============ -->
     <section class="blk blk-orange shout">
       <div class="container">
-        <h2>Футбол начинается<br>с Центра Поля</h2>
-        <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка.</p>
-        <a class="btn btn-k" href="#booking">Забронировать поле</a>
+        <h2>Футбол начинается<br>с Центра Поля</h2>
+        <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка.</p>
+        <a class="btn btn-k" href="#booking">Забронировать поле</a>
       </div>
     </section>
 
@@ -584,21 +608,21 @@
       <div class="container">
         <div class="split">
           <div class="split-l">
-            <span class="meta">О комплексе</span>
+            <span class="meta">О комплексе</span>
             <h2>Что внутри<br>комплекса</h2>
-            <p class="lead" style="margin-top:1rem">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
+            <p class="lead" style="margin-top:1rem">Футбольный манеж на юго-западе Петербурга — всё для игры, тренировок и событий.</p>
             <div class="flist">
-              <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, премиальный искусственный газон 60 мм</span></p>
-              <p class="fitem"><span><b>Разделение</b> все поля разделены сеткой, ворота 3×2 · 4×2 · 5×2</span></p>
-              <p class="fitem"><span><b>Трибуны</b> для зрителей + вышка оператора и баннерная сетка</span></p>
-              <p class="fitem"><span><b>Кафе</b> зона ожидания и мониторы онлайн-трансляции из манежа</span></p>
-              <p class="fitem"><span><b>6 раздевалок</b> с душевыми, инвентарная комната, тренерская</span></p>
-              <p class="fitem"><span><b>Залы</b> зал для мероприятий, зал для групповых занятий, комната тактического разбора</span></p>
-              <p class="fitem"><span><b>Парковка</b> бесплатная, удобная транспортная доступность</span></p>
+              <p class="fitem"><span><b>Поля</b> 38×19 · 42×22 · 64×42, премиальный искусственный газон 60 мм</span></p>
+              <p class="fitem"><span><b>Разделение</b> все поля разделены сеткой, ворота 3×2 · 4×2 · 5×2</span></p>
+              <p class="fitem"><span><b>Трибуны</b> для зрителей + вышка оператора и баннерная сетка</span></p>
+              <p class="fitem"><span><b>Кафе</b> зона ожидания и мониторы онлайн-трансляции из манежа</span></p>
+              <p class="fitem"><span><b>6 раздевалок</b> с душевыми, инвентарная комната, тренерская</span></p>
+              <p class="fitem"><span><b>Залы</b> зал для мероприятий, зал для групповых занятий, комната тактического разбора</span></p>
+              <p class="fitem"><span><b>Парковка</b> бесплатная, удобная транспортная доступность</span></p>
             </div>
           </div>
           <div class="split-r">
-            <span class="stk">Манеж изнутри</span>
+            <span class="stk">Манеж изнутри</span>
             <div class="slider" id="slider">
               <img src="bg-2.png" class="on" alt="Игроки на крытом футбольном поле арены Центр Поля">
               <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
@@ -617,29 +641,29 @@
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Для кого</span>
-            <h2>Кому подойдёт<br>Центр Поля</h2>
+            <span class="meta">Для кого</span>
+            <h2>Кому подойдёт<br>Центр Поля</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">От регулярных тренировок команд до дней рождения — арена работает под ваш сценарий.</p>
+            <p class="lead">От регулярных тренировок команд до дней рождения — арена работает под ваш сценарий.</p>
           </div>
         </div>
         <div class="who">
           <div class="wcard w1">
-            <h3>Любительские и профи команды</h3>
-            <p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p>
+            <h3>Любительские и профи команды</h3>
+            <p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p>
           </div>
           <div class="wcard w2">
-            <h3>Детские футбольные школы</h3>
-            <p>Секции, групповые занятия, детские турниры и тренировочные игры.</p>
+            <h3>Детские футбольные школы</h3>
+            <p>Секции, групповые занятия, детские турниры и тренировочные игры.</p>
           </div>
           <div class="wcard w3">
-            <h3>Организаторы турниров</h3>
-            <p>Футбольные турниры разных уровней, форматов и возрастов.</p>
+            <h3>Организаторы турниров</h3>
+            <p>Футбольные турниры разных уровней, форматов и возрастов.</p>
           </div>
           <div class="wcard w4">
-            <h3>Частные мероприятия</h3>
-            <p>Корпоративы, праздники, дни рождения и спортивные события.</p>
+            <h3>Частные мероприятия</h3>
+            <p>Корпоративы, праздники, дни рождения и спортивные события.</p>
           </div>
         </div>
       </div>
@@ -654,37 +678,37 @@
             <h2>Что мы<br>предлагаем</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Семь направлений — от аренды поля до праздника под ключ.</p>
+            <p class="lead">Семь направлений — от аренды поля до праздника под ключ.</p>
           </div>
         </div>
         <div class="srv">
           <div class="srow">
-            <h3>Аренда футбольного поля</h3>
-            <p>Поля трёх размеров под ваш формат игры. Для тренировок и регулярных игр.</p>
+            <h3>Аренда футбольного поля</h3>
+            <p>Поля трёх размеров под ваш формат игры. Для тренировок и регулярных игр.</p>
           </div>
           <div class="srow">
             <h3>Турниры</h3>
-            <p>Для любых уровней и возрастов: взрослые, детские, корпоративные, длинные и однодневные.</p>
+            <p>Для любых уровней и возрастов: взрослые, детские, корпоративные, длинные и однодневные.</p>
           </div>
           <div class="srow">
-            <h3>Дни рождения</h3>
-            <p>Праздник футбола для детей и взрослых. Поле — для активных игр и развлечений, просторный зал — для праздничного стола и отдыха.</p>
+            <h3>Дни рождения</h3>
+            <p>Праздник футбола для детей и взрослых. Поле — для активных игр и развлечений, просторный зал — для праздничного стола и отдыха.</p>
           </div>
           <div class="srow">
-            <h3>Детские секции</h3>
-            <p>Занятия частных и государственных футбольных школ. Зона ожидания для родителей.</p>
+            <h3>Детские секции</h3>
+            <p>Занятия частных и государственных футбольных школ. Зона ожидания для родителей.</p>
           </div>
           <div class="srow">
-            <h3>Корпоративные мероприятия</h3>
-            <p>Спортивные корпоративы для вашей компании. Отдельный зал для организации праздника.</p>
+            <h3>Корпоративные мероприятия</h3>
+            <p>Спортивные корпоративы для вашей компании. Отдельный зал для организации праздника.</p>
           </div>
           <div class="srow">
-            <h3>Кафе и зона ожидания</h3>
-            <p>Кафе с выпечкой и горячими блюдами. Мониторы с трансляцией из манежа.</p>
+            <h3>Кафе и зона ожидания</h3>
+            <p>Кафе с выпечкой и горячими блюдами. Мониторы с трансляцией из манежа.</p>
           </div>
           <div class="srow">
-            <h3>Зал для групповых занятий</h3>
-            <p>Йога, пилатес, суставная гимнастика — в отдельном зале.</p>
+            <h3>Зал для групповых занятий</h3>
+            <p>Йога, пилатес, суставная гимнастика — в отдельном зале.</p>
           </div>
         </div>
       </div>
@@ -695,11 +719,11 @@
       <div class="container is-gal">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Фото и галерея</span>
+            <span class="meta">Фото и галерея</span>
             <h2>Как это<br>выглядит</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Комплекс строится — показываем честные рендеры, схемы и прогресс стройки. Настоящие фото уже скоро.</p>
+            <p class="lead">Комплекс строится — показываем честные рендеры, схемы и прогресс стройки. Настоящие фото уже скоро.</p>
           </div>
         </div>
       </div>
@@ -707,24 +731,24 @@
         <div class="gmrq-in">
           <div class="gitem">
             <img src="bg-2.png" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
-            <span class="stk">Скоро фото</span>
+            <span class="stk">Скоро фото</span>
           </div>
-          <div class="gitem is-tile">Схема полей · скоро</div>
+          <div class="gitem is-tile">Схема полей · скоро</div>
           <div class="gitem">
             <img src="bg.png" alt="Рендер футбольного поля с игроками" loading="lazy">
             <span class="stk is-white">Рендер</span>
           </div>
-          <div class="gitem is-tile">Стройка · прогресс</div>
+          <div class="gitem is-tile">Стройка · прогресс</div>
           <div class="gitem" aria-hidden="true">
             <img src="bg-2.png" alt="" loading="lazy">
-            <span class="stk">Скоро фото</span>
+            <span class="stk">Скоро фото</span>
           </div>
-          <div class="gitem is-tile" aria-hidden="true">Схема полей · скоро</div>
+          <div class="gitem is-tile" aria-hidden="true">Схема полей · скоро</div>
           <div class="gitem" aria-hidden="true">
             <img src="bg.png" alt="" loading="lazy">
             <span class="stk is-white">Рендер</span>
           </div>
-          <div class="gitem is-tile" aria-hidden="true">Стройка · прогресс</div>
+          <div class="gitem is-tile" aria-hidden="true">Стройка · прогресс</div>
         </div>
       </div>
     </section>
@@ -734,11 +758,11 @@
       <div class="container">
         <div class="shead">
           <div class="shead-l">
-            <span class="meta">Бронирование и заявки</span>
+            <span class="meta">Бронирование и заявки</span>
             <h2>Забронировать<br>поле</h2>
           </div>
           <div class="shead-r">
-            <p class="lead">Оставьте заявку — менеджер свяжется и подтвердит дату, время и условия. Или позвоните напрямую.</p>
+            <p class="lead">Оставьте заявку — менеджер свяжется и подтвердит дату, время и условия. Или позвоните напрямую.</p>
           </div>
         </div>
 
@@ -748,42 +772,42 @@
               <div class="fgrid">
                 <div class="fld"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
                 <div class="fld"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" autocomplete="tel" required></div>
-                <div class="fld"><label for="f-dt">Дата и время</label><input id="f-dt" name="datetime" type="text" placeholder="Напр. 20 июля, 19:00"></div>
-                <div class="fld"><label for="f-field">Поле / формат</label>
+                <div class="fld"><label for="f-dt">Дата и время</label><input id="f-dt" name="datetime" type="text" placeholder="Напр. 20 июля, 19:00"></div>
+                <div class="fld"><label for="f-field">Поле / формат</label>
                   <select id="f-field" name="field">
-                    <option value="">Выберите поле</option>
-                    <option>Поле 1 — 38×19 (5×5 / 6×6)</option>
-                    <option>Поле 2 — 38×19 (5×5 / 6×6)</option>
-                    <option>Поле 3 — 42×22 (6×6 / 7×7)</option>
-                    <option>Весь манеж — 64×42 (7×7 / 8×8)</option>
+                    <option value="">Выберите поле</option>
+                    <option>Поле 1 — 38×19 (5×5 / 6×6)</option>
+                    <option>Поле 2 — 38×19 (5×5 / 6×6)</option>
+                    <option>Поле 3 — 42×22 (6×6 / 7×7)</option>
+                    <option>Весь манеж — 64×42 (7×7 / 8×8)</option>
                   </select>
                 </div>
-                <div class="fld"><label for="f-goal">Размер ворот (для 42×22)</label>
-                  <select id="f-goal" name="goals"><option value="">Не важно</option><option>3×2</option><option>4×2</option><option>5×2</option></select>
+                <div class="fld"><label for="f-goal">Размер ворот (для 42×22)</label>
+                  <select id="f-goal" name="goals"><option value="">Не важно</option><option>3×2</option><option>4×2</option><option>5×2</option></select>
                 </div>
-                <div class="fld"><label for="f-ball">Аренда мяча</label>
-                  <select id="f-ball" name="ball"><option>Не нужна</option><option>Нужна</option></select>
+                <div class="fld"><label for="f-ball">Аренда мяча</label>
+                  <select id="f-ball" name="ball"><option>Не нужна</option><option>Нужна</option></select>
                 </div>
-                <div class="fld full"><label for="f-bibs">Аренда манишек</label>
-                  <select id="f-bibs" name="bibs"><option>Не нужна</option><option>Нужна — комплект</option></select>
+                <div class="fld full"><label for="f-bibs">Аренда манишек</label>
+                  <select id="f-bibs" name="bibs"><option>Не нужна</option><option>Нужна — комплект</option></select>
                 </div>
                 <div class="fld full"><label for="f-com">Комментарий</label><textarea id="f-com" name="comment" placeholder="Цель аренды, количество игроков, пожелания"></textarea></div>
               </div>
-              <button class="btn btn-k" type="submit">Отправить заявку</button>
-              <p class="fhint">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
-              <div class="fok" id="fok" role="status">Спасибо! Заявка принята — менеджер свяжется с вами в ближайшее время.</div>
+              <button class="btn btn-k" type="submit">Отправить заявку</button>
+              <p class="fhint">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
+              <div class="fok" id="fok" role="status">Спасибо! Заявка принята — менеджер свяжется с вами в ближайшее время.</div>
             </form>
           </div>
 
           <aside class="acard">
-            <span class="meta">Весь манеж · 64×42</span>
-            <h3>Заявка на аренду всего манежа</h3>
-            <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
-            <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
-            <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
+            <span class="meta">Весь манеж · 64×42</span>
+            <h3>Заявка на аренду всего манежа</h3>
+            <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
+            <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
+            <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
             <div class="acontact">
               <a href="tel:+79813799009">+7-981-379-90-09</a>
-              <span>Новоселье, дер. Пески · <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">адрес на карте</a></span>
+              <span>Новоселье, дер. Пески · <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">адрес на карте</a></span>
             </div>
           </aside>
         </div>
@@ -798,26 +822,26 @@
       <p class="foot-word display" aria-hidden="true">Центр<br>Поля</p>
       <div class="foot-grid">
         <div class="foot-col-tag">
-          <p class="foot-tag">Крытая футбольная арена на Юго-Западе Петербурга. Аренда полей, турниры, детские секции, корпоративы и частные мероприятия.</p>
+          <p class="foot-tag">Крытая футбольная арена на Юго-Западе Петербурга. Аренда полей, турниры, детские секции, корпоративы и частные мероприятия.</p>
         </div>
         <div class="foot-col">
           <h4>Контакты</h4>
           <a class="foot-phone" href="tel:+79813799009">+7-981-379-90-09</a>
-          <p>Новоселье, дер. Пески</p>
-          <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес на карте →</a>
-          <a href="https://vk.ru/club238920313" target="_blank" rel="noopener">Группа ВКонтакте →</a>
+          <p>Новоселье, дер. Пески</p>
+          <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес на карте →</a>
+          <a href="https://vk.ru/club238920313" target="_blank" rel="noopener">Группа ВКонтакте →</a>
         </div>
         <div class="foot-col">
           <h4>Разделы</h4>
-          <a href="#fields">Поля и форматы</a>
-          <a href="#about">О комплексе</a>
+          <a href="#fields">Поля и форматы</a>
+          <a href="#about">О комплексе</a>
           <a href="#services">Услуги</a>
           <a href="#booking">Бронирование</a>
         </div>
       </div>
       <div class="foot-bottom">
-        <span>© <span id="year"></span> Центр Поля. Футбольная арена.</span>
-        <span>Футбол начинается с Центра Поля</span>
+        <span>© <span id="year"></span> Центр Поля. Футбольная арена.</span>
+        <span>Футбол начинается с Центра Поля</span>
       </div>
     </div>
   </footer>
