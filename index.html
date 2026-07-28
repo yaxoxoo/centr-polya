@@ -222,15 +222,24 @@
     grid-column:span 8;position:relative;border-radius:var(--r-sm);overflow:hidden;
     background:var(--green);aspect-ratio:16/10;min-height:22rem;
   }
-  .pitch-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-  .zones{position:absolute;inset:.6rem;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.6rem;}
+  /* аккуратный центральный круг ровно по центру схемы */
+  .pitch-mid{
+    position:absolute;top:50%;left:50%;width:8.5rem;height:8.5rem;
+    transform:translate(-50%,-50%);border-radius:50%;
+    border:.125rem solid rgba(255,255,255,.35);pointer-events:none;z-index:2;
+  }
+  .pitch-mid::after{
+    content:"";position:absolute;top:50%;left:50%;width:.55rem;height:.55rem;
+    transform:translate(-50%,-50%);border-radius:50%;background:rgba(255,255,255,.6);
+  }
+  .zones{position:absolute;inset:.75rem;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.75rem;z-index:1;}
   .zone{
-    position:relative;border:.125rem solid rgba(255,255,255,.55);border-radius:1rem;
-    background:rgba(14,74,0,.12);color:var(--white);cursor:pointer;overflow:hidden;
+    position:relative;border:.0938rem solid rgba(255,255,255,.4);border-radius:1rem;
+    background:rgba(0,0,0,.10);color:var(--white);cursor:pointer;overflow:hidden;
     display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem 1.25rem;
     transition:background .18s,border-color .18s;text-align:left;
   }
-  .zone:hover,.zone:focus-within{background:rgba(14,74,0,.55);border-color:var(--white);}
+  .zone:hover,.zone:focus-within{background:rgba(0,0,0,.32);border-color:var(--white);}
   .z1{grid-column:1;grid-row:1;}
   .z2{grid-column:1;grid-row:2;}
   .z3{grid-column:2;grid-row:1 / span 2;}
@@ -512,14 +521,7 @@
         <div class="fields2">
           <!-- схема манежа: наведи на поле -->
           <div class="pitch">
-            <svg class="pitch-lines" viewBox="0 0 320 200" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="1.5" aria-hidden="true">
-              <rect x="6" y="6" width="308" height="188" rx="4"/>
-              <line x1="160" y1="6" x2="160" y2="194"/>
-              <circle cx="160" cy="100" r="26"/>
-              <circle cx="160" cy="100" r="2.5" fill="#FFFFFF" stroke="none"/>
-              <rect x="6" y="66" width="34" height="68"/>
-              <rect x="280" y="66" width="34" height="68"/>
-            </svg>
+            <span class="pitch-mid" aria-hidden="true"></span>
             <div class="zones">
               <div class="zone z1" tabindex="0">
                 <div class="zone-head"><span class="zone-name">Поле 1</span><span class="zone-size">38×19</span></div>
