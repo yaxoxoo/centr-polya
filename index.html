@@ -80,11 +80,11 @@
 
   /* ============ БАЗА ============ */
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{font-size:100%;scroll-behavior:smooth;}
+  html{font-size:100%;scroll-behavior:smooth;overflow-x:hidden;}
   body{
     font-family:var(--fb);font-size:var(--fs-body);color:var(--black);
     background:var(--green-deep);padding:var(--frame);
-    line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    line-height:1.55;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
   img,svg{display:block;max-width:100%;height:auto;}
   a{color:inherit;}
@@ -249,6 +249,7 @@
   .zone-cta{opacity:0;transform:translateY(.5rem);transition:opacity .18s,transform .18s;}
   .zone:hover .zone-cta,.zone:focus-within .zone-cta{opacity:1;transform:none;}
   .zone-fmt{display:block;font-size:var(--fs-small);color:var(--w-70);margin-bottom:.7rem;}
+  .stat,.zone,.wcard,.scard,.srow,.bform,.acard,.hcol{min-width:0;}
   /* карточка «весь манеж» */
   .whole{
     grid-column:span 4;border-radius:var(--r-sm);background:var(--green-deep);color:var(--white);
@@ -415,13 +416,13 @@
     .hero-meta{flex-direction:column;gap:.25rem;margin-bottom:1rem;}
     .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1rem;transform:rotate(-3deg);}
     .hero-desc{margin-top:1rem;}
-    /* плашки в 2 колонки */
+    /* цифры в 2 колонки, «для кого» — в одну */
     .stats{grid-template-columns:1fr 1fr;}
     .stat{padding:1.05rem;min-height:7.5rem;}
-    .who{grid-template-columns:1fr 1fr;}
-    .wcard{padding:1.05rem;min-height:12rem;}
-    .wcard h3{font-size:.95rem;}
-    .wcard p{padding-top:1.25rem;}
+    .who{grid-template-columns:1fr;}
+    .wcard{padding:1.1rem;min-height:0;}
+    .wcard h3{font-size:1rem;}
+    .wcard p{padding-top:.6rem;}
     /* схема полей */
     .pitch{aspect-ratio:auto;min-height:0;}
     .zones{position:static;inset:auto;grid-template-columns:1fr;grid-template-rows:none;padding:.5rem;gap:.5rem;}
@@ -510,7 +511,7 @@
         <div class="shead">
           <div class="shead-l">
             <span class="meta">Поля и форматы</span>
-            <h2>4 поля<br>под одной крышей</h2>
+            <h2>4 поля<br>под одной крышей</h2>
           </div>
           <div class="shead-r">
             <p class="lead">Размеры 38×19, 42×22 и 64×42, премиальный искусственный газон 60 мм. Наведите на поле на схеме, чтобы увидеть формат и забронировать.</p>
@@ -565,7 +566,7 @@
         <div class="shead">
           <div class="shead-l">
             <span class="meta">Как это работает</span>
-            <h2>Забронировать —<br>это просто</h2>
+            <h2>Забронировать —<br>это просто</h2>
           </div>
           <div class="shead-r">
             <a class="btn btn-y" href="#booking">Бронировать</a>
@@ -574,22 +575,22 @@
         <div class="scards">
           <div class="scard">
             <span class="snum">Шаг 1</span>
-            <h3>Выбираете поле</h3>
+            <h3>Выбираете поле</h3>
             <p>38×19, 42×22 или весь манеж 64×42 — под ваш формат игры и состав команды.</p>
           </div>
           <div class="scard">
             <span class="snum">Шаг 2</span>
-            <h3>Заявка или звонок</h3>
+            <h3>Заявка или звонок</h3>
             <p>Форма на сайте или телефон +7-981-379-90-09. Менеджер подтвердит дату, время и условия.</p>
           </div>
           <div class="scard">
             <span class="snum">Шаг 3</span>
-            <h3>Выходите на газон</h3>
+            <h3>Выходите на газон</h3>
             <p>Раздевалки с душевыми, инвентарь, манишки и мячи — всё готово к вашей игре.</p>
           </div>
           <div class="scard">
             <span class="snum">Оплата</span>
-            <h3>Как удобно вам</h3>
+            <h3>Как удобно вам</h3>
             <p>Наличные, безнал, карта или QR-код — оплата на месте без сложностей.</p>
           </div>
         </div>
@@ -599,7 +600,7 @@
     <!-- ============ ВЫСКАЗЫВАНИЕ ============ -->
     <section class="blk blk-orange shout">
       <div class="container">
-        <h2>Футбол начинается<br>с Центра Поля</h2>
+        <h2>Футбол начинается<br>с Центра Поля</h2>
         <p>Поля трёх размеров, кафе с трансляциями, раздевалки с душевыми и бесплатная парковка.</p>
         <a class="btn btn-k" href="#booking">Забронировать поле</a>
       </div>
@@ -644,7 +645,7 @@
         <div class="shead">
           <div class="shead-l">
             <span class="meta">Для кого</span>
-            <h2>Кому подойдёт<br>Центр Поля</h2>
+            <h2>Кому подойдёт<br>Центр Поля</h2>
           </div>
           <div class="shead-r">
             <p class="lead">От регулярных тренировок команд до дней рождения — арена работает под ваш сценарий.</p>
@@ -652,19 +653,19 @@
         </div>
         <div class="who">
           <div class="wcard w1">
-            <h3>Любительские и профи команды</h3>
+            <h3>Любительские и профи команды</h3>
             <p>Регулярные тренировки, товарищеские матчи, аренда под формат команды.</p>
           </div>
           <div class="wcard w2">
-            <h3>Детские футбольные школы</h3>
+            <h3>Детские футбольные школы</h3>
             <p>Секции, групповые занятия, детские турниры и тренировочные игры.</p>
           </div>
           <div class="wcard w3">
-            <h3>Организаторы турниров</h3>
+            <h3>Организаторы турниров</h3>
             <p>Футбольные турниры разных уровней, форматов и возрастов.</p>
           </div>
           <div class="wcard w4">
-            <h3>Частные мероприятия</h3>
+            <h3>Частные мероприятия</h3>
             <p>Корпоративы, праздники, дни рождения и спортивные события.</p>
           </div>
         </div>
@@ -685,7 +686,7 @@
         </div>
         <div class="srv">
           <div class="srow">
-            <h3>Аренда футбольного поля</h3>
+            <h3>Аренда футбольного поля</h3>
             <p>Поля трёх размеров под ваш формат игры. Для тренировок и регулярных игр.</p>
           </div>
           <div class="srow">
@@ -693,23 +694,23 @@
             <p>Для любых уровней и возрастов: взрослые, детские, корпоративные, длинные и однодневные.</p>
           </div>
           <div class="srow">
-            <h3>Дни рождения</h3>
+            <h3>Дни рождения</h3>
             <p>Праздник футбола для детей и взрослых. Поле — для активных игр и развлечений, просторный зал — для праздничного стола и отдыха.</p>
           </div>
           <div class="srow">
-            <h3>Детские секции</h3>
+            <h3>Детские секции</h3>
             <p>Занятия частных и государственных футбольных школ. Зона ожидания для родителей.</p>
           </div>
           <div class="srow">
-            <h3>Корпоративные мероприятия</h3>
+            <h3>Корпоративные мероприятия</h3>
             <p>Спортивные корпоративы для вашей компании. Отдельный зал для организации праздника.</p>
           </div>
           <div class="srow">
-            <h3>Кафе и зона ожидания</h3>
+            <h3>Кафе и зона ожидания</h3>
             <p>Кафе с выпечкой и горячими блюдами. Мониторы с трансляцией из манежа.</p>
           </div>
           <div class="srow">
-            <h3>Зал для групповых занятий</h3>
+            <h3>Зал для групповых занятий</h3>
             <p>Йога, пилатес, суставная гимнастика — в отдельном зале.</p>
           </div>
         </div>
@@ -803,7 +804,7 @@
 
           <aside class="acard">
             <span class="meta">Весь манеж · 64×42</span>
-            <h3>Заявка на аренду всего манежа</h3>
+            <h3>Заявка на аренду всего манежа</h3>
             <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
             <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
             <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
