@@ -5,15 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<title>Центр Поля — футбольная арена на Юго-Западе Петербурга | аренда полей 5×5–8×8</title>
-<meta name="description" content="Центр Поля — крытая футбольная арена в Новоселье (дер. Пески), Юго-Запад Петербурга. 4 поля под крышей: 38×19, 42×22, 64×42. Форматы 5×5–8×8. Аренда полей, турниры, детские секции, корпоративы. Бронирование: +7-981-379-90-09.">
+<title>Футбольный манеж «Центр Поля» — аренда полей 5×5–8×8</title>
+<meta name="description" content="Крытый футбольный манеж в Новоселье под Петербургом. Поля 38×19, 42×22 и 64×42, форматы 5×5–8×8, турниры и секции. Бронь: +7-981-379-90-09">
 <link rel="canonical" href="https://centrpolya.ru/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="Центр Поля — футбольная арена на Юго-Западе Петербурга">
 <meta property="og:description" content="4 поля под крышей, покрытие 60 мм, форматы 5×5–8×8. Аренда полей, турниры, детские секции, корпоративы.">
 <meta property="og:url" content="https://centrpolya.ru/">
-<meta property="og:image" content="https://centrpolya.ru/bg-2.png">
+<meta property="og:image" content="https://centrpolya.ru/bg-2.jpg">
+<meta property="og:image:width" content="1672">
+<meta property="og:image:height" content="941">
+<meta property="og:image:alt" content="Футбольное поле крытого манежа «Центр Поля»">
+<meta property="og:site_name" content="Центр Поля">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -28,15 +32,34 @@
   "@type": "SportsActivityLocation",
   "name": "Центр Поля",
   "description": "Крытая футбольная арена: 4 поля под крышей, форматы 5×5–8×8. Аренда полей, турниры, детские секции, корпоративы.",
-  "telephone": "+7-981-379-90-09",
+  "telephone": "+79813799009",
   "url": "https://centrpolya.ru/",
+  "image": "https://centrpolya.ru/bg-2.jpg",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Новоселье, дер. Пески",
     "addressRegion": "Ленинградская область",
     "addressCountry": "RU"
   },
-  "sameAs": ["https://vk.ru/club238920313"]
+  "hasMap": "https://yandex.ru/maps/org/tsentr_polya/234786052100",
+  "areaServed": ["Санкт-Петербург", "Ломоносовский район", "Ленинградская область"],
+  "paymentAccepted": "Наличные, банковская карта, безналичный расчёт, QR-код",
+  "currenciesAccepted": "RUB",
+  "sameAs": [
+    "https://vk.ru/club238920313",
+    "https://yandex.ru/maps/org/tsentr_polya/234786052100"
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://n2320737.yclients.com/company/2012190/personal/menu?o=",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    }
+  }
 }
 </script>
 
@@ -217,7 +240,7 @@
 
   /* ============ HERO ============ */
   .hero{
-    background:var(--green-deep) url('bg-2.png') center/cover no-repeat;
+    background:var(--green-deep) url('bg-2.jpg') center/cover no-repeat;
     color:var(--white);
     border-radius:var(--r);
     margin-bottom:var(--frame);
@@ -285,7 +308,7 @@
   .zones{position:absolute;inset:.75rem;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.75rem;}
   .zone{
     position:relative;min-width:0;
-    border:.0938rem solid rgba(255,255,255,.4);border-radius:1rem;
+    border:var(--hair) solid rgba(255,255,255,.4);border-radius:1rem;
     background-color:rgba(0,0,0,.06);
     background-repeat:no-repeat;background-position:center;background-size:100% 100%;
     color:var(--white);cursor:pointer;overflow:hidden;
@@ -440,7 +463,7 @@
   .fld input,.fld select,.fld textarea{
     /* не ниже 1rem: при меньшем кегле iOS зумит страницу при фокусе */
     font-family:var(--fb);font-size:max(1rem,var(--fs-body));line-height:var(--lh-body);color:var(--black);
-    background:var(--grey);border:.0938rem solid transparent;border-radius:.75rem;
+    background:var(--grey);border:var(--hair) solid transparent;border-radius:.75rem;
     padding:.75rem .9rem;width:100%;
     transition:border-color var(--tr),background var(--tr);
   }
@@ -450,7 +473,7 @@
   .fhint{color:var(--ink-60);margin-top:.7rem;text-align:center;}
   .fok{
     display:none;margin-top:1rem;padding:.9rem 1rem;border-radius:.75rem;
-    background:var(--white);border:.0938rem solid var(--green);color:var(--green);font-weight:600;
+    background:var(--white);border:var(--hair) solid var(--green);color:var(--green);font-weight:600;
   }
   .fok.show{display:block;}
   .acard{
@@ -756,8 +779,8 @@
           <div class="split-r">
             <div class="slider" id="slider">
               <span class="stk">Манеж изнутри</span>
-              <img src="bg-2.png" class="on" alt="Игроки на крытом футбольном поле арены Центр Поля">
-              <img src="bg.png" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
+              <img src="bg-2.jpg" class="on" alt="Игроки на поле крытого футбольного манежа «Центр Поля»" loading="lazy" decoding="async">
+              <img src="bg.jpg" alt="Игровой момент на футбольном поле с мячом" loading="lazy">
               <div class="slider-nav">
                 <button class="snav" type="button" data-dir="-1" aria-label="Предыдущее фото">←</button>
                 <button class="snav" type="button" data-dir="1" aria-label="Следующее фото">→</button>
@@ -862,22 +885,22 @@
       <div class="gmrq">
         <div class="gmrq-in">
           <div class="gitem">
-            <img src="bg-2.png" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
+            <img src="bg-2.jpg" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
             <span class="stk">Скоро фото</span>
           </div>
           <div class="gitem is-tile">Схема полей · скоро</div>
           <div class="gitem">
-            <img src="bg.png" alt="Рендер футбольного поля с игроками" loading="lazy">
+            <img src="bg.jpg" alt="Рендер футбольного поля с игроками" loading="lazy">
             <span class="stk is-white">Рендер</span>
           </div>
           <div class="gitem is-tile">Стройка · прогресс</div>
           <div class="gitem" aria-hidden="true">
-            <img src="bg-2.png" alt="" loading="lazy">
+            <img src="bg-2.jpg" alt="" loading="lazy">
             <span class="stk">Скоро фото</span>
           </div>
           <div class="gitem is-tile" aria-hidden="true">Схема полей · скоро</div>
           <div class="gitem" aria-hidden="true">
-            <img src="bg.png" alt="" loading="lazy">
+            <img src="bg.jpg" alt="" loading="lazy">
             <span class="stk is-white">Рендер</span>
           </div>
           <div class="gitem is-tile" aria-hidden="true">Стройка · прогресс</div>

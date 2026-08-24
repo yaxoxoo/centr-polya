@@ -5,3 +5,8 @@ AddType image/svg+xml .svg
 
 # Главная страница
 DirectoryIndex index.html
+
+# Черновики вынесены из деплоя — старые адреса ведут на главную,
+# чтобы уже проиндексированная заглушка не отдавала 404
+Redirect 301 /zaglushka.html /
+Redirect 301 /v2-editorial.html /
