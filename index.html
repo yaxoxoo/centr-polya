@@ -438,7 +438,8 @@
   .fld{display:flex;flex-direction:column;gap:.35rem;}
   .fld.full{grid-column:1/-1;}
   .fld input,.fld select,.fld textarea{
-    font-family:var(--fb);font-size:var(--fs-body);line-height:var(--lh-body);color:var(--black);
+    /* не ниже 1rem: при меньшем кегле iOS зумит страницу при фокусе */
+    font-family:var(--fb);font-size:max(1rem,var(--fs-body));line-height:var(--lh-body);color:var(--black);
     background:var(--grey);border:.0938rem solid transparent;border-radius:.75rem;
     padding:.75rem .9rem;width:100%;
     transition:border-color var(--tr),background var(--tr);
@@ -514,8 +515,9 @@
   }
   @media (max-width:48rem){
     :root{
-      --pad:.9rem; --frame:.375rem; --sec:2.75rem; --gap:.75rem;
+      --pad:.9rem; --frame:.375rem; --sec:3.5rem; --gap:.75rem;
       --fs-h2:1.75rem; --fs-display:2.5rem; --r:1.25rem; --r-sm:1rem;
+      --fs-body:.9375rem;
     }
     .bar{padding:.4rem .5rem .4rem .9rem;}
     .bar-cta .btn-vk{display:none;}
@@ -533,7 +535,7 @@
     }
     .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1rem;transform:rotate(-3deg);}
     .hero-desc{margin-top:1rem;}
-    main .container{padding:2.25rem 1rem;}
+    main .container{padding:3.25rem 1rem;}
     .stats,.scards,.who{grid-template-columns:1fr;gap:.75rem;}
     .stat,.scard,.wcard{padding:1rem;}
     /* схема полей в столбик */
@@ -552,7 +554,7 @@
     .srow{grid-template-columns:2.25rem minmax(0,1fr);padding:1.1rem 0;}
     .srow h3{padding-right:0;}
     .gmrq{padding:0 0 2.25rem;}
-    .gitem{height:clamp(13rem,52vw,19rem);}
+    .gitem{height:clamp(16rem,68vw,24rem);}
     .gitem.is-tile{min-width:18rem;padding:0 1.5rem;}
     .fgrid{grid-template-columns:1fr;}
     .flist{margin-top:1.25rem;}
