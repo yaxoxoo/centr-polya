@@ -110,7 +110,11 @@
   body{
     font-family:var(--fb);font-size:var(--fs-body);line-height:var(--lh-body);color:var(--black);
     background:var(--green-deep);padding:var(--frame);
-    overflow-wrap:break-word;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    overflow-wrap:break-word;-webkit-font-smoothing:antialiased;
+    /* clip, а не hidden: hidden делает body скролл-контейнером и ломает
+       position:sticky у шапки. clip так же обрезает по горизонтали, но
+       контейнер прокрутки не создаёт. */
+    overflow-x:clip;
   }
   img{display:block;max-width:100%;height:auto;}
   a{color:inherit;}
