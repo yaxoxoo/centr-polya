@@ -170,7 +170,7 @@
     padding:.875rem 1.75rem;
     transition:background var(--tr),color var(--tr),filter var(--tr);
   }
-  .btn-y{background:var(--yellow);color:var(--black);}
+  .btn-y{background:var(--yellow);color:var(--white);}
   .btn-y:hover{filter:brightness(1.08);}
   .btn-k{background:var(--black);color:var(--white);}
   .btn-k:hover{background:var(--white);color:var(--green);}
@@ -180,12 +180,12 @@
 
   /* стикер */
   .stk{
-    display:inline-flex;background:var(--yellow);color:var(--black);
+    display:inline-flex;background:var(--yellow);color:var(--white);
     letter-spacing:.05em;
     border-radius:62.5rem;padding:.5rem 1.1rem;transform:rotate(-4deg);
     transition:transform var(--tr),background var(--tr);
   }
-  .stk.is-white{background:var(--white);}
+  .stk.is-white{background:var(--white);color:var(--black);}
 
   /* ============ ШАПКА ============ */
   .bar{
@@ -209,6 +209,8 @@
   .bar-nav a{text-decoration:none;transition:color var(--tr);}
   .bar-nav a:hover{color:var(--green);}
   .bar-cta{display:flex;align-items:center;gap:.45rem;}
+  /* дубль строки с адресом — виден только внутри бургер-меню */
+  .nav-info{display:none;}
   .burger{display:none;width:2.4rem;height:2.4rem;flex-direction:column;gap:.3125rem;align-items:center;justify-content:center;cursor:pointer;}
   .burger span{width:1.25rem;height:.125rem;background:var(--black);border-radius:.125rem;}
   #nt{display:none;}
@@ -303,7 +305,7 @@
   .z2{grid-column:1;grid-row:2;}
   .z3{grid-column:2;grid-row:1 / span 2;}
   .zone-head{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;}
-  .zone-size{color:var(--yellow);}
+  .zone-size{color:var(--white);}
   .zone-cta{opacity:0;transform:translateY(.5rem);transition:opacity var(--tr),transform var(--tr);}
   .zone:hover .zone-cta,.zone:focus-within .zone-cta{opacity:1;transform:none;}
   .zone-fmt{display:block;color:var(--w-70);margin-bottom:.45rem;}
@@ -342,10 +344,10 @@
   .shout .btn{margin-top:1.75rem;}
 
   /* ============ О КОМПЛЕКСЕ ============ */
-  .split{display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem var(--gap);align-items:start;}
+  .split{display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem var(--gap);align-items:stretch;}
   .split-l{grid-column:span 7;}
   .split-l .meta{display:block;margin-bottom:.9rem;color:var(--green);}
-  .split-r{grid-column:span 5;}
+  .split-r{grid-column:span 5;display:flex;}
   /* список «что внутри» — без линеек, разделяют только отбивки */
   .flist{display:flex;flex-direction:column;gap:1rem;margin-top:1.75rem;}
   .fitem{
@@ -362,7 +364,10 @@
   }
 
   /* слайдер */
-  .slider{position:relative;border-radius:var(--r-sm);overflow:hidden;aspect-ratio:4/3.4;}
+  .slider{
+    position:relative;border-radius:var(--r-sm);overflow:hidden;
+    flex:1;min-height:24rem;
+  }
   .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--tr-slow);}
   .slider img.on{opacity:1;}
   .slider-nav{position:absolute;right:1rem;bottom:1rem;display:flex;align-items:center;gap:.6rem;z-index:1;}
@@ -518,7 +523,14 @@
     .logo-mask{height:1.6rem;width:2.25rem;}
     .btn{padding:.7rem 1.25rem;}
     .btn-sm{padding:.5rem 1rem;}
-    .hero-meta{flex-direction:column;gap:.25rem;margin-bottom:1rem;}
+    /* на телефоне строка уехала в бургер — в герое её не дублируем */
+    .hero-meta{display:none;}
+    .nav-info{
+      display:flex;flex-direction:column;gap:.5rem;
+      padding:.95rem 0 .35rem;
+      border-top:var(--hair) solid rgba(0,0,0,.1);
+      color:var(--green);
+    }
     .hero-wrap > .stk{position:static;align-self:flex-start;margin-top:1rem;transform:rotate(-3deg);}
     .hero-desc{margin-top:1rem;}
     main .container{padding:2.25rem 1rem;}
@@ -530,6 +542,12 @@
     .z3{grid-column:1;grid-row:auto;}
     .zone{min-height:9rem;padding:.9rem 1rem;}
     .zone-cta{opacity:1;transform:none;}
+    /* на узком экране штрафные и ворота только сорят — оставляем центр */
+    .z1,.z2,.z3{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 56' fill='none' stroke='rgba(255,255,255,0.32)' stroke-width='0.7'%3E%3Cpath d='M50 0V56'/%3E%3Ccircle cx='50' cy='28' r='8'/%3E%3Ccircle cx='50' cy='28' r='0.9' fill='rgba(255,255,255,0.5)' stroke='none'/%3E%3C/svg%3E");
+    }
+    /* фото на мобилке снова по пропорции — тянуться не за кем */
+    .slider{aspect-ratio:4/3.4;min-height:0;}
     .whole{padding:1.1rem;}
     .srow{grid-template-columns:2.25rem minmax(0,1fr);padding:1.1rem 0;}
     .srow h3{padding-right:0;}
@@ -564,6 +582,11 @@
         <a href="#services">Услуги</a>
         <a href="#gallery">Галерея</a>
         <a href="#booking">Контакты</a>
+        <span class="nav-info">
+          <span class="meta">Футбольная арена</span>
+          <span class="meta">Юго-Запад Петербурга</span>
+          <span class="meta">Новоселье · дер. Пески</span>
+        </span>
       </nav>
       <div class="bar-cta">
         <a class="btn btn-k btn-sm btn-vk" href="https://vk.ru/club238920313" target="_blank" rel="noopener">ВК</a>
