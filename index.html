@@ -72,9 +72,7 @@
   :root{
     /* палитра гайдлайна */
     --green:#198300;
-    --yellow:#B35304;
-    /* исходный яркий оранжевый — только для акцента на фото в первом экране */
-    --yellow-bright:#E06D06;
+    --yellow:#E06D06;
     --black:#000000;
     --white:#FFFFFF;
     --grey:#EFF1ED;
@@ -116,7 +114,7 @@
     --hair:.0625rem;
 
     /* маркер списков — оранжевый футбольный мяч */
-    --ball:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23B35304'/%3E%3Cg stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M12 7.8V2.1'/%3E%3Cpath d='M16 10.7L21.6 8.9'/%3E%3Cpath d='M14.5 15.4L17.9 20.2'/%3E%3Cpath d='M9.5 15.4L6.1 20.2'/%3E%3Cpath d='M8 10.7L2.4 8.9'/%3E%3C/g%3E%3Cpath d='M12 7.8L16 10.7L14.5 15.4H9.5L8 10.7Z' fill='%23ffffff'/%3E%3C/svg%3E");
+    --ball:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23E06D06'/%3E%3Cg stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M12 7.8V2.1'/%3E%3Cpath d='M16 10.7L21.6 8.9'/%3E%3Cpath d='M14.5 15.4L17.9 20.2'/%3E%3Cpath d='M9.5 15.4L6.1 20.2'/%3E%3Cpath d='M8 10.7L2.4 8.9'/%3E%3C/g%3E%3Cpath d='M12 7.8L16 10.7L14.5 15.4H9.5L8 10.7Z' fill='%23ffffff'/%3E%3C/svg%3E");
 
     /* плавность: единая кривая и длительности */
     --ease:cubic-bezier(.22,.61,.36,1);
@@ -273,7 +271,7 @@
     text-align:center;padding-block:1.5rem;
   }
   .hero-slogan{line-height:.95;max-width:56rem;}
-  .hero-slogan em{font-style:normal;color:var(--yellow-bright);}
+  .hero-slogan em{font-style:normal;color:var(--yellow);}
   .hero-slogan,.hero-desc{text-shadow:0 .125rem 1.5rem rgba(0,0,0,.5);}
   .hero-center p.hero-desc{color:var(--white);max-width:34rem;margin-top:1.5rem;}
   .hero-btns{display:flex;justify-content:center;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap;}
@@ -282,7 +280,7 @@
   /* ============ БЕГУЩАЯ СТРОКА ============ */
   .blk-mrq{overflow:hidden;padding:0;background:var(--yellow);color:var(--black);border-radius:var(--r);margin-bottom:var(--frame);}
   .mrq-in{display:flex;width:max-content;animation:mrq 28s linear infinite;}
-  .mrq-in span{padding:.85rem 1.1rem;white-space:nowrap;color:var(--white);}
+  .mrq-in span{padding:.85rem 1.1rem;white-space:nowrap;color:var(--black);}
   @keyframes mrq{to{transform:translateX(-50%);}}
 
   /* ============ ЗАГОЛОВОК СЕКЦИИ ============ */
@@ -304,16 +302,24 @@
     display:flex;flex-direction:column;justify-content:space-between;
   }
   .stat b{align-self:flex-start;}
-  /* перечень форматов не влезает дисплейным кеглем — набираем его как подзаголовок */
-  .stat.is-list b{font-size:var(--fs-h3);line-height:var(--lh-h3);}
-  .stat span{margin-top:auto;padding-top:1.5rem;}
+  /* перечень форматов в одну строку требовал мелкого кегля — раскладываем его
+     сеткой 2×2: каждая пара короткая, поэтому кегль остаётся дисплейным */
+  .stat.is-list b{
+    display:grid;grid-template-columns:repeat(2,max-content);
+    column-gap:.5rem;
+    /* дисплейный кегль в два столбца не влезает в плашку: при 64px пара
+       занимает 122px, а на колонку приходится 116px. Ограничиваем верх
+       шкалы, низ совпадает с --fs-h2 — на мобилке размер тот же. */
+    font-size:clamp(1.75rem,4.5vw,3.5rem);
+  }
+  .stat > span{margin-top:auto;padding-top:1.5rem;}
   /* плашки по очереди: зелёная — серая */
   .stat:nth-child(odd){background:var(--green);}
   .stat:nth-child(odd) b{color:var(--white);}
-  .stat:nth-child(odd) span{color:var(--w-78);}
+  .stat:nth-child(odd) > span{color:var(--w-78);}
   .stat:nth-child(even){background:var(--grey);}
   .stat:nth-child(even) b{color:var(--green);}
-  .stat:nth-child(even) span{color:var(--ink-60);}
+  .stat:nth-child(even) > span{color:var(--ink-60);}
 
   /* ============ ПОЛЯ: интерактивная схема манежа ============ */
   .fields2{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:stretch;}
@@ -421,7 +427,7 @@
     display:flex;align-items:center;justify-content:center;
     transition:background var(--tr),transform var(--tr);
   }
-  .snav:hover{background:var(--yellow);color:var(--white);}
+  .snav:hover{background:var(--yellow);}
   .slider .stk{position:absolute;top:1.1rem;left:1.1rem;z-index:1;}
 
   /* ============ ДЛЯ КОГО ============ */
@@ -504,7 +510,7 @@
   .acard .meta,.acard h3{color:var(--white);}
   .acard h3{margin-top:.8rem;}
   .acard p{color:var(--w-78);margin:.8rem 0 1.2rem;}
-  .apay{color:var(--w-78);margin-top:1rem;}
+  .acard p.apay{color:var(--white);font-size:var(--fs-label);margin:1rem 0 0;}
   .acontact{margin-top:1.4rem;padding-top:1.2rem;border-top:var(--hair) solid rgba(255,255,255,.22);}
   .acontact a{color:var(--white);text-decoration:none;}
   .acontact span{display:block;color:var(--w-78);margin-top:.25rem;}
@@ -681,7 +687,7 @@
       <div class="container">
         <div class="stats">
           <div class="stat"><b>4</b><span>поля в одном шатре</span></div>
-          <div class="stat is-list"><b>5×5 - 6×6 - 7×7 - 8×8</b><span>формат игры</span></div>
+          <div class="stat is-list"><b><span>5×5</span><span>6×6</span><span>7×7</span><span>8×8</span></b><span>формат игры</span></div>
           <div class="stat"><b>60 мм</b><span>профессиональный искусственный газон</span></div>
           <div class="stat"><b>6</b><span>раздевалок с душевыми</span></div>
         </div>
