@@ -227,9 +227,6 @@
     border-color:rgba(0,0,0,.08);
   }
   .bar-cta{margin-left:0;}
-  @media (min-width:86.0625rem){
-    .bar-book{order:1;}
-  }
   .bar-logo{display:flex;align-items:center;gap:.6rem;flex:none;text-decoration:none;}
   .bar-word{
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
@@ -308,9 +305,10 @@
     display:grid;grid-template-columns:repeat(2,max-content);
     column-gap:.5rem;
     /* дисплейный кегль в два столбца не влезает в плашку: при 64px пара
-       занимает 122px, а на колонку приходится 116px. Ограничиваем верх
-       шкалы, низ совпадает с --fs-h2 — на мобилке размер тот же. */
-    font-size:clamp(1.75rem,4.5vw,3.5rem);
+       занимает 122px, а на колонку приходится 116px. Берём шкалу соседних
+       цифр и ограничиваем только верх — тогда кегль совпадает с ними
+       на всех ширинах, включая планшетные. */
+    font-size:min(var(--fs-h2),2.75rem);
   }
   .stat > span{margin-top:auto;padding-top:1.5rem;}
   /* плашки по очереди: зелёная — серая */
@@ -575,7 +573,7 @@
        поэтому в сетке участвуют только знак, кнопка и бургер. */
     .bar{display:grid;grid-template-columns:1fr auto 1fr;}
     .bar-logo{justify-self:start;}
-    .bar-book{justify-self:center;margin:0;min-height:2.75rem;padding-inline:1.35rem;}
+    .btn.bar-book{justify-self:center;margin:0;min-height:2.75rem;padding-inline:1.35rem;}
     .bar-cta{justify-self:end;}
     .bar-cta .btn-vk{display:none;}
     .bar-word{display:none;}
