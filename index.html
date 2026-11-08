@@ -153,7 +153,7 @@
     font-size:var(--fs-h2);line-height:var(--lh-display);letter-spacing:-.01em;
   }
   /* 3. h3 */
-  h3,.zone-name,.acontact a,.foot-phone,.gitem.is-tile{
+  h3,.zone-name,.acontact a,.foot-phone{
     font-family:var(--fh);font-weight:700;text-transform:uppercase;
     font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:0;
   }
@@ -470,11 +470,7 @@
     transition:transform var(--tr);
   }
   .gitem:hover{transform:scale(1.02);}
-  .gitem img{height:100%;width:auto;max-width:none;object-fit:cover;}
-  .gitem.is-tile{
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    background:var(--green);color:var(--white);min-width:34rem;padding:0 2.5rem;
-  }
+  .gitem img{height:100%;width:auto;max-width:none;object-fit:contain;}
   .gitem .stk{position:absolute;top:1rem;right:1rem;transform:rotate(5deg);}
   .container.is-gal{padding-bottom:0;}
 
@@ -610,7 +606,6 @@
     .srow h3{padding-right:0;}
     .gmrq{padding:0 0 2.25rem;}
     .gitem{height:clamp(16rem,68vw,24rem);}
-    .gitem.is-tile{min-width:18rem;padding:0 1.5rem;}
     .fgrid{grid-template-columns:1fr;}
     .flist{margin-top:1.25rem;}
     .booking{gap:1.5rem;}
@@ -904,33 +899,55 @@
             <span class="meta">Фото и галерея</span>
             <h2>Как это<br>выглядит</h2>
           </div>
-          <div class="shead-r">
-            <p class="lead">Комплекс строится — показываем честные рендеры, схемы и прогресс стройки. Настоящие фото уже скоро.</p>
-          </div>
         </div>
       </div>
       <div class="gmrq">
         <div class="gmrq-in">
           <div class="gitem">
-            <img src="bg-2.jpg" alt="Рендер крытой футбольной арены Центр Поля" loading="lazy">
-            <span class="stk">Скоро фото</span>
+            <img src="bg-2.jpg" width="1672" height="941" alt="Игроки на футбольном поле" loading="lazy" decoding="async">
           </div>
-          <div class="gitem is-tile">Схема полей · скоро</div>
           <div class="gitem">
-            <img src="bg.jpg" alt="Рендер футбольного поля с игроками" loading="lazy">
-            <span class="stk is-white">Рендер</span>
+            <img src="img/cafe-1.webp" width="1400" height="933" alt="Кафе и зона ожидания: стойка, столики вдоль окон" loading="lazy" decoding="async">
+            <span class="stk is-white">Кафе</span>
           </div>
-          <div class="gitem is-tile">Стройка · прогресс</div>
+          <div class="gitem">
+            <img src="img/fields-scheme.webp" width="1280" height="900" alt="Схема полей: поле 1 и поле 2 — 38×19, поле 3 — 42×22" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem">
+            <img src="img/cafe-3.webp" width="1400" height="933" alt="Кафе: стойка, витрина с напитками и лестница с трофеями" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem">
+            <img src="bg.jpg" width="1682" height="935" alt="Игровой момент на футбольном поле" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem">
+            <img src="img/cafe-2.webp" width="1400" height="933" alt="Кафе: диван, полка с кубками и медалями, холодильник с напитками" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem">
+            <img src="img/cafe-4.webp" width="1400" height="933" alt="Стойка администратора с логотипом «Центр Поля»" loading="lazy" decoding="async">
+          </div>
+          <!-- дубль ленты для бесшовной прокрутки -->
           <div class="gitem" aria-hidden="true">
-            <img src="bg-2.jpg" alt="" loading="lazy">
-            <span class="stk">Скоро фото</span>
+            <img src="bg-2.jpg" width="1672" height="941" alt="" loading="lazy" decoding="async">
           </div>
-          <div class="gitem is-tile" aria-hidden="true">Схема полей · скоро</div>
           <div class="gitem" aria-hidden="true">
-            <img src="bg.jpg" alt="" loading="lazy">
-            <span class="stk is-white">Рендер</span>
+            <img src="img/cafe-1.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+            <span class="stk is-white">Кафе</span>
           </div>
-          <div class="gitem is-tile" aria-hidden="true">Стройка · прогресс</div>
+          <div class="gitem" aria-hidden="true">
+            <img src="img/fields-scheme.webp" width="1280" height="900" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem" aria-hidden="true">
+            <img src="img/cafe-3.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem" aria-hidden="true">
+            <img src="bg.jpg" width="1682" height="935" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem" aria-hidden="true">
+            <img src="img/cafe-2.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="gitem" aria-hidden="true">
+            <img src="img/cafe-4.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </section>
