@@ -11,3 +11,8 @@ DirectoryIndex index.html
 # чтобы уже проиндексированная заглушка не отдавала 404
 Redirect 301 /zaglushka.html /
 Redirect 301 /v2-editorial.html /
+
+# Служебные файлы не отдаём наружу (config.php с ключами, образец, инструкции)
+<FilesMatch "^(config\.php|config\.example\.php|.*\.md)$">
+  Require all denied
+</FilesMatch>

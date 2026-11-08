@@ -33,6 +33,7 @@
   "name": "Центр Поля",
   "description": "Крытая футбольная арена: 4 поля в одном шатре, форматы 5×5–8×8. Аренда полей, турниры, детские секции, корпоративы.",
   "telephone": "+79813799009",
+  "email": "centr_polya@mail.ru",
   "url": "https://centrpolya.ru/",
   "image": "https://centrpolya.ru/bg-2.jpg",
   "address": {
@@ -496,6 +497,13 @@
     background:var(--white);border:var(--hair) solid var(--green);color:var(--green);font-weight:600;
   }
   .fok.show{display:block;}
+  .ferr{
+    display:none;margin-top:1rem;padding:.9rem 1rem;border-radius:.75rem;
+    background:var(--white);border:var(--hair) solid #C62828;color:#C62828;font-weight:600;
+  }
+  .ferr a{color:inherit;white-space:nowrap;}
+  .ferr.show{display:block;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
   .acard{
     grid-column:span 5;min-width:0;align-self:start;
     background:var(--green);color:var(--white);
@@ -967,7 +975,9 @@
 
         <div class="booking">
           <div class="bform">
-            <form id="bf" novalidate>
+            <form id="bf" action="send.php" method="post" novalidate>
+              <!-- ловушка для спам-ботов: люди это поле не видят и не заполняют -->
+              <div class="hp" aria-hidden="true"><label for="f-web">Сайт</label><input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
               <div class="fgrid">
                 <div class="fld"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
                 <div class="fld"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" autocomplete="tel" required></div>
@@ -994,6 +1004,7 @@
               </div>
               <button class="btn btn-k" type="submit">Отправить заявку</button>
               <p class="fhint">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
+              <div class="ferr" id="ferr" role="alert">Не получилось отправить заявку. Позвоните нам: <a href="tel:+79813799009">+7-981-379-90-09</a></div>
               <div class="fok" id="fok" role="status">Спасибо! Заявка принята — менеджер свяжется с вами в ближайшее время.</div>
             </form>
           </div>
@@ -1006,6 +1017,7 @@
             <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
             <div class="acontact">
               <a href="tel:+79813799009">+7-981-379-90-09</a>
+              <span><a href="mailto:centr_polya@mail.ru">centr_polya@mail.ru</a></span>
               <span>Новоселье, дер. Пески · <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">адрес на карте</a></span>
             </div>
           </aside>
@@ -1026,6 +1038,7 @@
         <div class="foot-col">
           <h4>Контакты</h4>
           <a class="foot-phone" href="tel:+79813799009">+7-981-379-90-09</a>
+          <a href="mailto:centr_polya@mail.ru">centr_polya@mail.ru</a>
           <p>Новоселье, дер. Пески</p>
           <a href="https://yandex.ru/maps/org/tsentr_polya/234786052100?si=th41byrd3r1azn2kqa9f4yadeg" target="_blank" rel="noopener">Адрес на карте →</a>
           <a href="https://vk.ru/club238920313" target="_blank" rel="noopener">Группа ВКонтакте →</a>
@@ -1096,14 +1109,27 @@
     });
   })();
 
-  // форма (клиентское подтверждение; реальный обработчик подключается отдельно)
+  // форма: заявка уходит в send.php (почта + ВК). На GitHub Pages PHP нет —
+  // там отправка не сработает и человек увидит телефон для звонка.
   document.getElementById('bf').addEventListener('submit', function(e){
     e.preventDefault();
+    var form = this, ok = document.getElementById('fok'), err = document.getElementById('ferr');
+    var btn = form.querySelector('button[type="submit"]');
     var name = document.getElementById('f-name').value.trim();
     var phone = document.getElementById('f-phone').value.trim();
-    if(!name || !phone){ alert('Пожалуйста, укажите имя и телефон.'); return; }
-    document.getElementById('fok').classList.add('show');
-    this.reset();
+    if(!name || phone.replace(/\D/g,'').length < 10){ alert('Пожалуйста, укажите имя и телефон.'); return; }
+    ok.classList.remove('show'); err.classList.remove('show');
+    btn.disabled = true; var label = btn.textContent; btn.textContent = 'Отправляем…';
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl && setTimeout(function(){ ctrl.abort(); }, 15000);
+    fetch(form.getAttribute('action'), {method:'POST', body:new FormData(form), signal: ctrl ? ctrl.signal : undefined})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok) throw new Error('send failed');
+        ok.classList.add('show'); form.reset();
+      })
+      .catch(function(){ err.classList.add('show'); })
+      .then(function(){ clearTimeout(timer); btn.disabled = false; btn.textContent = label; });
   });
 
 </script>
