@@ -49,18 +49,7 @@
   "sameAs": [
     "https://vk.ru/club238920313",
     "https://yandex.ru/maps/org/tsentr_polya/234786052100"
-  ],
-  "potentialAction": {
-    "@type": "ReserveAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://n2320737.yclients.com/company/2012190/personal/menu?o=",
-      "actionPlatform": [
-        "http://schema.org/DesktopWebPlatform",
-        "http://schema.org/MobileWebPlatform"
-      ]
-    }
-  }
+  ]
 }
 </script>
 
@@ -181,10 +170,34 @@
   main{
     background:var(--white);
     border-radius:var(--r);
-    overflow:hidden;
+    /* clip, а не hidden: иначе main становится контейнером прокрутки
+       и фоновая разметка .pbg перестаёт прилипать к экрану */
+    overflow:hidden;overflow:clip;
     margin-bottom:var(--frame);
   }
-  main .blk{background:var(--white);color:var(--black);}
+  main .blk{color:var(--black);}
+  /* ============ ФОН: РАЗМЕТКА ПОЛЯ ============
+     Слой высотой в экран прилипает к верху (sticky) и стоит на месте, пока
+     листаются блоки; отрицательный отступ снизу убирает его из потока.
+     sticky, а не fixed: fixed проступал бы поверх героя и подвала. */
+  .pbg{position:sticky;top:0;height:100vh;margin-bottom:-100vh;pointer-events:none;}
+  .pbg svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  .pbg .ln *{
+    fill:none;stroke:var(--green);stroke-opacity:.16;stroke-width:1.3;
+    stroke-dasharray:1;stroke-dashoffset:1;animation:pbg-draw 2.4s cubic-bezier(.6,0,.2,1) .3s forwards;
+  }
+  /* в портретной ориентации рисунок мельче — линии толще, чтобы на экране были те же ~1,5px */
+  .pbg-p .ln *{stroke-width:2.6;}
+  /* на телефоне поле целиком вписано в экран (а не обрезано по краям) и бледнее:
+     линии чаще идут через текст, им нужно быть тише */
+  @media (max-width:48rem){
+    .pbg .ln *{stroke-opacity:.1;}
+    .pbg circle.dt{fill-opacity:.12;}
+  }
+  .pbg circle.dt{fill:var(--green);fill-opacity:.2;}
+  @keyframes pbg-draw{to{stroke-dashoffset:0;}}
+  .pbg-p{visibility:hidden;}
+  @media (orientation:portrait){.pbg-l{visibility:hidden;}.pbg-p{visibility:visible;}}
 
 
   /* ============ КНОПКИ ============ */
@@ -684,7 +697,7 @@
         <p class="hero-desc">Футбольный манеж для тренировок, турниров, детских футбольных школ, товарищеских матчей и корпоративов.</p>
         <div class="hero-btns">
           <a class="btn btn-y" href="#booking">Бронировать</a>
-          <a class="btn btn-w" href="https://n2320737.yclients.com/company/2012190/personal/menu?o=" target="_blank" rel="noopener">Смотреть доступные поля / время</a>
+          <a class="btn btn-w" href="#fields">Смотреть поля</a>
         </div>
       </div>
     </div>
@@ -696,6 +709,8 @@
   </div>
 
   <main>
+    <!-- фоновая разметка поля: прилипает к экрану, пока листается белая часть страницы -->
+    <div class="pbg" aria-hidden="true"><svg class="pbg-l" viewBox="-45 -45 1140 770" preserveAspectRatio="xMidYMid slice"><g class="ln"><rect x="0" y="0" width="1050" height="680" pathLength="1"/><path d="M525.0 0V680" pathLength="1"/><circle cx="525.0" cy="340.0" r="91.5" pathLength="1"/><rect x="0.0" y="138.5" width="165.0" height="403.0" pathLength="1"/><rect x="0.0" y="248.5" width="55.0" height="183.0" pathLength="1"/><rect x="-18.0" y="303.4" width="18.0" height="73.2" pathLength="1"/><path d="M165.0 266.9A91.5 91.5 0 0 1 165.0 413.1" pathLength="1"/><rect x="885.0" y="138.5" width="165.0" height="403.0" pathLength="1"/><rect x="995.0" y="248.5" width="55.0" height="183.0" pathLength="1"/><rect x="1050.0" y="303.4" width="18.0" height="73.2" pathLength="1"/><path d="M885.0 266.9A91.5 91.5 0 0 0 885.0 413.1" pathLength="1"/><path d="M10 0A10 10 0 0 1 0 10" pathLength="1"/><path d="M1040 0A10 10 0 0 0 1050 10" pathLength="1"/><path d="M0 670A10 10 0 0 1 10 680" pathLength="1"/><path d="M1050 670A10 10 0 0 0 1040 680" pathLength="1"/></g><g><circle class="dt" cx="525.0" cy="340.0" r="3.5"/><circle class="dt" cx="110" cy="340.0" r="3.5"/><circle class="dt" cx="940" cy="340.0" r="3.5"/></g></svg><svg class="pbg-p" viewBox="-45 -45 770 1140" preserveAspectRatio="xMidYMid meet"><g transform="translate(680 0) rotate(90)"><g class="ln"><rect x="0" y="0" width="1050" height="680" pathLength="1"/><path d="M525.0 0V680" pathLength="1"/><circle cx="525.0" cy="340.0" r="91.5" pathLength="1"/><rect x="0.0" y="138.5" width="165.0" height="403.0" pathLength="1"/><rect x="0.0" y="248.5" width="55.0" height="183.0" pathLength="1"/><rect x="-18.0" y="303.4" width="18.0" height="73.2" pathLength="1"/><path d="M165.0 266.9A91.5 91.5 0 0 1 165.0 413.1" pathLength="1"/><rect x="885.0" y="138.5" width="165.0" height="403.0" pathLength="1"/><rect x="995.0" y="248.5" width="55.0" height="183.0" pathLength="1"/><rect x="1050.0" y="303.4" width="18.0" height="73.2" pathLength="1"/><path d="M885.0 266.9A91.5 91.5 0 0 0 885.0 413.1" pathLength="1"/><path d="M10 0A10 10 0 0 1 0 10" pathLength="1"/><path d="M1040 0A10 10 0 0 0 1050 10" pathLength="1"/><path d="M0 670A10 10 0 0 1 10 680" pathLength="1"/><path d="M1050 670A10 10 0 0 0 1040 680" pathLength="1"/></g><g><circle class="dt" cx="525.0" cy="340.0" r="3.5"/><circle class="dt" cx="110" cy="340.0" r="3.5"/><circle class="dt" cx="940" cy="340.0" r="3.5"/></g></g></svg></div>
 
     <!-- ============ ЦИФРЫ ============ -->
     <section class="blk" aria-label="Ключевые цифры">
@@ -1028,7 +1043,7 @@
             <h3>Заявка на аренду всего манежа</h3>
             <p>Без выбора даты в форме: имя, телефон, комментарий и цель аренды. Менеджер свяжется и согласует дату, время и условия.</p>
             <a class="btn btn-k" href="#f-name" data-book="Весь манеж — 64×42 (7×7 / 8×8)">Оставить заявку</a>
-            <p class="apay">Оплата: наличные, безнал, карта, QR-код. Доступно онлайн-бронирование через YClients.</p>
+            <p class="apay">Оплата: наличные, безнал, карта, QR-код.</p>
             <div class="acontact">
               <a href="tel:+79813799009">+7-981-379-90-09</a>
               <span><a href="mailto:centr_polya@mail.ru">centr_polya@mail.ru</a></span>
