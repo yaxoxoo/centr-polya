@@ -59,15 +59,19 @@ if ($name === '' || strlen((string)preg_replace('/\D/', '', $phone)) < 10) {
     respond(false, 422);
 }
 
+// Дата из календаря приходит как 2026-11-20 — показываем привычно: 20.11.2026
+$date = field('date', 10);
+if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $date, $m)) {
+    $date = $m[3] . '.' . $m[2] . '.' . $m[1];
+}
+
 $rows = [
-    'Имя'             => $name,
-    'Телефон'         => $phone,
-    'Дата и время'    => field('datetime', 100),
-    'Поле / формат'   => field('field', 100),
-    'Размер ворот'    => field('goals', 50),
-    'Аренда мяча'     => field('ball', 50),
-    'Аренда манишек'  => field('bibs', 50),
-    'Комментарий'     => field('comment', 2000),
+    'Имя'           => $name,
+    'Телефон'       => $phone,
+    'Дата'          => $date,
+    'Время'         => field('time', 10),
+    'Поле / формат' => field('field', 100),
+    'Комментарий'   => field('comment', 2000),
 ];
 $text = "Новая заявка с сайта centrpolya.ru\n\n";
 foreach ($rows as $label => $value) {

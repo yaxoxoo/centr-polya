@@ -516,6 +516,10 @@
   }
   .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--green);}
   .fld textarea{resize:vertical;min-height:6rem;}
+  /* дата — системный календарь; на iOS без этого поле ниже соседних и текст по центру */
+  .fld input,.fld select{height:3.125rem;}
+  .fld input[type="date"]{-webkit-appearance:none;appearance:none;display:block;}
+  .fld input[type="date"]::-webkit-date-and-time-value{text-align:left;}
   .bform .btn{margin-top:1.25rem;width:100%;}
   .fhint{color:var(--ink-60);margin-top:.7rem;text-align:center;}
   .fok{
@@ -1010,8 +1014,9 @@
               <div class="fgrid">
                 <div class="fld"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
                 <div class="fld"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" autocomplete="tel" required></div>
-                <div class="fld"><label for="f-dt">Дата и время</label><input id="f-dt" name="datetime" type="text" placeholder="Напр. 20 июля, 19:00"></div>
-                <div class="fld"><label for="f-field">Поле / формат</label>
+                <div class="fld"><label for="f-date">Дата</label><input id="f-date" name="date" type="date"></div>
+                <div class="fld"><label for="f-time">Время</label><select id="f-time" name="time"><option value="">Выберите время</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option></select></div>
+                <div class="fld full"><label for="f-field">Поле / формат</label>
                   <select id="f-field" name="field">
                     <option value="">Выберите поле</option>
                     <option>Поле 1 — 38×19 (5×5 / 6×6)</option>
@@ -1019,15 +1024,6 @@
                     <option>Поле 3 — 42×22 (6×6 / 7×7)</option>
                     <option>Весь манеж — 64×42 (7×7 / 8×8)</option>
                   </select>
-                </div>
-                <div class="fld"><label for="f-goal">Размер ворот (для 42×22)</label>
-                  <select id="f-goal" name="goals"><option value="">Не важно</option><option>3×2</option><option>4×2</option><option>5×2</option></select>
-                </div>
-                <div class="fld"><label for="f-ball">Аренда мяча</label>
-                  <select id="f-ball" name="ball"><option>Не нужна</option><option>Нужна</option></select>
-                </div>
-                <div class="fld full"><label for="f-bibs">Аренда манишек</label>
-                  <select id="f-bibs" name="bibs"><option>Не нужна</option><option>Нужна — комплект</option></select>
                 </div>
                 <div class="fld full"><label for="f-com">Комментарий</label><textarea id="f-com" name="comment" placeholder="Цель аренды, количество игроков, пожелания"></textarea></div>
               </div>
@@ -1140,6 +1136,12 @@
 
   // форма: заявка уходит в send.php (почта + ВК). На GitHub Pages PHP нет —
   // там отправка не сработает и человек увидит телефон для звонка.
+  // в календаре нельзя выбрать прошедшую дату
+  (function(){
+    var d = new Date(), el = document.getElementById('f-date');
+    if(el) el.min = d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  })();
+
   document.getElementById('bf').addEventListener('submit', function(e){
     e.preventDefault();
     var form = this, ok = document.getElementById('fok'), err = document.getElementById('ferr');
