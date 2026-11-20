@@ -107,13 +107,14 @@ if (!empty($cfg['mail_to'])) {
 // --- ВКонтакте: сообщение от имени группы ---
 if (!empty($cfg['vk_token']) && !empty($cfg['vk_peer_ids'])) {
     foreach ((array)$cfg['vk_peer_ids'] as $peer) {
+        // получатель: числовой ID (123456) или короткий адрес страницы (alex__smr)
+        $to = ctype_digit((string)$peer) ? ['peer_id' => (int)$peer] : ['domain' => (string)$peer];
         $payload = http_build_query([
             'access_token' => $cfg['vk_token'],
             'v'            => '5.199',
-            'peer_id'      => (int)$peer,
             'random_id'    => random_int(1, PHP_INT_MAX),
             'message'      => $text,
-        ]);
+        ] + $to);
         $ctx = stream_context_create(['http' => [
             'method'  => 'POST',
             'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
